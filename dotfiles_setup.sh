@@ -6,5 +6,5 @@ dir="${HOME}/Documents/dotfiles"
 # -s Create a symbolic link
 # -f If the target file already exists, then unlink it so that the link may occur
 for dotfile in "${dotfiles[@]}";do
-	ln -sfv "${HOME}/${dotfile}" "${dir}"
+	ln -sfv "${dir}/${dotfile}" "${HOME}"
 done
