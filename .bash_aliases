@@ -1,0 +1,8 @@
+alias la="ls -a"
+alias ll="ls -l"
+alias home="cd ~"
+alias cdcode="cd ~/Code"
+alias cdplayground="cd ~/Code/playground"
+alias vscp="cdcode && code playground"
+alias tdkpd="cd ~/Code/tdkprodev/"
+alias tdkprodev="tdkpd"
