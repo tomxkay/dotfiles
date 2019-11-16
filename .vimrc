@@ -4,6 +4,11 @@
 set nocompatible
 filetype off
 
+" fzf
+" If installed using homebrew
+set rtp+=/usr/local/opt/fzf
+" If installed using git
+" set rtp+=~/.fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -34,6 +39,8 @@ Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/base16-vim'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()
 
@@ -49,25 +56,18 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Auto source .vimrc
 autocmd! bufwritepost .vimrc source %
 
-set encoding=utf8
-let base16colorspace=256
-" murphy, slate, molokai, badwolf, solarized
-colorscheme dracula
 
 " pre settings for tmux color correction with set termguicolors
 " This is only necessary if you use set termguicolors.
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" fixes glitch? in colors when using vim with tmux
-set background=dark
-set t_Co=256
 
 " Settings
-set termguicolors
+set tags+=./tags;$HOME
 set belloff=all
-" set nobackup
-" set nowritebackup
+set nobackup
+set nowritebackup
 set noswapfile
 set autowrite " automatically :write before running commands
 set autoread " reload files changes outside vim
@@ -76,6 +76,7 @@ set cursorline " highlight the current line
 set modeline
 set ruler
 set hidden " jumping from unsaved files causes files to be hidden instead of closed
+set mouse=a
 
 set number
 set relativenumber
@@ -97,7 +98,6 @@ set visualbell " blink cursor on error, instead of beeping
 
 " Faster redrawing
 set ttyfast
-" set mouse=a
 
 " Code folding settings
 set foldmethod=syntax "fold based on indent
@@ -108,6 +108,13 @@ set foldlevel=1
 " Square up visual selections
 set virtualedit=block
 
+" Persist undo over buffer switches and exits
+:silent call system('mkdir -p ' . $HOME . '/.vim/undo')
+set undofile
+set undodir=$HOM#/.vim/undo
+set undolevels=1000
+set undoreload=10000
+
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
 
@@ -115,6 +122,18 @@ let g:DVB_TrimWS = 1
 " => User Interface
 """"""""""""""""""""""""""""""""""""""""""
 syntax enable
+set t_Co=256
+let base16colorspace=256
+set background=dark
+set termguicolors
+
+" Set encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+" colorscheme dracula
+" colorscheme molokai
+colorscheme gruvbox
 
 " Searching
 set gdefault     " Default /g at end of search
@@ -143,6 +162,12 @@ set sidescroll=1
 """"""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """"""""""""""""""""""""""""""""""""""""""
+" Map Leader
+let mapleader=","
+
+" Map temp default -- runs ts-node on current file
+map ,l :!clear && ts-node %<CR>
+
 " Normal mode
 inoremap kj <ESC>
 inoremap jj <ESC>
@@ -151,8 +176,9 @@ inoremap jj <ESC>
 noremap Q !!$SHELL<CR>
 vnoremap Q !$SHELL<CR>
 
-noremap <Leader>C :.!cowsay<CR>
-noremap <Leader>A :.!figlet<CR>
+" Cool experiments
+" noremap <Leader>cow :.!cowsay<CR>
+" noremap <Leader>fig :.!figlet<CR>
 
 " Quickly close windows
 nnoremap <Leader>x :x<CR>
@@ -163,6 +189,9 @@ nnoremap <CR> o<ESC>
 
 " Rename file
 map <Leader>n :call RenameFile()<cr>
+
+" Allow saving of files as sudo
+cmap w!! %!sudo tee > /dev/null %
 
 " Join yanked text on a yank (needed for terminal mode copies)
 " vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()<CR>
