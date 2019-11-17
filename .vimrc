@@ -23,13 +23,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlp.vim'
 Plugin 'joshukraine/dragvisuals'
-Plugin 'w0rp/ale'
 Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'w0rp/ale'
+Plugin 'ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-multiple-cursors'
 
@@ -361,7 +362,7 @@ nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
 " Project Finder
 " nmap <Leader>/ :Ag<Space>
-" nmap <Leader>\ :Rg<Space>
+nmap <Leader>\ :Rg<Space>
 " Help Finder
 nmap <Leader>H :Helptags!<CR>
 
