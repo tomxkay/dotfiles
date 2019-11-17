@@ -7,8 +7,8 @@ command_exists() {
 echo "Linking dotfiles..."
 source install/link.sh
 
-echo "Setting up git meta..."
-source install/git.sh
+# echo "Setting up git meta..."
+# source install/git.sh
 
 # only perform macOS-specific install
 if [ "$(uname)" == "Darwin" ]; then

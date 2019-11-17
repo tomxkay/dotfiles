@@ -2,7 +2,7 @@
 
 # If Homebrew is not installed, install Homebrew
 if test ! "$( command -v brew )"; then
-	echo "Installing homebrew"
+	echo "Homebrew not installed. Installing homebrew..."
 	ruby -e "$( crl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install )"
 fi
 
@@ -38,4 +38,4 @@ echo -e "\\n\\nRunning fzf install script..."
 echo "================================"
 /usr/local/opt/fzf/install --all
 
-echo "brew.sh script finished"
+echo "brew.sh script finished."

@@ -170,6 +170,9 @@ let mapleader=","
 map ,l :!clear && ts-node %<CR>
 
 " Normal mode
+nnoremap Y y$
+
+" Insert mode
 inoremap kj <ESC>
 inoremap jj <ESC>
 
