@@ -14,25 +14,32 @@ call vundle#begin()
 
 " Vundle Setup
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'prettier/vim-prettier'
+
+" Git
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" Util
 Plugin 'leafgarland/typescript-vim'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'Quramy/tsuquyomi'
+Plugin 'w0rp/ale'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'tpope/vim-fugitive'
+Plugin 'prettier/vim-prettier'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'vim-multiple-cursors'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'joshukraine/dragvisuals'
 Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'w0rp/ale'
+Plugin 'joshukraine/dragvisuals'
+
+" Search
 Plugin 'ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-multiple-cursors'
 
 " Syntax Theme Colors
 Plugin 'dracula/vim'
