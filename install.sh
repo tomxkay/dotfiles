@@ -5,7 +5,10 @@ command_exists() {
 }
 
 echo "Linking dotfiles..."
-source install/link.sh
+source install/link_dotfiles.sh
+
+echo "Linking bin executables..."
+source install/link_executables.sh
 
 # echo "Setting up git meta..."
 # source install/git.sh
