@@ -20,10 +20,18 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-" Util
+" TypeScript
 Plugin 'leafgarland/typescript-vim'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'Quramy/tsuquyomi'
+
+" JavaScript
+Plugin 'pangloss/vim-javascript'
+
+" React"
+Plugin 'maxmellon/vim-jsx-pretty'
+
+" Util
 Plugin 'w0rp/ale'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'prettier/vim-prettier'
