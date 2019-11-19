@@ -1,5 +1,5 @@
 #!/bin/bash
-dotfiles=(".vimrc" ".tmux.conf" ".gitconfig" ".ctags" ".aliases" ".bash_aliases")
+dotfiles=(".vimrc" ".tmux.conf" ".gitconfig" ".ctags" ".aliases" ".bash_aliases" ".inputrc")
 dir="${HOME}/Documents/dotfiles"
 
 # For each specified dotfile, create symbolic link
