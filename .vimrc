@@ -30,13 +30,14 @@ Plugin 'prettier/vim-prettier'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
-Plugin 'vim-multiple-cursors'
+" Plugin 'vim-multiple-cursors'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mattn/emmet-vim'
 Plugin 'joshukraine/dragvisuals'
+Plugin 'terryma/vim-expand-region'
 
 " Search
-Plugin 'ctrlp.vim'
+" Plugin 'ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'ludovicchabant/vim-gutentags'
@@ -171,7 +172,12 @@ set sidescroll=1
 " => Mappings
 """"""""""""""""""""""""""""""""""""""""""
 " Map Leader
-let mapleader=","
+" let mapleader=","
+map , <Leader>
+map <Space> <Leader>
+
+" Easier/quicker save
+nnoremap <Leader>w :w<CR>
 
 " Map temp default -- runs ts-node on current file
 map ,l :!clear && ts-node %<CR>
@@ -212,14 +218,10 @@ noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
 inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
 
 " Resize panes
-" noremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
-" noremap <silent> <Leader>- :exe "resize " . (winheight(0) * 5/6)<CR>
-" noremap <silent> <Leader>+ :exe "vertical resize " . (winheight(0) * 6/5)<CR>
-" noremap <silent> <Leader>- :exe "vertical resize " . (winheight(0) * 5/6)<CR>
-" nnoremap <silent> <RIGHT> :vertical resize +5<CR>
-" nnoremap <silent> <LEFT> :vertical resize -5<CR>
-" nnoremap <silent> <UP> :resize +5<CR>
-" nnoremap <silent> <DOWN> :resize 5<CR>
+nnoremap <silent> <RIGHT> :vertical resize +5<CR>
+nnoremap <silent> <LEFT> :vertical resize -5<CR>
+nnoremap <silent> <UP> :resize +5<CR>
+nnoremap <silent> <DOWN> :resize -5<CR>
 
 " Use tab to jump between blocks
 " nnoremap <tab> %
