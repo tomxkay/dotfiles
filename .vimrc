@@ -48,9 +48,9 @@ Plugin 'metakirby5/codi.vim'
 
 " Code Formatter
 Plugin 'prettier/vim-prettier'
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmt'
-Plugin 'google/vim-glaive'
+" Plugin 'google/vim-maktaba'
+" Plugin 'google/vim-codefmt'
+" Plugin 'google/vim-glaive'
 
 " Search
 " Plugin 'ctrlp.vim'
@@ -69,23 +69,23 @@ Plugin 'vim-airline/vim-airline'
 
 call vundle#end()
 
-call glaive#Install()
-Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+" call glaive#Install()
+" Glaive codefmt plugin[mappings]
+" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
 
 " Autoformatting
-augroup autoformat_settings
-	autocmd FileType bzl AutoFormatBuffer buildifier
-	autocmd FileType ts,c,cpp,proto,javascript AutoFormatBuffer clang-format
-	autocmd FileType dart AutoFormatBuffer dartfmt
-	autocmd FileType go AutoFormatBuffer gofmt
-	autocmd FileType gn AutoFormatBuffer gn
-	autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-	autocmd FileType java AutoFormatBuffer google-java-format
-	autocmd FileType python AutoFormatBuffer yapf
-	" Alternative: autocmd FileType python AutoFormatBuffer autopep8
-	autocmd FileType vue AutoFormatBuffer prettier
-augroup END
+" augroup autoformat_settings
+" 	autocmd FileType bzl AutoFormatBuffer buildifier
+" 	autocmd FileType ts,c,cpp,proto,javascript AutoFormatBuffer clang-format
+" 	autocmd FileType dart AutoFormatBuffer dartfmt
+" 	autocmd FileType go AutoFormatBuffer gofmt
+" 	autocmd FileType gn AutoFormatBuffer gn
+" 	autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+" 	autocmd FileType java AutoFormatBuffer google-java-format
+" 	autocmd FileType python AutoFormatBuffer yapf
+" 	" Alternative: autocmd FileType python AutoFormatBuffer autopep8
+" 	autocmd FileType vue AutoFormatBuffer prettier
+" augroup END
 
 " YouCompleteMe
 if !exists("g:ycm_semantic_triggers")
@@ -211,7 +211,7 @@ map , <Leader>
 map <Space> <Leader>
 
 " Easier/quicker save
-nnoremap <Leader>w :FormatCode<CR>:w<CR>
+nnoremap <Leader>w :Prettier<CR>:w<CR>
 
 " Map temp default -- runs ts-node on current file
 map ,l :!clear && ts-node %<CR>
