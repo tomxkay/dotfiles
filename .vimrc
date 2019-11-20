@@ -44,6 +44,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'mattn/emmet-vim'
 Plugin 'joshukraine/dragvisuals'
 Plugin 'terryma/vim-expand-region'
+Plugin 'metakirby5/codi.vim'
 
 " Code Formatter
 Plugin 'prettier/vim-prettier'
