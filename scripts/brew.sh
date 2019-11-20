@@ -12,11 +12,13 @@ echo "================================"
 # Specify brew packages to be installed
 formulas=(
 	cowsay
+	cmake
 	ctags
 	deno
 	figlet
 	fzf
 	git
+	macvim
 	nvm
 	ripgrep
 	tmux
