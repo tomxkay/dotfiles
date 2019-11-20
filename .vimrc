@@ -34,7 +34,6 @@ Plugin 'maxmellon/vim-jsx-pretty'
 " Util
 Plugin 'w0rp/ale'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'prettier/vim-prettier'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -47,6 +46,7 @@ Plugin 'joshukraine/dragvisuals'
 Plugin 'terryma/vim-expand-region'
 
 " Code Formatter
+Plugin 'prettier/vim-prettier'
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
