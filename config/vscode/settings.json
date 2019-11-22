@@ -1,156 +1,202 @@
 {
-	/* General */
-	"terminalnal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-	"terminal.integrated.scrollback": 50000,
-	"explorer.confirmDelete": false,
-	"breadcrumbs.enabled": true,
-	"editor.tabSize": 2,
-	"editor.formatOnSave": true,
-	"files.autoSave": "off",
-	"tslint.autoFixOnSave": true,
-	/* Theme */
-	"workbench.colorTheme": "Dracula",
-	"prettier.singleQuote": true,
-	"prettier.trailingComma": "all",
-	/* Git */
-	"gitlens.advanced.messages": {
-		"suppressShowKeyBindingsNotice": true
-	},
-	/* NPM */
-	"npm.enableScriptExplorer": true,
-	/* TypesScript */
-	"typescript.updateImportsOnFileMove.enabled": "never",
-	/* Vim */
-	"vim.leader": ",",
-	"vim.easymotion": true,
-	"vim.easymotionMarkerFontSize": "17",
-	"vim.easymotionMarkerBackgroundColor": "green",
-	"vim.hlsearch": true,
-	"vim.useCtrlKeys": true,
-	"vim.overrideCopy": false,
-	"vim.useSystemClipboard": true,
-	"vim.insertModeKeyBindings": [
-		{
-			"before": [
-				"k",
-				"j"
-			],
-			"after": [
-				"<Esc>"
-			]
-		},
-		{
-			"before": [
-				"C-["
-				],
-				"after": [
-					"<Esc>"
-				]
-		}
-			],
-			"vim.normalModeKeyBindings": [
-				{
-					"before": [
-						"<leader>",
-						"w"
-					],
-					"commands": [
-						":w"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"s"
-					],
-					"commands": [
-						":split"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"o"
-					],
-					"commands": [
-						":only"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"h"
-					],
-					"after": [
-						"C-w",
-						"h"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"j"
-					],
-					"after": [
-						"C-w",
-						"j"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"k"
-					],
-					"after": [
-						"C-w",
-						"k"
-					]
-				},
-				{
-					"before": [
-						"<leader>",
-						"s",
-						"l"
-					],
-					"after": [
-						"C-w",
-						"l"
-					]
-				}
-			],
-			"vim.normalModeKeyBindingsNonRecursive": [
-				{
-					"before": [
-						" "
-					],
-					"after": [
-						"leader",
-						"leader",
-						"leader",
-						"b",
-						"d",
-						"w"
-					]
-				}
-			],
-			/* Macros */
-			"macros": {
-				"saveAndExitVimInsertMode": [
-					"workbench.action.files.save",
-					"extension.vim_escape"
-				]
-			},
-			/* Excludes */
-			"files.exclude": {
-				"**/.git": true,
-				"**/.svn": true,
-				"**/CSV": true,
-				"**/.DS_Store": true,
-				"**/node_modules": true
-			},
+  /* General */
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.sideBar.location": "right",
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll": true
+  },
+  "editor.formatOnSave": true,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.scrollback": 50000,
+  "files.autoSave": "off",
+  "tslint.autoFixOnSave": false,
+  /* Theme */
+  "workbench.colorTheme": "Dracula",
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  /* Git */
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "breadcrumbs.enabled": true,
+  /* NPM */
+  "npm.enableScriptExplorer": true,
+  /* TypesScript */
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  /* Vim */
+  "vim.leader": ",",
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.overrideCopy": false,
+  "vim.useSystemClipboard": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "C-["
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<leader>",
+        "w",
+      ],
+      "commands": [
+        ":w"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "k",
+      ],
+      "after": [
+        "Ctrl+;"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "s"
+      ],
+      "commands": [
+        ":split"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "v"
+      ],
+      "commands": [
+        ":vs"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "o"
+      ],
+      "commands": [
+        ":only"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "x"
+      ],
+      "commands": [
+        ":x",
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "h"
+      ],
+      "after": [
+        "C-w",
+        "h"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "j"
+      ],
+      "after": [
+        "C-w",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "k"
+      ],
+      "after": [
+        "C-w",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "l"
+      ],
+      "after": [
+        "C-w",
+        "l"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        " "
+      ],
+      "after": [
+        "leader",
+        "leader",
+        "leader",
+        "b",
+        "d",
+        "w"
+      ]
+    },
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j",
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k",
+      ]
+    }
+  ],
+  /* Macros */
+  "macros": {
+    "saveAndExitVimInsertMode": [
+      "workbench.action.files.save",
+      "extension.vim_escape"
+    ]
+  },
+  /* Excludes */
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/CSV": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
 }
