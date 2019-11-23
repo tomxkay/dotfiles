@@ -5,10 +5,9 @@ set nocompatible
 filetype off
 
 " fzf
-" If installed using homebrew
 set rtp+=/usr/local/opt/fzf
-" If installed using git
 set rtp+=~/.fzf
+
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
@@ -31,38 +30,36 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Util
 Plug 'w0rp/ale'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-sleuth'
-" Plug 'vim-multiple-cursors'
+Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'joshukraine/dragvisuals'
 Plug 'terryma/vim-expand-region'
-Plug 'metakirby5/codi.vim'
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 
 " Code Formatter
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-" Plug 'google/vim-maktaba'
-" Plug 'google/vim-codefmt'
-" Plug 'google/vim-glaive'
 
 " Search
-" Plug 'ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
 " Syntax Theme Colors
 Plug 'dracula/vim'
-Plug 'gosukiwi/vim-atom-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
+
+" Nvim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 " YouCompleteMe
@@ -86,36 +83,38 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " Settings
 set tags+=./tags;$HOME
-set belloff=all
 set nobackup
 set nowritebackup
 set noswapfile
 set autowrite " automatically :write before running commands
 set autoread " reload files changes outside vim
+set hidden " jumping from unsaved files causes files to be hidden instead of closed
+set mouse=a " enable use of mouse for all modes"
+set belloff=all
+set visualbell " blink cursor on error, instead of beeping
+set wildmenu " visual autocomplete for command menu
 set showcmd
 set cursorline " highlight the current line
 set modeline
 set ruler
-set hidden " jumping from unsaved files causes files to be hidden instead of closed
-set mouse=a
-
+set laststatus=2 " always display the status line"
 set number
 set relativenumber
-
 set noexpandtab
 set smarttab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set shiftround
-
 set autoindent
+set nostartofline
 set smartindent
-
+set backspace=indent,eol,start
 set clipboard=unnamed
-
-set wildmenu " visual autocomplete for command menu
-set visualbell " blink cursor on error, instead of beeping
+" quickly timeout on keycodes, but never on mappings"
+set notimeout ttimeout ttimeoutlen=200
+set cmdheight=2 " avoid press <Enter> to continue"
+set confirm " ask to save file rather than failing command"
 
 " Faster redrawing
 set ttyfast
@@ -152,8 +151,7 @@ set termguicolors
 set encoding=utf-8
 set fileencoding=utf-8
 
-" colorscheme dracula
-" colorscheme molokai
+" Color
 colorscheme gruvbox
 
 " Searching
@@ -166,11 +164,11 @@ set nolazyredraw
 set showmatch    " show matching braces
 
 " Make it obvious where 100 characters is
-set textwidth=100
+set textwidth=80
 
 " Open new split panes to right and bottom, which feels more natural
-" set splitbelow
 set splitright
+set splitbelow
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -183,8 +181,6 @@ set sidescroll=1
 """"""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """"""""""""""""""""""""""""""""""""""""""
-" Map Leader
-" let mapleader=","
 map , <Leader>
 map <Space> <Leader>
 
@@ -205,10 +201,6 @@ inoremap jj <ESC>
 noremap Q !!$SHELL<CR>
 vnoremap Q !$SHELL<CR>
 
-" Cool experiments
-" noremap <Leader>cow :.!cowsay<CR>
-" noremap <Leader>fig :.!figlet<CR>
-
 " Quickly close windows
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>X :q!<CR>
@@ -222,9 +214,6 @@ map <Leader>n :call RenameFile()<cr>
 " Allow saving of files as sudo
 cmap w!! %!sudo tee > /dev/null %
 
-" Join yanked text on a yank (needed for terminal mode copies)
-" vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()<CR>
-
 " Clear search hightliting with C-L
 noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
 inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
@@ -235,13 +224,10 @@ nnoremap <silent> <LEFT> :vertical resize -5<CR>
 nnoremap <silent> <UP> :resize +5<CR>
 nnoremap <silent> <DOWN> :resize -5<CR>
 
-" Use tab to jump between blocks
-" nnoremap <tab> %
-" vnoremap <tab> %
-
-" Split window
+" Window Management
 nmap ss :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w
+nmap sx :q<CR>
 
 " Move window
 map sh <C-w>h
@@ -250,15 +236,13 @@ map sj <C-w>j
 map sl <C-w>l
 map so <C-w>o
 
-" Switch tab
-" nmap <S-Tab> :tabprev<Return>
-" nmap <Tab> :tabNext<Return>
-
 " Moving up and down work as you would expect
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
+" Edit vimrc
 map <Leader>ev :e! ~/.vimrc<CR> " edit ~/.vimrc"
+" Toggle relative numbering
 map <F6> :set relativenumber!<bar>set relativenumber?<CR>
 
 " Buffer List
@@ -284,15 +268,19 @@ xmap aa VGo1G
 " Make BS/DEL work as expected in visual mode
 xmap <BS> x
 
+" Deoplete Select Navigation
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-n>" : "\<C-k>"
+
+" window movement shortcuts
+map <C-h> :call WinMove('h')<cr>
+map <C-j> :call WinMove('j')<cr>
+map <C-k> :call WinMove('k')<cr>
+map <C-l> :call WinMove('l')<cr>
+
 """"""""""""""""""""""""""""""""""""""""""
 " => Functions
 """"""""""""""""""""""""""""""""""""""""""
-" map <C-h> :call WinMove('h')<cr>
-" map <C-j> :call WinMove('j')<cr>
-" map <C-k> :call WinMove('k')<cr>
-" map <C-l> :call WinMove('l')<cr>
-
-" window movement shortcuts
 " move to the window in the direction shown, or create a new window
 function! WinMove(key)
 	let t:curwin = winnr()
@@ -318,35 +306,38 @@ function! RenameFile()
   endif
 endfunction
 
-" Sends default register to terminal TTY using OSC 52 escape sequence
-" function! yank#Osc52Yank()
-"     let buffer=system('base64 -w0', @0)
-"     let buffer=substitute(buffer, "\n$", "", "")
-"     let buffer='\e]52;c;'.buffer.'\x07'
-"     silent exe "!echo -ne ".shellescape(buffer).
-"         \ " > ".shellescape(g:tty)
-" endfunction
-
-
+" WordProcessorMode
+function! WordProcessorMode()
+	setlocal formatoptions=1
+	setlocal noexpandtab
+	map j gj
+	map k gk
+	setlocal spell spelllang=en_us
+	set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
+	set complete+=s
+	set formatprg=par
+	setlocal wrap
+	setlocal linebreak
+endfunction
 
 """""""""""""""""""""""""""""""
-" => Autocommands
+" => Commands
+"""""""""""""""""""""""""""""""
+com! WP call WordProcessorMode()
+
 """"""""""""""""""""""""""""""""""""""""""
-" augroup Yank
-" 	autocmd!
-" 	autocmd TextYankPost * if v:event.operator ==# 'y' | call yank#Osc52Yank() | endif
-" augroup END
-
-"""""""""""""""""""""""""""""""
 " => Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
 map <Leader>k :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " Close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=0
 " Show hidden files in NERDTree
 let NERDTreeShowHidden=1
+
+" Enable Emmet only for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 " Make arrow keys move visual blocks around
 xmap <up>    <Plug>SchleppUp
@@ -389,14 +380,5 @@ nmap <Leader>' :Marks<CR>
 nmap <Leader>\ :Rg<Space>
 " Help Finder
 nmap <Leader>H :Helptags!<CR>
-
 " Commentary key map
 noremap <leader>/ :Commentary<cr>
-
-" Ctrl-p key map
-map <C-p> :CtrlP<CR>
-
-" CtrlP ignore patterns
-let g:ctrlp_custom_ignore = {
-			\ 'dir': '\.git$\|node_modules$',
-			\ }
