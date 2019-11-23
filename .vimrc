@@ -8,84 +8,62 @@ filetype off
 " If installed using homebrew
 set rtp+=/usr/local/opt/fzf
 " If installed using git
-" set rtp+=~/.fzf
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle Setup
-Plugin 'VundleVim/Vundle.vim'
+set rtp+=~/.fzf
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " TypeScript
-Plugin 'leafgarland/typescript-vim'
-Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
 
 " JavaScript
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
 " React"
-Plugin 'maxmellon/vim-jsx-pretty'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Util
-Plugin 'w0rp/ale'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-endwise'
-" Plugin 'tpope/vim-sleuth'
-" Plugin 'vim-multiple-cursors'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'mattn/emmet-vim'
-Plugin 'joshukraine/dragvisuals'
-Plugin 'terryma/vim-expand-region'
-Plugin 'metakirby5/codi.vim'
+Plug 'w0rp/ale'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-sleuth'
+" Plug 'vim-multiple-cursors'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
+Plug 'joshukraine/dragvisuals'
+Plug 'terryma/vim-expand-region'
+Plug 'metakirby5/codi.vim'
 
 " Code Formatter
-Plugin 'prettier/vim-prettier'
-" Plugin 'google/vim-maktaba'
-" Plugin 'google/vim-codefmt'
-" Plugin 'google/vim-glaive'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-codefmt'
+" Plug 'google/vim-glaive'
 
 " Search
-" Plugin 'ctrlp.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'ludovicchabant/vim-gutentags'
+" Plug 'ctrlp.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Syntax Theme Colors
-Plugin 'dracula/vim'
-Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
-Plugin 'chriskempson/base16-vim'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'vim-airline/vim-airline'
-
-call vundle#end()
-
-" call glaive#Install()
-" Glaive codefmt plugin[mappings]
-" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
-
-" Autoformatting
-" augroup autoformat_settings
-" 	autocmd FileType bzl AutoFormatBuffer buildifier
-" 	autocmd FileType ts,c,cpp,proto,javascript AutoFormatBuffer clang-format
-" 	autocmd FileType dart AutoFormatBuffer dartfmt
-" 	autocmd FileType go AutoFormatBuffer gofmt
-" 	autocmd FileType gn AutoFormatBuffer gn
-" 	autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-" 	autocmd FileType java AutoFormatBuffer google-java-format
-" 	autocmd FileType python AutoFormatBuffer yapf
-" 	" Alternative: autocmd FileType python AutoFormatBuffer autopep8
-" 	autocmd FileType vue AutoFormatBuffer prettier
-" augroup END
+Plug 'dracula/vim'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+call plug#end()
 
 " YouCompleteMe
 if !exists("g:ycm_semantic_triggers")
