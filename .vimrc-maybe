@@ -1,0 +1,36 @@
+ Map Leader
+" let mapleader=","
+
+" Cool experiments
+" noremap <Leader>cow :.!cowsay<CR>
+" noremap <Leader>fig :.!figlet<CR>
+
+" Join yanked text on a yank (needed for terminal mode copies)
+" vnoremap yy y<CR>:let @"=substitute(@", '\n', '', 'g')<CR>:call yank#Osc52Yank()<CR>
+
+" Use tab to jump between blocks
+" nnoremap <tab> %
+" vnoremap <tab> %
+
+" Switch tab
+" nmap <S-Tab> :tabprev<Return>
+" nmap <Tab> :tabNext<Return>
+
+" Sends default register to terminal TTY using OSC 52 escape sequence
+" function! yank#Osc52Yank()
+"     let buffer=system('base64 -w0', @0)
+"     let buffer=substitute(buffer, "\n$", "", "")
+"     let buffer='\e]52;c;'.buffer.'\x07'
+"     silent exe "!echo -ne ".shellescape(buffer).
+"         \ " > ".shellescape(g:tty)
+" endfunction
+
+
+
+"""""""""""""""""""""""""""""""
+" => Autocommands
+""""""""""""""""""""""""""""""""""""""""""
+" augroup Yank
+" 	autocmd!
+" 	autocmd TextYankPost * if v:event.operator ==# 'y' | call yank#Osc52Yank() | endif
+" augroup END
