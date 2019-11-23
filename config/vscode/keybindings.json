@@ -9,10 +9,13 @@
     "command": "workbench.action.files.saveAll"
   },
   {
-    "key": "ctrl+d",
+    "key": "ctrl+;",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+shiftd",
     "command": "editor.action.addSelectionToNextFindMatch"
   },
-
   {
     "key": "ctrl+0",
     "command": "workbench.action.openEditorAtIndex"
@@ -57,62 +60,48 @@
     "key": "ctrl+shift+y",
     "command": "redo"
   },
-
   {
     "key": "ctrl+shift+x",
     "command": "editor.action.clipboardCutAction",
     "when": "textInputFocus && !editorReadonly"
   },
-
   {
     "key": "ctrl+shift+c",
     "command": "editor.action.clipboardCopyAction",
     "when": "textInputFocus"
   },
-
   {
     "key": "ctrl+shift+v",
     "command": "editor.action.clipboardPasteAction",
     "when": "textInputFocus && !editorReadonly"
   },
-
   {
     "key": "ctrl+shift+a",
     "command": "editor.action.selectAll",
     "when": "textInputFocus"
   },
-
-  {
-    "key": "ctrl+j",
-    "command": "workbench.action.terminal.focus"
-  },
-
   {
     "key": "shift+alt+j",
     "command": "editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
   },
-
   {
     "key": "shift+alt+k",
     "command": "editor.action.copyLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
-
   {
     "key": "alt+j",
     "command": "editor.action.moveLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
   },
-
   {
     "key": "alt+k",
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+d",
-    "command": "extension.vim_ctrl+d",
-    "when": "editorTextFocus && vim.active && !inDebugRepl"
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
   }
 ]
