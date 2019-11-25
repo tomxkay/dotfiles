@@ -11,18 +11,21 @@ echo "================================"
 
 # Specify brew packages to be installed
 formulas=(
-	cowsay
 	cmake
 	ctags
 	deno
-	figlet
 	fzf
 	git
 	macvim
+	mas
+	neovim
 	nvm
+	python
 	ripgrep
 	tmux
 	vim
+	wget
+	zsh
 )
 
 # Install specified packages, skipping installed packages
@@ -39,5 +42,10 @@ done
 echo -e "\\n\\nRunning fzf install script..."
 echo "================================"
 /usr/local/opt/fzf/install --all
+
+# After the install, install neovim python libraries
+echo -e "\\n\\nRunning Neovim Python install..."
+echo "================================"
+pip3 install pynvim
 
 echo "brew.sh script finished."

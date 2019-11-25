@@ -1,6 +1,6 @@
 #!/bin/bash
 dotfilesDir="$(dirname "$PWD")"
-dotfiles=(".vimrc" ".tmux.conf" ".gitconfig" ".ctags" ".aliases" ".bash_aliases" ".inputrc")
+dotfiles=(".zshrc" ".vimrc" ".tmux.conf" ".gitconfig" ".ctags" ".aliases" ".bash_aliases" ".inputrc")
 
 # For each specified dotfile, create symbolic link
 # -s Create a symbolic link
