@@ -59,7 +59,10 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 
 " Nvim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
 call plug#end()
 
 " YouCompleteMe
@@ -269,8 +272,10 @@ xmap aa VGo1G
 xmap <BS> x
 
 " Deoplete Select Navigation
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-n>" : "\<C-k>"
+if has('nvim')
+	inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+	inoremap <expr> <C-k> pumvisible() ? "\<C-n>" : "\<C-k>"
+endif
 
 " window movement shortcuts
 map <C-h> :call WinMove('h')<cr>
