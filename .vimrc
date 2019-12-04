@@ -29,7 +29,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 
 " Util
 Plug 'w0rp/ale'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -333,12 +333,14 @@ com! WP call WordProcessorMode()
 """"""""""""""""""""""""""""""""""""""""""
 " => Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""
-map <Leader>k :NERDTreeToggle<CR>
+map <Leader>; :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " Close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=0
 " Show hidden files in NERDTree
 let NERDTreeShowHidden=1
+" Position right side
+let g:NERDTreeWinPos = "right"
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
