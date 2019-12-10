@@ -39,149 +39,64 @@
   "vim.useSystemClipboard": true,
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "C-["
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["C-["],
+      "after": ["<Esc>"]
     }
   ],
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "<leader>",
-        "w",
-      ],
-      "commands": [
-        ":w"
-      ]
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
     },
     {
-      "before": [
-        "<leader>",
-        "k",
-      ],
-      "after": [
-        "Ctrl+;"
-      ]
+      "before": ["<leader>", "k"],
+      "after": ["Ctrl+;"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "s"
-      ],
-      "commands": [
-        ":split"
-      ]
+      "before": ["<leader>", "s", "s"],
+      "commands": [":split"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "v"
-      ],
-      "commands": [
-        ":vs"
-      ]
+      "before": ["<leader>", "s", "v"],
+      "commands": [":vs"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "o"
-      ],
-      "commands": [
-        ":only"
-      ]
+      "before": ["<leader>", "s", "o"],
+      "commands": [":only"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "x"
-      ],
-      "commands": [
-        ":x",
-      ]
+      "before": ["<leader>", "s", "x"],
+      "commands": [":x"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "h"
-      ],
-      "after": [
-        "C-w",
-        "h"
-      ]
+      "before": ["<leader>", "s", "h"],
+      "after": ["C-w", "h"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "j"
-      ],
-      "after": [
-        "C-w",
-        "j"
-      ]
+      "before": ["<leader>", "s", "j"],
+      "after": ["C-w", "j"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "k"
-      ],
-      "after": [
-        "C-w",
-        "k"
-      ]
+      "before": ["<leader>", "s", "k"],
+      "after": ["C-w", "k"]
     },
     {
-      "before": [
-        "<leader>",
-        "s",
-        "l"
-      ],
-      "after": [
-        "C-w",
-        "l"
-      ]
+      "before": ["<leader>", "s", "l"],
+      "after": ["C-w", "l"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        " "
-      ],
-      "after": [
-        "leader",
-        "leader",
-        "leader",
-        "b",
-        "d",
-        "w"
-      ]
+      "before": [" "],
+      "after": ["leader", "leader", "leader", "b", "d", "w"]
     },
     {
-      "before": [
-        "j"
-      ],
-      "after": [
-        "g",
-        "j",
-      ]
+      "before": ["j"],
+      "after": ["g", "j"]
     },
     {
-      "before": [
-        "k"
-      ],
-      "after": [
-        "g",
-        "k",
-      ]
+      "before": ["k"],
+      "after": ["g", "k"]
     }
   ],
   /* Macros */
@@ -198,5 +113,5 @@
     "**/CSV": true,
     "**/.DS_Store": true,
     "**/node_modules": true
-  },
+  }
 }
