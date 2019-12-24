@@ -24,6 +24,7 @@ formulas=(
 	ripgrep
 	tmux
 	vim
+	weechat
 	wget
 	zsh
 )
