@@ -1,3 +1,7 @@
 [user]
-	email = thmsdxtrk@gmail.com
-	name = thms
+	email = tomxkay@pm.me
+	name = tomxkay
+[github]
+	user = tomxkay
+[credential]
+	helper = store
