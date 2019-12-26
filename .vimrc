@@ -1,7 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""
-
 set nocompatible
 filetype off
 
@@ -36,7 +35,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'joshukraine/dragvisuals'
@@ -77,13 +76,6 @@ filetype plugin indent on
 autocmd BufWritePre * :%s/\s\+$//e
 " Auto source .vimrc
 autocmd! bufwritepost .vimrc source %
-
-
-" pre settings for tmux color correction with set termguicolors
-" This is only necessary if you use set termguicolors.
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 
 " Settings
 set tags+=./tags;$HOME
@@ -149,7 +141,12 @@ syntax enable
 set t_Co=256
 let base16colorspace=256
 set background=dark
-set termguicolors
+" set termguicolors
+
+" pre settings for tmux color correction with set termguicolors
+" This is only necessary if you use set termguicolors.
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " Set encoding
 set encoding=utf-8
@@ -201,8 +198,9 @@ nnoremap Y y$
 inoremap kj <ESC>
 inoremap jj <ESC>
 
-" Execute shell command from text
+" Execute the current line of text as a shell command
 noremap Q !!$SHELL<CR>
+" Execute the current selection as a shell command
 vnoremap Q !$SHELL<CR>
 
 " Quickly close windows
