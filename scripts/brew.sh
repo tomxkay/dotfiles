@@ -9,19 +9,32 @@ fi
 echo -e "\\n\\nInstalling homebrew packages..."
 echo "================================"
 
+# Install the command line developer toolsc
+xcode-select --install
+
 # Specify brew packages to be installed
 formulas=(
+	archey #screenfetch
+	cask #macOS GUI app installer
 	cmake
 	ctags
 	deno
 	fzf
+	gcc #need to compile cask
 	git
+	htop #resource monitor
+	irssi #irc
+	links #terminal browser
 	macvim
 	mas
+	ncdu #disk util
 	neovim
+	nmap #network scanner
 	nvm
+	peco #interactive filtering
 	python
 	ripgrep
+	tig #git
 	tmux
 	vim
 	weechat
