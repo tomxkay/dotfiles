@@ -1,11 +1,17 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
+#If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # vi mode
 set -o vi
+# bindkey -v
+
+# fpath
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/thms/.oh-my-zsh"
+export ZSH="/Users/thms/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git docker docker-compose vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,4 +112,9 @@ fi
 
 if [ -f ~/.aliases ]; then
 	source ~/.aliases
+fi
+
+# Path
+if [ -f ~/.bashrc ]; then
+	source ~/.bashrc
 fi
