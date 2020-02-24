@@ -20,6 +20,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
+Plug 'ianks/vim-tsx'
 
 " JavaScript
 Plug 'pangloss/vim-javascript'
@@ -189,7 +190,7 @@ map <Space> <Leader>
 nnoremap <Leader>w :Prettier<CR>:w<CR>
 
 " Map temp default -- runs ts-node on current file
-map ,l :!clear && ts-node %<CR>
+" map ,l :!clear && ts-node %<CR>
 
 " Normal mode
 nnoremap Y y$
@@ -246,12 +247,6 @@ nnoremap <silent> k gk
 map <Leader>ev :e! ~/.vimrc<CR> " edit ~/.vimrc"
 " Toggle relative numbering
 map <F6> :set relativenumber!<bar>set relativenumber?<CR>
-
-" Buffer List
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
 
 " Remap
 nnoremap * *<C-o>
@@ -340,6 +335,10 @@ let g:NERDTreeQuitOnOpen=0
 let NERDTreeShowHidden=1
 " Position right side
 let g:NERDTreeWinPos = "right"
+
+" Airline
+" let g:airline#extensions#tabline#enabled = 0
+" let g:airline#extensions#tabline#fnamemod  = ':t'
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
