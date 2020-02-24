@@ -1,9 +1,13 @@
+--recurse=yes
 --exclude=.git
 --exclude=.svn
 --exclude=.hg
 --exclude=bundle
 --exclude=min
---exclude=vendor
+--exclude=vendor\*
+--exclude=node_modules\*
+--exclude=db\*
+--exclude=log\*
 --exclude=\*.min.\*
 --exclude=\*.map
 --exclude=\*.swp
