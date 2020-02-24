@@ -5,3 +5,5 @@
 	user = tomxkay
 [credential]
 	helper = store
+[core]
+	excludesfile = /Users/thms/.global_ignore
