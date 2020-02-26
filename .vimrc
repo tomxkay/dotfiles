@@ -47,7 +47,7 @@ Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 " Search
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -62,6 +62,9 @@ Plug 'vim-airline/vim-airline'
 " Nvim
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+	" Exit fzf search with ESC
+	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 endif
 
 call plug#end()
@@ -79,7 +82,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd! bufwritepost .vimrc source %
 
 " Settings
-set tags+=./tags;$HOME
+set tags+=./tags,~/.cache/vim/ctags
 set nobackup
 set nowritebackup
 set noswapfile
@@ -335,6 +338,20 @@ let g:NERDTreeQuitOnOpen=0
 let NERDTreeShowHidden=1
 " Position right side
 let g:NERDTreeWinPos = "right"
+
+" Tags
+" Determine new project
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.git']
+
+" Determine ctag cache dir
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
+
+" Generate ctags in most cases
+let g:gutentags_generata_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 0
