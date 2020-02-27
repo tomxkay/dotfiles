@@ -20,3 +20,4 @@ alias gstatus="git status"
 alias gcommit="git commit"
 alias gpull="git pull"
 alias gpush="git push"
+alias fzfi='rg --files --hidden --follow --no-ignore-vcs -g "!{.git,node_modules}" | fzf'
