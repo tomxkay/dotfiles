@@ -6,7 +6,7 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 # ENV
-export ZSH="/Users/thms/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 if type ag &> /dev/null; then
