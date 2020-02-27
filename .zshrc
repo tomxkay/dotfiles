@@ -9,6 +9,9 @@ autoload -Uz compinit && compinit -i
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+## FZF
+export FZF_DEFAULT_OPTS='--height 40% --border'
+
 if type ag &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
 fi
