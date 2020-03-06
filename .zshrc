@@ -38,6 +38,10 @@ if [ -f ~/.aliases ]; then
 	source ~/.aliases
 fi
 
+if type nvim > /dev/null 2>&1; then
+	alias vim='nvim'
+fi
+
 # Bashrc
 if [ -f ~/.bashrc ]; then
 	source ~/.bashrc
