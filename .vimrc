@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""
 set nocompatible
@@ -9,28 +9,30 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
-Plug 'VundleVim/Vundle.vim'
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" Language Syntax
+Plug 'sheerun/vim-polyglot'
+
 " TypeScript
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'ianks/vim-tsx'
-
-" JavaScript
-Plug 'pangloss/vim-javascript'
 
 " React"
 Plug 'maxmellon/vim-jsx-pretty'
 
 " Util
-Plug 'w0rp/ale'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer' }
+if has('nvim')
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else
+	Plug 'dense-analysis/ale'
+	Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --ts-completer' }
+endif
+
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -41,10 +43,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'joshukraine/dragvisuals'
 Plug 'terryma/vim-expand-region'
-Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
-
-" Code Formatter
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -59,10 +57,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 
-" Nvim
+" Nvim Specific Settings
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
 	" Exit fzf search with ESC
 	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 endif
@@ -71,7 +67,7 @@ call plug#end()
 
 " YouCompleteMe
 if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
+	let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 filetype plugin indent on
@@ -111,10 +107,14 @@ set nostartofline
 set smartindent
 set backspace=indent,eol,start
 set clipboard=unnamed
-" quickly timeout on keycodes, but never on mappings"
-set notimeout ttimeout ttimeoutlen=200
+set notimeout ttimeout ttimeoutlen=200 " quickly timeout on keycodes, but never on mappings
 set cmdheight=2 " avoid press <Enter> to continue"
 set confirm " ask to save file rather than failing command"
+
+" coc helper config
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " Faster redrawing
 set ttyfast
@@ -131,7 +131,7 @@ set virtualedit=block
 " Persist undo over buffer switches and exits
 :silent call system('mkdir -p ' . $HOME . '/.vim/undo')
 set undofile
-set undodir=$HOM#/.vim/undo
+set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
@@ -188,9 +188,6 @@ set sidescroll=1
 """"""""""""""""""""""""""""""""""""""""""
 map , <Leader>
 map <Space> <Leader>
-
-" Easier/quicker save
-nnoremap <Leader>w :Prettier<CR>:w<CR>
 
 " Map temp default -- runs ts-node on current file
 " map ,l :!clear && ts-node %<CR>
@@ -299,13 +296,13 @@ endfunction
 
 " Rename current file
 function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
+	let old_name = expand('%')
+	let new_name = input('New file name: ', expand('%'), 'file')
+	if new_name != '' && new_name != old_name
+		exec ':saveas ' . new_name
+		exec ':silent !rm ' . old_name
+		redraw!
+	endif
 endfunction
 
 " WordProcessorMode
@@ -352,6 +349,11 @@ let g:gutentags_generata_on_new = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
+
+" Ale Linting
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 0
@@ -406,3 +408,61 @@ nmap <Leader>\ :Rg<Space>
 nmap <Leader>H :Helptags!<CR>
 " Commentary key map
 noremap <leader>/ :Commentary<cr>
+
+if has('nvim')
+	" coc
+	" Use <c-space> to trigger completion.
+	inoremap <silent><expr> <c-space> coc#refresh()
+
+	" Use `[g` and `]g` to navigate diagnostics
+	nmap <silent> [g <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+	" GoTo code navigation.
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	" Use K to show documentation in preview window.
+	nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+	function! s:show_documentation()
+		if (index(['vim','help'], &filetype) >= 0)
+			execute 'h '.expand('<cword>')
+		else
+			call CocAction('doHover')
+		endif
+	endfunction
+
+	" Highlight the symbol and its references when holding the cursor.
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+
+	" Remap keys for applying codeAction to the current line.
+	nmap <leader>ac  <Plug>(coc-codeaction)
+	" Apply AutoFix to problem on the current line.
+	nmap <leader>qf  <Plug>(coc-fix-current)
+
+	" Add (Neo)Vim's native statusline support.
+	" NOTE: Please see `:h coc-status` for integrations with external plugins that
+	" provide custom statusline: lightline.vim, vim-airline.
+	set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+	" Mappings using CoCList:
+	" Show all diagnostics.
+	nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+	" Manage extensions.
+	nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+	" Show commands.
+	nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+	" Find symbol of current document.
+	nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+	" Search workspace symbols.
+	nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+	" Do default action for next item.
+	nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+	" Do default action for previous item.
+	nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+	" Resume latest coc list.
+	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+endif
