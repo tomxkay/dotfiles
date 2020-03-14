@@ -1,5 +1,6 @@
 # Theme
 ZSH_THEME="robbyrussell"
+KEYTIMEOUT=1
 
 # fpath
 fpath=(~/.zsh/completion $fpath)
