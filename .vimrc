@@ -34,6 +34,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'joshukraine/dragvisuals'
 Plug 'terryma/vim-expand-region'
+Plug 'metakirby5/codi.vim'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
