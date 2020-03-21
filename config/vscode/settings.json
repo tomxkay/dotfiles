@@ -1,34 +1,56 @@
 {
   /* General */
-  "window.zoomLevel": 0,
-  "workbench.activityBar.visible": true,
-  "workbench.sideBar.location": "right",
+  "editor.rulers": [80, 120],
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll": true
+    "source.organizeImports": false,
+    "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
+  "files.autoSave": "off",
+  "files.trimtrailingWhitespace": true,
   "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "terminal.integrated.scrollback": 50000,
-  "files.autoSave": "off",
-  "tslint.autoFixOnSave": false,
+  "updateImportsOnFileMove.enabled": false,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.sideBar.location": "right",
   /* Theme */
-  "workbench.colorTheme": "Dracula",
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
+  "workbench.colorTheme": "Dracula",
   /* Git */
+  "breadcrumbs.enabled": true,
   "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
   },
-  "breadcrumbs.enabled": true,
   /* NPM */
   "npm.enableScriptExplorer": true,
+  /* ESLint */
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  /* JavaScript */
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
   /* TypesScript */
-  "typescript.updateImportsOnFileMove.enabled": "never",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
   },
   /* Vim */
   "vim.leader": ",",
