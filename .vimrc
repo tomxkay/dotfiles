@@ -45,7 +45,6 @@ Plug 'dracula/vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 filetype plugin indent on
@@ -137,7 +136,7 @@ set signcolumn=yes
 set ttyfast
 set virtualedit=block
 
-set foldmethod=manual
+set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
@@ -173,10 +172,6 @@ let g:gutentags_generata_on_new = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
-
-" Ale Linting
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
@@ -277,9 +272,6 @@ map <C-l> :call WinMove('l')<cr>
 " Plugin mappings
 map <Leader>; :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-" Ale
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
 
 " Make arrow keys move visual blocks around
 xmap <up>    <Plug>SchleppUp
@@ -397,9 +389,17 @@ if has('nvim')
 	""""""""""""""""""""""""""""""""""""""""""
 	" => Nvim Mappings
 	""""""""""""""""""""""""""""""""""""""""""
-	" Use <c-space> to trigger completion.
-	inoremap <silent><expr> <c-space> coc#refresh()
 	nmap <Leader E> :CocCommand eslint.executeAutofix
+
+	" Use <tab> for trigger completion and navigate to the next completion item
+	inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+	" Use <Tab> and <S-Tab> to navigate the completion list
+	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 	" Use `[g` and `]g` to navigate diagnostics
 	nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -438,7 +438,7 @@ if has('nvim')
 	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 	""""""""""""""""""""""""""""""""""""""""""
-	" => Nvim Functionsn
+	" => Nvim Functions
 	""""""""""""""""""""""""""""""""""""""""""
 	function! s:show_documentation()
 		if (index(['vim','help'], &filetype) >= 0)
@@ -446,6 +446,11 @@ if has('nvim')
 		else
 			call CocAction('doHover')
 		endif
+	endfunction
+
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~ '\s'
 	endfunction
 
 	""""""""""""""""""""""""""""""""""""""""""
