@@ -56,10 +56,6 @@ set colorcolumn=80
 
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 
-" Run time path
-set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
-
 " User Interface
 set t_Co=256
 let base16colorspace=256
@@ -173,6 +169,10 @@ let g:gutentags_generate_on_empty_buffer = 0
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
+
+" fzf run time path
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
