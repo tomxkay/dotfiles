@@ -7,34 +7,32 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 " Git
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Syntax
 Plug 'sheerun/vim-polyglot'
 
 " TypeScript
-Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 
-" React"
-Plug 'maxmellon/vim-jsx-pretty'
-
 " Util
+Plug 'jiangmiao/auto-pairs'
+Plug 'joshukraine/dragvisuals'
+Plug 'mattn/emmet-vim'
+Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-Plug 'joshukraine/dragvisuals'
-Plug 'terryma/vim-expand-region'
-Plug 'metakirby5/codi.vim'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -42,10 +40,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
 " Syntax Theme Colors
-Plug 'dracula/vim'
-Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 filetype plugin indent on
@@ -56,6 +51,8 @@ filetype plugin indent on
 " Vim options and variable assignments
 syntax enable
 colorscheme gruvbox
+
+set colorcolumn=80
 
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 
@@ -177,6 +174,9 @@ let g:gutentags_generate_on_empty_buffer = 0
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
 
+" Coc
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " Airline
 " let g:airline#extensions#tabline#enabled = 0
 " let g:airline#extensions#tabline#fnamemod  = ':t'
@@ -191,6 +191,9 @@ map , <Leader>
 " map ,l :!clear && ts-node %<CR>
 
 map <Leader>w :w<CR>
+
+map <Leader>z <C-w>\| <C-w>_
+map <Leader>Z <C-w>=
 
 " Normal mode
 nnoremap Y y$
@@ -321,6 +324,54 @@ nmap <Leader>H :Helptags!<CR>
 " Commentary key map
 noremap <leader>/ :Commentary<cr>
 
+" Coc
+nmap <Leader E> :CocCommand eslint.executeAutofix
+" Use <tab> for trigger completion and navigate to the next completion item
+inoremap <silent><expr> <Tab>
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<Tab>" :
+			\ coc#refresh()
+
+" Use <Tab> and <S-Tab> to navigate the completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
 """"""""""""""""""""""""""""""""""""""""""
 " => Functions
 """"""""""""""""""""""""""""""""""""""""""
@@ -364,6 +415,19 @@ function! WordProcessorMode()
 	setlocal linebreak
 endfunction
 
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
 """""""""""""""""""""""""""""""
 " => Commands
 """""""""""""""""""""""""""""""
@@ -373,91 +437,7 @@ com! WP call WordProcessorMode()
 autocmd BufWritePre * :%s/\s\+$//e
 " Auto source .vimrc
 autocmd! bufwritepost .vimrc source %
-
 autocmd FileType html,css EmmetInstall
-
-
-"""""""""""""""""""""""""""""""
-" => Nvim
-"""""""""""""""""""""""""""""""
-" Nvim specific settings
-if has('nvim')
-	""""""""""""""""""""""""""""""""""""""""""
-	" => Nvim Settings
-	""""""""""""""""""""""""""""""""""""""""""
-	set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-	""""""""""""""""""""""""""""""""""""""""""
-	" => Nvim Mappings
-	""""""""""""""""""""""""""""""""""""""""""
-	nmap <Leader E> :CocCommand eslint.executeAutofix
-
-	" Use <tab> for trigger completion and navigate to the next completion item
-	inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-	" Use <Tab> and <S-Tab> to navigate the completion list
-	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-	" Use `[g` and `]g` to navigate diagnostics
-	nmap <silent> [g <Plug>(coc-diagnostic-prev)
-	nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-	" GoTo code navigation.
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
-
-	" Use K to show documentation in preview window.
-	nnoremap <silent> gh :call <SID>show_documentation()<CR>
-
-	" Remap keys for applying codeAction to the current line.
-	nmap <leader>ac  <Plug>(coc-codeaction)
-	" Apply AutoFix to problem on the current line.
-	nmap <leader>qf  <Plug>(coc-fix-current)
-
-	" Mappings using CoCList:
-	" Show all diagnostics.
-	nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-	" Manage extensions.
-	nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-	" Show commands.
-	nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-	nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-	" Search workspace symbols.
-	nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-	" Do default action for next item.
-	nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-	" Do default action for previous item.
-	nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-	" Resume latest coc list.
-	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-	""""""""""""""""""""""""""""""""""""""""""
-	" => Nvim Functions
-	""""""""""""""""""""""""""""""""""""""""""
-	function! s:show_documentation()
-		if (index(['vim','help'], &filetype) >= 0)
-			execute 'h '.expand('<cword>')
-		else
-			call CocAction('doHover')
-		endif
-	endfunction
-
-	function! s:check_back_space() abort
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~ '\s'
-	endfunction
-
-	""""""""""""""""""""""""""""""""""""""""""
-	" => Nvim Commands
-	""""""""""""""""""""""""""""""""""""""""""
-	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-	" Highlight the symbol and its references when holding the cursor.
-	autocmd CursorHold * silent call CocActionAsync('highlight')
-endif
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
