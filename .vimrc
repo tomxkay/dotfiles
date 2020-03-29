@@ -146,11 +146,16 @@ set undoreload=10000
 let g:DVB_TrimWS = 1
 
 " Plugin settings
-" Close NERDTree after a file is opened
+"
+" fzf run time path
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
+
+" Coc
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 let g:NERDTreeQuitOnOpen=0
-" Show hidden files in NERDTree
 let NERDTreeShowHidden=1
-" Position right side
 let g:NERDTreeWinPos = "right"
 
 " Tags
@@ -169,13 +174,6 @@ let g:gutentags_generate_on_empty_buffer = 0
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
-
-" fzf run time path
-set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
-
-" Coc
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 0
@@ -258,8 +256,8 @@ nnoremap <Leader>d "_d
 
 " Copy paste to/from clipboard
 vnoremap <C-c> "*y
-map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<CR>"
+map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<CR>"
 
 " Make vaa select the entire file...
 xmap aa VGo1G
@@ -268,10 +266,10 @@ xmap aa VGo1G
 xmap <BS> x
 
 " window movement shortcuts
-map <C-h> :call WinMove('h')<cr>
-map <C-j> :call WinMove('j')<cr>
-map <C-k> :call WinMove('k')<cr>
-map <C-l> :call WinMove('l')<cr>
+map <C-h> :call WinMove('h')<CR>
+map <C-j> :call WinMove('j')<CR>
+map <C-k> :call WinMove('k')<CR>
+map <C-l> :call WinMove('l')<CR>
 
 " Plugin mappings
 map <Leader>; :NERDTreeToggle<CR>
@@ -322,19 +320,26 @@ nmap <Leader>\ :Rg<Space>
 " Help Finder
 nmap <Leader>H :Helptags!<CR>
 " Commentary key map
-noremap <leader>/ :Commentary<cr>
+noremap <leader>/ :Commentary<CR>
 
 " Coc
-nmap <Leader E> :CocCommand eslint.executeAutofix
+nmap <Leader>E :CocCommand eslint.executeAutofix<CR>
 " Use <tab> for trigger completion and navigate to the next completion item
 inoremap <silent><expr> <Tab>
 			\ pumvisible() ? "\<C-n>" :
 			\ <SID>check_back_space() ? "\<Tab>" :
 			\ coc#refresh()
+" Use <C-l> to trigger snippet expansion
+inoremap <silent><expr> <C-l>
+			\ pumvisible() ? coc#_select_confirm() :
+			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
 
 " Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -356,15 +361,15 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 " Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 " Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -414,6 +419,11 @@ function! WordProcessorMode()
 	setlocal wrap
 	setlocal linebreak
 endfunction
+inoremap <silent><expr> <C-l>
+			\ pumvisible() ? coc#_select_confirm() :
+			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
 
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
