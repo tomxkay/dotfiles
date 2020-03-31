@@ -25,7 +25,6 @@ Plug 'joshukraine/dragvisuals'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-surround'
@@ -44,6 +43,20 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 filetype plugin indent on
+
+"""""""""""""""""""""""""""""""
+" => Commands
+"""""""""""""""""""""""""""""""
+" Vim commands
+com! WP call WordProcessorMode()
+" Remove trailing whitespaces on save (:w)
+autocmd BufWritePre * :%s/\s\+$//e
+" Auto source .vimrc
+autocmd! bufwritepost .vimrc source %
+autocmd FileType html,css EmmetInstall
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -230,8 +243,10 @@ nnoremap <silent> <UP> :resize +5<CR>
 nnoremap <silent> <DOWN> :resize -5<CR>
 
 " Window Management
-nmap ss :split<Return><C-w>w
-nmap sv :vsplit<Return><C-w>w
+" nmap ss :split<Return><C-w>w
+" nmap sv :vsplit<Return><C-w>w
+nmap ss :split<Return>
+nmap sv :vsplit<Return>
 nmap sx :q<CR>
 
 " Move window
@@ -324,11 +339,6 @@ noremap <leader>/ :Commentary<CR>
 
 " Coc
 nmap <Leader>E :CocCommand eslint.executeAutofix<CR>
-" Use <tab> for trigger completion and navigate to the next completion item
-inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
 " Use <C-l> to trigger snippet expansion
 inoremap <silent><expr> <C-l>
 			\ pumvisible() ? coc#_select_confirm() :
@@ -437,17 +447,3 @@ function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-
-"""""""""""""""""""""""""""""""
-" => Commands
-"""""""""""""""""""""""""""""""
-" Vim commands
-com! WP call WordProcessorMode()
-" Remove trailing whitespaces on save (:w)
-autocmd BufWritePre * :%s/\s\+$//e
-" Auto source .vimrc
-autocmd! bufwritepost .vimrc source %
-autocmd FileType html,css EmmetInstall
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
