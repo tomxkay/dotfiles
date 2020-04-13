@@ -365,7 +365,7 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>.  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
