@@ -57,6 +57,7 @@ autocmd FileType html,css EmmetInstall
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -167,7 +168,7 @@ set rtp+=~/.fzf
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeWinPos="right"
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
