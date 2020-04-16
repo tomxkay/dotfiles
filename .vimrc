@@ -287,7 +287,8 @@ map <C-k> :call WinMove('k')<CR>
 map <C-l> :call WinMove('l')<CR>
 
 " Plugin mappings
-map <Leader>; :NERDTreeToggle<CR>
+" map <Leader>; :NERDTreeToggle<CR>
+map <Leader>; :call NerdTreeToggleFind()<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Make arrow keys move visual blocks around
@@ -446,4 +447,14 @@ endfunction
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+function! NerdTreeToggleFind()
+	if exists("g:NERDTree") &&g:NERDTree.IsOpen()
+		NERDTreeClose
+	elseif filereadable(expand('%'))
+		NERDTreeFind
+	else
+		NERDTree
+	endif
 endfunction
