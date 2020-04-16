@@ -168,8 +168,10 @@ set rtp+=~/.fzf
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeWinPos="right"
 let NERDTreeShowHidden=1
-let g:NERDTreeWinPos = "right"
+let NERDTreeMinimalUI=1
+let NERDTreeAutoDeleteBuffer=1
 
 " Tags
 " Determine new project
