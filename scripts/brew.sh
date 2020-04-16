@@ -13,7 +13,7 @@ echo "================================"
 xcode-select --install
 
 # Specify brew packages to be installed
-formulas=(
+cmlApps=(
 	archey #screenfetch
 	cask #macOS GUI app installer
 	cmake
@@ -42,13 +42,30 @@ formulas=(
 	zsh
 )
 
+guiApps=(
+	docker
+	visual-studio-code
+	macvim
+	google-chrome
+	dropbox
+)
+
 # Install specified packages, skipping installed packages
-for formula in "${formulas[@]}"; do
-	formula_name=$( echo "$formula" | awk '{print $1}' )
-	if brew list "$formula_name" > /dev/null 2>&1; then
-		echo "$formula_name already installed... skipping."
+for app in "${cmlApps[@]}"; do
+	appName=$( echo "$app" | awk '{print $1}' )
+	if brew list "$appName" > /dev/null 2>&1; then
+		echo "$appName already installed... skipping."
 	else
-		brew install "$formula"
+		brew install "$app"
+	fi
+done
+
+for app in "${guiApps[@]}"; do
+	appName=$( echo "$app" | awk '{print $1}' )
+	if brew cask list "$appName" > /dev/null 2>&1; then
+		echo "$appName already installed... skipping."
+	else
+		brew cask install "$app"
 	fi
 done
 
