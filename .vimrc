@@ -25,7 +25,7 @@ Plug 'joshukraine/dragvisuals'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -458,6 +458,6 @@ function! NerdTreeToggleFind()
 	elseif filereadable(expand('%'))
 		NERDTreeFind
 	else
-		NERDTree
+		NERDTreeToggle
 	endif
 endfunction
