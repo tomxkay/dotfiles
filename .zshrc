@@ -48,5 +48,10 @@ if [ -f ~/.bashrc ]; then
 	source ~/.bashrc
 fi
 
+# Tmux auto attach
+if [ -z "$TMUX"  ]; then
+	tmux attach -t default || tmux new -s default
+fi
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
