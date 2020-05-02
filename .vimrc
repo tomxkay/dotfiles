@@ -21,7 +21,7 @@ Plug 'Quramy/tsuquyomi'
 
 " Util
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshukraine/dragvisuals'
+Plug 'zirrostig/vim-schlepp'
 Plug 'mattn/emmet-vim'
 Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -65,10 +65,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Vim options and variable assignments
 syntax enable
 colorscheme gruvbox
+" set shell=/bin/zsh
 
 set colorcolumn=80
-
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
+
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 " User Interface
 set t_Co=256
@@ -160,7 +163,9 @@ set undoreload=10000
 let g:DVB_TrimWS = 1
 
 " Plugin settings
-"
+
+let g:Schlepp#reindent = 1
+
 " fzf run time path
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
@@ -284,10 +289,10 @@ xmap aa VGo1G
 xmap <BS> x
 
 " window movement shortcuts
-map <C-h> :call WinMove('h')<CR>
-map <C-j> :call WinMove('j')<CR>
-map <C-k> :call WinMove('k')<CR>
-map <C-l> :call WinMove('l')<CR>
+" map <C-h> :call WinMove('h')<CR>
+" map <C-j> :call WinMove('j')<CR>
+" map <C-k> :call WinMove('k')<CR>
+" map <C-l> :call WinMove('l')<CR>
 
 " Plugin mappings
 " map <Leader>; :NERDTreeToggle<CR>
@@ -295,28 +300,17 @@ map <Leader>; :call NerdTreeToggleFind()<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Make arrow keys move visual blocks around
-xmap <up>    <Plug>SchleppUp
-xmap <down>  <Plug>SchleppDown
-xmap <left>  <Plug>SchleppLeft
-xmap <right> <Plug>SchleppRight
+vmap <up>    <Plug>SchleppUp
+vmap <down>  <Plug>SchleppDown
+vmap <left>  <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
 
-xmap D       <Plug>SchleppDupLeft
-xmap <C-D>   <Plug>SchleppDupLeft
+vmap <C-k>    <Plug>SchleppUp
+vmap <C-j>    <Plug>SchleppDown
+vmap <C-l>    <Plug>SchleppRight
+vmap <C-h>    <Plug>SchleppLeft
 
-" Key mappings for dragvisuals.vim
-runtime bundle/dragvisuals/plugins/dragvisuals.vim
-vmap <expr> <LEFT>  DVB_Drag('left')
-vmap <expr> <RIGHT> DVB_Drag('right')
-vmap <expr> <DOWN>  DVB_Drag('down')
-vmap <expr> <UP>    DVB_Drag('up')
-
-vmap <expr> D				DVB_Duplicate()
-vmap <expr> <Esc>J	DVB_Duplicate()
-
-vmap <expr> <Esc>h  DVB_Drag('left')
-vmap <expr> <Esc>l  DVB_Drag('right')
-vmap <expr> <Esc>j  DVB_Drag('down')
-vmap <expr> <Esc>k  DVB_Drag('up')
+vmap <C-D> <Plug>SchleppDup
 
 " Fzf
 " File Finder
