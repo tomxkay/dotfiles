@@ -48,6 +48,8 @@ guiApps=(
 	macvim
 	google-chrome
 	dropbox
+	tableplus
+	sequel-pro
 )
 
 # Install specified packages, skipping installed packages
