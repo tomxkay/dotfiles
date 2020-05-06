@@ -48,16 +48,21 @@ filetype plugin indent on
 " => Commands
 """""""""""""""""""""""""""""""
 " Vim commands
-com! WP call WordProcessorMode()
-" Remove trailing whitespaces on save (:w)
-autocmd BufWritePre * :%s/\s\+$//e
-" Auto source .vimrc
-autocmd! bufwritepost .vimrc source %
-autocmd FileType html,css EmmetInstall
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd! bufwritepost .vimrc source % " Auto source .vimrc
+
+augroup Vimrc
+	autocmd!
+	autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
+	autocmd FileType html,css EmmetInstall
+	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+augroup END
+
+augroup PluginsAutocmd
+	autocmd!
+	autocmd CursorHold * silent call CocActionAsync('highlight') " Highlight on cursor hold
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -65,7 +70,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Vim options and variable assignments
 syntax enable
 colorscheme gruvbox
-" set shell=/bin/zsh
 
 set colorcolumn=80
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
@@ -163,7 +167,6 @@ set undoreload=10000
 let g:DVB_TrimWS = 1
 
 " Plugin settings
-
 let g:Schlepp#reindent = 1
 
 " fzf run time path
@@ -195,10 +198,6 @@ let g:gutentags_generate_on_empty_buffer = 0
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
-
-" Airline
-" let g:airline#extensions#tabline#enabled = 0
-" let g:airline#extensions#tabline#fnamemod  = ':t'
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -288,12 +287,6 @@ xmap aa VGo1G
 " Make BS/DEL work as expected in visual mode
 xmap <BS> x
 
-" window movement shortcuts
-" map <C-h> :call WinMove('h')<CR>
-" map <C-j> :call WinMove('j')<CR>
-" map <C-k> :call WinMove('k')<CR>
-" map <C-l> :call WinMove('l')<CR>
-
 " Plugin mappings
 " map <Leader>; :NERDTreeToggle<CR>
 map <Leader>; :call NerdTreeToggleFind()<CR>
@@ -337,6 +330,7 @@ noremap <leader>/ :Commentary<CR>
 
 " Coc
 nmap <Leader>E :CocCommand eslint.executeAutofix<CR>
+
 " Use <C-l> to trigger snippet expansion
 inoremap <silent><expr> <C-l>
 			\ pumvisible() ? coc#_select_confirm() :
@@ -348,7 +342,6 @@ inoremap <silent><expr> <C-l>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -359,51 +352,20 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 
-" Remap keys for applying codeAction to the current line.
 nmap <leader>.  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Mappings using CoCList:
-" Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
-" Manage extensions.
 nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
-" Show commands.
 nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Functions
 """"""""""""""""""""""""""""""""""""""""""
 " Vim functions
-" move to the window in the direction shown, or create a new window
-function! WinMove(key)
-	let t:curwin = winnr()
-	exec """wincmd """.a:key
-	if (t:curwin == winnr())
-		if (match(a:key,'[jk]'))
-			wincmd v
-		else
-			wincmd s
-		endif
-		exec "wincmd ".a:key
-	endif
-endfunction
-
-" Rename current file
 function! RenameFile()
 	let old_name = expand('%')
 	let new_name = input('New file name: ', expand('%'), 'file')
@@ -413,25 +375,6 @@ function! RenameFile()
 		redraw!
 	endif
 endfunction
-
-" WordProcessorMode
-function! WordProcessorMode()
-	setlocal formatoptions=1
-	setlocal noexpandtab
-	map j gj
-	map k gk
-	setlocal spell spelllang=en_us
-	set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
-	set complete+=s
-	set formatprg=par
-	setlocal wrap
-	setlocal linebreak
-endfunction
-inoremap <silent><expr> <C-l>
-			\ pumvisible() ? coc#_select_confirm() :
-			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
 
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
