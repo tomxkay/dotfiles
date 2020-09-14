@@ -1,10 +1,17 @@
+" (Neo)Vim Configuration
+" Vimmer: Thomas Kay
+
+" Persistence guarentees that results are inevitable.
+"
+" Copyright 2020 Thomas Kay
+
+set nocompatible
+
 """""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""
 " Vim Plugins
-set nocompatible
 filetype off
-
 call plug#begin('~/.vim/plugged')
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -20,6 +27,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 
 " Util
+Plug 'fcpg/vim-osc52'
 Plug 'jiangmiao/auto-pairs'
 Plug 'zirrostig/vim-schlepp'
 Plug 'mattn/emmet-vim'
@@ -47,7 +55,7 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""
 " => Commands
 """""""""""""""""""""""""""""""
-" Vim commands
+" Vim auto commands
 autocmd! bufwritepost .vimrc source % " Auto source .vimrc
 
 augroup Vimrc
@@ -63,6 +71,11 @@ augroup PluginsAutocmd
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
+augroup PersistView
+	autocmd!
+	" autocmd BufWinLeave * silent! mkview
+	autocmd BufWinEnter * silent! loadview
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -71,65 +84,38 @@ augroup END
 syntax enable
 colorscheme gruvbox
 
-set colorcolumn=80
-set pastetoggle=<F2> "F2 before pasting to preserve indentation
-
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+set clipboard=unnamed
+set backspace=indent,eol,start
+set hidden
 
 " User Interface
 set t_Co=256
 let base16colorspace=256
-set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark
 
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-
-" Searching
-set gdefault     " Default /g at end of search
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-set nolazyredraw
-set showmatch    " show matching braces
-
-" Make it obvious where 100 characters is
 set textwidth=100
+set colorcolumn=80
+set showbreak=↪\
+set list
+set listchars=tab:»»,trail:·,nbsp:~,eol:↲,precedes:←,extends:→
+set virtualedit=block
 
-" Open new split panes to right and bottom, which feels more natural
-set splitright
-set splitbelow
-
-" Always use vertical diffs
-set diffopt+=vertical
-
-" Scroll
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
-
-set tags+=./tags,~/.cache/vim/ctags
-set nobackup
-set nowritebackup
-set noswapfile
-set autowrite " automatically :write before running commands
-set autoread " reload files changes outside vim
-set hidden " jumping from unsaved files causes files to be hidden instead of closed
-set mouse=a " enable use of mouse for all modes"
 set belloff=all
 set visualbell " blink cursor on error, instead of beeping
+
 set wildmenu " visual autocomplete for command menu
 set showcmd
+set number
+set relativenumber
+
 set cursorline " highlight the current line
 set modeline
 set ruler
 set laststatus=2 " always display the status line"
-set number
-set relativenumber
+
+" Indent
 set noexpandtab
 set smarttab
 set tabstop=2
@@ -139,22 +125,53 @@ set shiftround
 set autoindent
 set nostartofline
 set smartindent
-set backspace=indent,eol,start
-set clipboard=unnamed
-set notimeout ttimeout ttimeoutlen=10 " quickly timeout on keycodes, but never on mappings
-set cmdheight=2 " avoid press <Enter> to continue"
+
+" Open new split panes to right and bottom, which feels more natural
+set splitright
+set splitbelow
+" Always use vertical diffs
+set diffopt+=vertical
+
+" Scroll
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+set ttyfast
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+set autowrite " automatically :write before running commands
+set autoread " reload files changes outside vim
+
+set mouse=a " enable use of mouse for all modes"
 set confirm " ask to save file rather than failing command"
 
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-set ttyfast
-set virtualedit=block
+set notimeout ttimeout ttimeoutlen=10 " quickly timeout on keycodes, but never on mappings
+set cmdheight=2 " avoid press <Enter> to continue"
 
-set foldmethod=indent
+" Fold
+set foldmethod=manual
 set foldnestmax=10
-set nofoldenable
-set foldlevel=1
+"
+" Searching
+set gdefault     " Default /g at end of search
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set nolazyredraw
+set showmatch    " show matching braces
+
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
+set tags+=./tags,~/.cache/vim/ctags
 
 " Persist undo over buffer switches and exits
 :silent call system('mkdir -p ' . $HOME . '/.vim/undo')
@@ -163,15 +180,20 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
-" Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS = 1
+" Persist views
+:silent call system('mkdir -p ' . $HOME . '/.vim/views')
+set viewdir=$HOME/.vim/views
+set viewoptions-=options
 
 " Plugin settings
-let g:Schlepp#reindent = 1
-
 " fzf run time path
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
+
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
+
+let g:Schlepp#reindent = 1
 
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -202,8 +224,9 @@ let g:user_emmet_install_global = 0
 """"""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """"""""""""""""""""""""""""""""""""""""""
-" Vim key mappings
+" Vim mappings
 map , <Leader>
+map <space> <Leader>
 
 " Map temp default -- runs ts-node on current file
 " map ,l :!clear && ts-node %<CR>
@@ -213,18 +236,39 @@ map <Leader>w :w<CR>
 map <Leader>z <C-w>\| <C-w>_
 map <Leader>Z <C-w>=
 
-" Normal mode
-nnoremap Y y$
+" Edit vimrc
+map <Leader>ev :e! ~/.vimrc<CR> " edit ~/.vimrc"
+
+" Rename file
+map <Leader>n :call RenameFile()<cr>
+
+" Toggle relative numbering
+map <F6> :set relativenumber!<bar>set relativenumber?<CR>
+
+" Allow saving of files as sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" Window Management
+nmap ss :split<Return>
+nmap sv :vsplit<Return>
+nmap sx :q<CR>
+
+" Move window
+nmap sh <C-w>h
+nmap sk <C-w>k
+nmap sj <C-w>j
+nmap sl <C-w>l
+nmap so <C-w>o
+
+" Swap window
+nmap sH <C-w>H
+nmap sK <C-w>K
+nmap sJ <C-w>J
+nmap sL <C-w>L
+
 nnoremap <Leader>ov :exe ':silent !code %' <CR>:redraw!<CR>
 
-" Insert mode
-inoremap kj <ESC>
-inoremap jj <ESC>
-
-" Execute the current line of text as a shell command
-noremap Q !!$SHELL<CR>
-" Execute the current selection as a shell command
-vnoremap Q !$SHELL<CR>
+nnoremap <Leader>d "_d
 
 " Quickly close windows
 nnoremap <Leader>x :x<CR>
@@ -233,15 +277,18 @@ nnoremap <Leader>X :q!<CR>
 " Use enter to create new line w/o entering insert mode
 nnoremap <CR> o<ESC>
 
-" Rename file
-map <Leader>n :call RenameFile()<cr>
+nnoremap Y y$
 
-" Allow saving of files as sudo
-cmap w!! %!sudo tee > /dev/null %
+nnoremap * *<C-o>
 
-" Clear search hightliting with C-L
-noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
-inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
+nnoremap D dd
+
+nnoremap { {zz
+nnoremap } }zz
+
+" Moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 " Resize panes
 nnoremap <silent> <RIGHT> :vertical resize +5<CR>
@@ -249,37 +296,8 @@ nnoremap <silent> <LEFT> :vertical resize -5<CR>
 nnoremap <silent> <UP> :resize +5<CR>
 nnoremap <silent> <DOWN> :resize -5<CR>
 
-" Window Management
-" nmap ss :split<Return><C-w>w
-" nmap sv :vsplit<Return><C-w>w
-nmap ss :split<Return>
-nmap sv :vsplit<Return>
-nmap sx :q<CR>
-
-" Move window
-map sh <C-w>h
-map sk <C-w>k
-map sj <C-w>j
-map sl <C-w>l
-map so <C-w>o
-
-" Moving up and down work as you would expect
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-
-" Edit vimrc
-map <Leader>ev :e! ~/.vimrc<CR> " edit ~/.vimrc"
-" Toggle relative numbering
-map <F6> :set relativenumber!<bar>set relativenumber?<CR>
-
-" Remap
-nnoremap * *<C-o>
-nnoremap <Leader>d "_d
-
-" Copy paste to/from clipboard
-vnoremap <C-c> "*y
-map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<CR>"
-map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<CR>"
+inoremap kj <ESC>
+inoremap jj <ESC>
 
 " Make vaa select the entire file...
 xmap aa VGo1G
@@ -287,8 +305,23 @@ xmap aa VGo1G
 " Make BS/DEL work as expected in visual mode
 xmap <BS> x
 
+" Mode Group Mappings
+" Copy paste to/from clipboard
+vnoremap <C-c> "*y
+map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<CR>"
+map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<CR>"
+
+" Clear search hightliting with C-L
+noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
+inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
+
+" Execute the current line/selection as a shell command
+noremap Q !!$SHELL<CR>
+vnoremap Q !$SHELL<CR>
+
 " Plugin mappings
-" map <Leader>; :NERDTreeToggle<CR>
+noremap <leader>/ :Commentary<CR>
+
 map <Leader>; :call NerdTreeToggleFind()<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
@@ -321,12 +354,9 @@ nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
 " Project Finder
-" nmap <Leader>/ :Ag<Space>
 nmap <Leader>\ :Rg<Space>
 " Help Finder
 nmap <Leader>H :Helptags!<CR>
-" Commentary key map
-noremap <leader>/ :Commentary<CR>
 
 " Coc
 nmap <Leader>E :CocCommand eslint.executeAutofix<CR>
@@ -365,7 +395,7 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 """"""""""""""""""""""""""""""""""""""""""
 " => Functions
 """"""""""""""""""""""""""""""""""""""""""
-" Vim functions
+" Functions
 function! RenameFile()
 	let old_name = expand('%')
 	let new_name = input('New file name: ', expand('%'), 'file')
@@ -398,3 +428,4 @@ function! NerdTreeToggleFind()
 		NERDTreeToggle
 	endif
 endfunction
+
