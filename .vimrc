@@ -7,9 +7,9 @@
 
 set nocompatible
 
-"""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plugins
 filetype off
 call plug#begin('~/.vim/plugged')
@@ -52,9 +52,9 @@ Plug 'vim-airline/vim-airline'
 call plug#end()
 filetype plugin indent on
 
-"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
-"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim auto commands
 autocmd! bufwritepost .vimrc source % " Auto source .vimrc
 
@@ -77,9 +77,9 @@ augroup PersistView
 	autocmd BufWinEnter * silent! loadview
 augroup END
 
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim options and variable assignments
 syntax enable
 colorscheme gruvbox
@@ -221,9 +221,9 @@ let g:gutentags_generate_on_empty_buffer = 0
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
 
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim mappings
 map , <Leader>
 map <space> <Leader>
@@ -392,9 +392,9 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
-""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 function! RenameFile()
 	let old_name = expand('%')
