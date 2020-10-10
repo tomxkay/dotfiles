@@ -5,7 +5,6 @@ KEYTIMEOUT=1
 # Plugins
 plugins=(git docker docker-compose vi-mode)
 
-
 # Disable
 export LESSHISTFILE=-
 
@@ -29,7 +28,7 @@ export NVM_DIR=$XDG_DATA_HOME/nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 
 # export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat

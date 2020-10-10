@@ -8,8 +8,6 @@
 set nocompatible
 
 " runtimepath
-:silent call system('mkdir -p ' . $XDG_CONFIG_HOME . '/vim/after')
-set rtp^=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
 

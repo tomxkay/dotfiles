@@ -1,11 +1,7 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
+:silent call system('mkdir -p ' . $XDG_CONFIG_HOME . '/vim/after')
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$VIMRUNTIME
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
 let &packpath = &runtimepath
-source ~/.vimrc
-
-" Mappings
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-n>" : "\<C-k>"
-
-" Plugins
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
+source $XDG_CONFIG_HOME/vim/vimrc
