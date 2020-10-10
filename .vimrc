@@ -7,15 +7,22 @@
 
 set nocompatible
 
+" runtimepath
+:silent call system('mkdir -p ' . $XDG_CONFIG_HOME . '/vim/after')
+set rtp^=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plugins
 filetype off
-call plug#begin('~/.vim/plugged')
+call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " Gbrowse
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Syntax
@@ -56,7 +63,7 @@ filetype plugin indent on
 " => Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim auto commands
-autocmd! bufwritepost .vimrc source % " Auto source .vimrc
+autocmd! bufwritepost ./.config/vim/vimrc source %
 
 augroup Vimrc
 	autocmd!
@@ -84,9 +91,9 @@ augroup END
 syntax enable
 colorscheme gruvbox
 
+set hidden
 set clipboard=unnamed
 set backspace=indent,eol,start
-set hidden
 
 " User Interface
 set t_Co=256
@@ -171,25 +178,32 @@ set showmatch    " show matching braces
 set encoding=utf-8
 set fileencoding=utf-8
 
-set tags+=./tags,~/.cache/vim/ctags
+set tags+=./tags,~/$XDG_CACHE_HOME/vim/ctags
 
 " Persist undo over buffer switches and exits
-:silent call system('mkdir -p ' . $HOME . '/.vim/undo')
+:silent call system('mkdir -p ' . $XDG_DATA_HOME . '/vim/undo')
+set undodir=$XDG_DATA_HOME/vim/undo
 set undofile
-set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
 " Persist views
-:silent call system('mkdir -p ' . $HOME . '/.vim/views')
-set viewdir=$HOME/.vim/views
+:silent call system('mkdir -p ' . $XDG_DATA_HOME . '/vim/view')
+set viewdir=$XDG_DATA_HOME/vim/view
 set viewoptions-=options
 
-" Plugin settings
-" fzf run time path
-set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
+" Backup
+:silent call system('mkdir -p ' . $XDG_DATA_HOME . '/vim/backup')
+set backupdir=$XDG_DATA_HOME/vim/backup
 
+" Swap
+:silent call system('mkdir -p ' . $XDG_DATA_HOME . '/vim/swap')
+set directory=$XDG_DATA_HOME/vim/swap
+
+" Viminfo
+set viminfo='1000,n$XDG_DATA_HOME/vim/viminfo
+
+" Plugin settings
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
 
@@ -210,7 +224,7 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_project_root = ['package.json', '.git']
 
 " Determine ctag cache dir
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
+let g:gutentags_cache_dir = expand('$XDG_CACHE_HOME/vim/ctags')
 
 " Generate ctags in most cases
 let g:gutentags_generata_on_new = 1
@@ -316,6 +330,7 @@ noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
 inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
 
 " Execute the current line/selection as a shell command
+" :.!<command>
 noremap Q !!$SHELL<CR>
 vnoremap Q !$SHELL<CR>
 
