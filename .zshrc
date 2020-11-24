@@ -41,7 +41,7 @@ export WGETRC=$XDG_CONFIG_HOME/wgetrc
 # source "$XDG_CONFIG_HOME/vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 ## FZF
-export FZF_DEFAULT_OPTS='--height 40% --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout default'
 
 if type ag &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
