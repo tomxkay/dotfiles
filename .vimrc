@@ -25,18 +25,13 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Syntax
 Plug 'sheerun/vim-polyglot'
-
-" TypeScript
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+Plug 'beanworks/vim-phpfmt'
 
 " Util
 Plug 'fcpg/vim-osc52'
 Plug 'jiangmiao/auto-pairs'
 Plug 'zirrostig/vim-schlepp'
 Plug 'mattn/emmet-vim'
-Plug 'metakirby5/codi.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'terryma/vim-expand-region'
@@ -61,7 +56,13 @@ filetype plugin indent on
 " => Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim auto commands
-autocmd! bufwritepost ./.config/vim/vimrc source %
+augroup Reload
+	autocmd!
+	autocmd bufwritepost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+	autocmd bufwritepost ~/Documents/dotfiles/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/.vimrc" | redraw
+augroup END
+
+nmap <C-g>  :echo "Echoing testing 123"<CR>
 
 augroup Vimrc
 	autocmd!
@@ -249,7 +250,7 @@ map <Leader>z <C-w>\| <C-w>_
 map <Leader>Z <C-w>=
 
 " Edit vimrc
-map <Leader>ev :e! ~/.vimrc<CR> " edit ~/.vimrc"
+map <Leader>ev :e! ~/Documents/dotfiles/.vimrc<CR>
 
 " Rename file
 map <Leader>n :call RenameFile()<cr>
@@ -339,20 +340,32 @@ map <Leader>; :call NerdTreeToggleFind()<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Make arrow keys move visual blocks around
+nmap ˚ V<Plug>SchleppUp
+nmap ∆ V<Plug>SchleppDown
+nmap ¬ V<Plug>SchleppRight
+nmap ˙ V<Plug>SchleppLeft
+
+vmap ˚ <Plug>SchleppUp
+vmap ∆ <Plug>SchleppDown
+vmap ¬ <Plug>SchleppRight
+vmap ˙ <Plug>SchleppLeft
+
 vmap <up>    <Plug>SchleppUp
 vmap <down>  <Plug>SchleppDown
-vmap <left>  <Plug>SchleppLeft
 vmap <right> <Plug>SchleppRight
-
-vmap <C-k>    <Plug>SchleppUp
-vmap <C-j>    <Plug>SchleppDown
-vmap <C-l>    <Plug>SchleppRight
-vmap <C-h>    <Plug>SchleppLeft
+vmap <left>  <Plug>SchleppLeft
 
 vmap <C-D> <Plug>SchleppDup
+vmap  <Plug>SchleppDup k
+vmap Ô <Plug>SchleppDup j
+nmap  <Plug>SchleppDup k
+nmap Ô <Plug>SchleppDup j
 
 " Fzf
 " File Finder
+let g:fzf_preview_window = ''
+let g:fzf_layout = { 'down': '~40%' }
+
 nmap <Leader>f :GFiles<CR>
 nmap <Leader>F :Files<CR>
 " Buffer Finder
