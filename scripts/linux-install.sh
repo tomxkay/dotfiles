@@ -19,17 +19,21 @@ install_packages() {
 	if [ $should_install_packages = 'y' ]
 	then
 		packages=(
+			build-essential
 			cowsay
 			cmake
 			ctags
+			curl
+			git
+			file
 			figlet
+			fzf
 			neovim
 			nvm
 			ripgrep
 			vim
 			zsh
 		)
-
 		for package in "${packages[@]}"
 		do
 			echo "Installing $package..."
@@ -60,7 +64,7 @@ install_oh_my_zsh() {
 }
 
 install_vimplug_vim() {
-	read -p "Do you want to vimplug for vim? (y/n) " should_install_vimplug_vim
+	read -p "Do you want to install vimplug for vim? (y/n) " should_install_vimplug_vim
 
 	if [ $should_install_vimplug_vim = 'y' ]
 	then
@@ -70,7 +74,7 @@ install_vimplug_vim() {
 }
 
 install_vimplug_neovim() {
-	read -p "Do you want to vimplug for neovim? (y/n) " should_install_vimplug_neovim
+	read -p "Do you want to install vimplug for neovim? (y/n) " should_install_vimplug_neovim
 
 	if [ $should_install_vimplug_neovim = 'y' ]
 	then
