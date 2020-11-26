@@ -31,14 +31,7 @@ export NVM_DIR=$XDG_DATA_HOME/nvm
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 
-# export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
-# weechat -d $XDG_CONFIG_HOME/weechat
-
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
-
-# set -o vi
-# bind -m vi-insert "\C-l":clear-screen
-# source "$XDG_CONFIG_HOME/vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 ## FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout default'
