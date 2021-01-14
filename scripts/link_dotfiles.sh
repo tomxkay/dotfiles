@@ -19,6 +19,8 @@ function getExecScriptPwd {
 }
 
 function initDestDir {
+	XDG_CONFIG_HOME=$HOME/.config
+
 	mkdir -p "$XDG_CONFIG_HOME/zsh"
 	mkdir -p "$XDG_CONFIG_HOME/nvim"
 	mkdir -p "$XDG_CONFIG_HOME/vim"
@@ -29,6 +31,8 @@ function initDestDir {
 
 # Get dotfile destination
 function getSymLinkDest {
+	XDG_CONFIG_HOME=$HOME/.config
+
 	case $1 in
 		".zshenv")
 			echo "$HOME/$1"
