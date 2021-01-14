@@ -23,11 +23,7 @@ autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 export MYSQL_HISTFILE=$XDG_DATA_HOME/mysql_history
 export NODE_REPL_HISTORy=$XDG_DATA_HOME/node_repl_history
-
 export NVM_DIR=$XDG_DATA_HOME/nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 
@@ -61,26 +57,13 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Bashrc
-if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
-fi
-
-# Aliases
-if [ -f ~/.bash_aliases ]; then
-	source ~/.bash_aliases
-fi
-
-if [ -f ~/.aliases ]; then
-	source ~/.aliases
-fi
-
 if type nvim > /dev/null 2>&1; then
 	alias vim='nvim'
 fi
 
 # Custom Aliases
 alias la="ls -a"
+alias ll="ls -l"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
