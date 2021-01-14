@@ -199,9 +199,6 @@ set backupdir=$XDG_DATA_HOME/vim/backup
 :silent call system('mkdir -p ' . $XDG_DATA_HOME . '/vim/swap')
 set directory=$XDG_DATA_HOME/vim/swap
 
-" Viminfo
-set viminfo='1000,n$XDG_DATA_HOME/vim/viminfo
-
 " Plugin settings
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
@@ -210,6 +207,7 @@ let g:Schlepp#reindent = 1
 
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeWinPos="right"
