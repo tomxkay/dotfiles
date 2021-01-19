@@ -3,7 +3,7 @@ ZSH_THEME="robbyrussell"
 KEYTIMEOUT=1
 
 # Plugins
-plugins=(git docker docker-compose vi-mode)
+plugins=(git docker docker-compose tmux vi-mode)
 
 # Disable
 export LESSHISTFILE=-
