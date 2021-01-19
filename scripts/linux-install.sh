@@ -3,6 +3,10 @@
 # Linux Specific install
 echo "Installing Linux specific software..."
 
+is_app_installed() {
+	type "$1" &>/dev/null
+}
+
 update_apt() {
 	read -p "Do you want to update apt? (y/n) " should_update_apt
 
@@ -20,16 +24,12 @@ install_packages() {
 	then
 		packages=(
 			build-essential
-			cowsay
 			cmake
 			ctags
 			curl
 			git
-			file
-			figlet
 			fzf
 			neovim
-			nvm
 			ripgrep
 			vim
 			zsh
@@ -63,6 +63,15 @@ install_oh_my_zsh() {
 	fi
 }
 
+make_zsh_default_shell() {
+	read -p "Do you want to make zsh the default shell? (y/n) " should_make_zsh_default_shell
+
+	if [ $should_make_zsh_default_shell = 'y' ]
+	then
+		chsh -s $(which zsh)
+	fi
+}
+
 install_vimplug_vim() {
 	read -p "Do you want to install vimplug for vim? (y/n) " should_install_vimplug_vim
 
@@ -86,9 +95,19 @@ install_vimplug_neovim() {
 update_apt
 install_packages
 remove_apt_vestigial_dependencies
-install_oh_my_zsh
-install_vimplug_vim
-install_vimplug_neovim
+
+if is_app_installed zsh; then
+	make_zsh_default_shell
+	install_oh_my_zsh
+fi
+
+if is_app_installed vim; then
+	install_vimplug_vim
+fi
+
+if is_app_installed nvim; then
+	install_vimplug_neovim
+fi
 
 echo -e "Linux install script complete.\n"
 
