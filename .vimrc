@@ -49,6 +49,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " Syntax Theme Colors
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -81,6 +82,12 @@ augroup PersistView
 	autocmd!
 	" autocmd BufWinLeave * silent! mkview
 	autocmd BufWinEnter * silent! loadview
+augroup END
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained * set relativenumber
+  autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,7 +213,7 @@ let g:DVB_TrimWS = 1
 let g:Schlepp#reindent = 1
 
 " Coc
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 let g:NERDTreeQuitOnOpen=1
@@ -415,6 +422,22 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
+
+
+" Tmuxline
+let g:tmuxline_preset = {
+			\'a'    : '#S',
+      \'b'    : '',
+      \'c'    : ['CPU: #{cpu_fg_color} #{cpu_percentage} #[fg=colour250]', '#{sysstat_mem}', '#{sysstat_swap}'],
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W #F',
+      \'x'    : '#{prefix_highlight} #[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = "off" ] && echo "OFF")#[default] #[fg=$color_dark,bg=$color_secondary]#{?window_zoomed_flag,[Z],}#[default] %a %h %d %R #{battery_status_fg} #{battery_icon} #{battery_percentage}',
+      \'y'    : '',
+      \'z'    : '#(whoami)@#H #{online_status}'
+			\}
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_theme = 'airline_visual'
+let g:tmuxline_powerline_separators = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
