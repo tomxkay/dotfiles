@@ -24,11 +24,11 @@ executables=(
 	"development.sh"
 )
 
-DIR=$(getExecScriptPwd)
+DIR=$(getExecScriptPwd)/bin
 
 # For each specified executable, create symbolic link
 # -s Create a symbolic link
 # -f If the target file already exists, then unlink it so that the link may occur
 for executable in "${executables[@]}";do
-	ln -sfv "${DIR}/bin/${executable}" "${HOME}/bin"
+	ln -sfv "${DIR}/${executable}" "${HOME}/bin"
 done

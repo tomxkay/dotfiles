@@ -61,7 +61,7 @@ function getSymLinkDest {
 	esac
 }
 
-DOTFILESDIR=$(getExecScriptPwd)
+DOTFILESDIR=$(getExecScriptPwd)/config
 
 DOTFILES=(
 	".zshenv"
