@@ -40,6 +40,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
+Plug 'eshion/vim-sync'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -67,7 +68,7 @@ nmap <C-g>  :echo "Echoing testing 123"<CR>
 
 augroup Vimrc
 	autocmd!
-	autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
+	" autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
 	autocmd FileType html,css EmmetInstall
 	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 augroup END
@@ -213,7 +214,8 @@ let g:DVB_TrimWS = 1
 let g:Schlepp#reindent = 1
 
 " Coc
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 let g:NERDTreeQuitOnOpen=1
@@ -238,6 +240,9 @@ let g:gutentags_generate_on_empty_buffer = 0
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
+
+" PHPfmt
+let g:phpfmt_autosave = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
