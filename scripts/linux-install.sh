@@ -31,6 +31,7 @@ install_packages() {
 			fzf
 			neovim
 			ripgrep
+			tmux
 			vim
 			zsh
 		)
@@ -92,6 +93,16 @@ install_vimplug_neovim() {
 	fi
 }
 
+install_tmux_plugin_manager() {
+	read -p "Do you want to install tmux_plugin_manager? (y/n) " should_install_tmux_plugin_manager
+
+	if [ $should_install_tmux_plugin_manager = 'y' ]
+	then
+		echo "Installing tmux plugin manager"
+		git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+	fi
+}
+
 update_apt
 install_packages
 remove_apt_vestigial_dependencies
@@ -107,6 +118,10 @@ fi
 
 if is_app_installed nvim; then
 	install_vimplug_neovim
+fi
+
+if is_app_installed tmux; then
+	install_tmux_plugin_manager
 fi
 
 echo -e "Linux install script complete.\n"
