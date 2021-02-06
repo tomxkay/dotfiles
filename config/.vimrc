@@ -26,6 +26,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Language Syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'beanworks/vim-phpfmt'
+Plug 'StanAngeloff/php.vim'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug '2072/PHP-Indenting-for-VIm'
 
 " Util
 Plug 'fcpg/vim-osc52'
@@ -41,6 +44,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'eshion/vim-sync'
+Plug 'skywind3000/asyncrun.vim'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -61,14 +65,14 @@ filetype plugin indent on
 augroup Reload
 	autocmd!
 	autocmd bufwritepost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-	autocmd bufwritepost ~/Documents/dotfiles/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/.vimrc" | redraw
+	autocmd bufwritepost ~/Documents/dotfiles/config/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/config/.vimrc" | redraw
 augroup END
 
 nmap <C-g>  :echo "Echoing testing 123"<CR>
 
 augroup Vimrc
 	autocmd!
-	" autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
+	autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
 	autocmd FileType html,css EmmetInstall
 	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 augroup END
@@ -242,7 +246,17 @@ let g:gutentags_generate_on_empty_buffer = 0
 let g:user_emmet_install_global = 0
 
 " PHPfmt
-let g:phpfmt_autosave = 0
+" let g:phpfmt_autosave = 0
+
+" Vim-php-cs-fixer
+let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
+let g:php_cs_fixer_config = "default"                  " options: --config
+let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
+
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -251,6 +265,7 @@ let g:phpfmt_autosave = 0
 map , <Leader>
 map <space> <Leader>
 
+map <Leader>I :%s/\s\+$//e<CR>
 " Map temp default -- runs ts-node on current file
 " map ,l :!clear && ts-node %<CR>
 
@@ -260,7 +275,7 @@ map <Leader>z <C-w>\| <C-w>_
 map <Leader>Z <C-w>=
 
 " Edit vimrc
-map <Leader>ev :e! ~/Documents/dotfiles/.vimrc<CR>
+map <Leader>ev :e! ~/Documents/dotfiles/config/.vimrc<CR>
 
 " Rename file
 map <Leader>n :call RenameFile()<cr>
@@ -306,8 +321,8 @@ nnoremap * *<C-o>
 
 nnoremap D dd
 
-nnoremap { {zz
-nnoremap } }zz
+" nnoremap { {zz
+" nnoremap } }zz
 
 " Moving up and down work as you would expect
 nnoremap <silent> j gj
