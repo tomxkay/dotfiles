@@ -64,6 +64,7 @@ fi
 # Custom Aliases
 alias la="ls -a"
 alias ll="ls -l"
+alias dot="cd ~/Documents/dotfiles"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
