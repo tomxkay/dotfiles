@@ -4,6 +4,17 @@
 [github]
 	user = tomxkay
 [credential]
-	helper = store
+	helper = osxkeychain
 [core]
 	excludesfile = /Users/thms/.global_ignore
+	editor = /usr/bin/vim
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[fetch]
+	recurseSubmodules = on-demand
+[push]
+	recurseSubmodules = on-demand
+[alias]
+	spull = "__git_spull() { git pull \"$@\" && git submodule sync --recursive && git submodule update --init --recursive; }; __git_spull"
