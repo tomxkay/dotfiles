@@ -148,7 +148,10 @@ set smartindent
 set splitright
 set splitbelow
 " Always use vertical diffs
-set diffopt+=vertical
+if &diff
+	set diffopt-=internal
+	set diffopt+=vertical
+endif
 
 " Scroll
 set scrolloff=8
