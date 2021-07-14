@@ -51,9 +51,9 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 # Tmux auto attach
-if [ -z "$TMUX"  ]; then
-	tmux attach -t default || tmux new -s default
-fi
+# if [ -z "$TMUX"  ]; then
+# 	tmux attach -t default || tmux new -s default
+# fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
