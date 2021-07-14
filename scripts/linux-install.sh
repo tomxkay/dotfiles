@@ -18,7 +18,7 @@ update_apt() {
 }
 
 install_packages() {
-	read -p "Do you want to install packages? (y/n) " should_install_packages
+	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
 
 	if [ $should_install_packages = 'y' ]
 	then
@@ -30,6 +30,7 @@ install_packages() {
 			git
 			fzf
 			neovim
+			nodejs
 			ripgrep
 			tmux
 			vim
