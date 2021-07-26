@@ -18,24 +18,46 @@ update_apt() {
 }
 
 install_packages() {
+	packages=(
+		bpython
+		bpytop
+		build-essential
+		cmake
+		ctags
+		curl
+		git
+		fzf
+		neofetch
+		neovim
+		nodejs
+		python
+		python3
+		ripgrep
+		tmux
+		vim
+		zsh
+	)
+
+	packages_length=${#packages[@]}
+	current_pos=1
+	packages_labels=""
+
+	for package in "${packages[@]}"
+	do
+		if [[ "$current_pos" -eq "$packages_length" ]]; then
+			packages_labels+="${package}"
+		else
+			packages_labels+="${package}, "
+		fi
+
+		current_pos=$((current_pos + 1))
+	done
+
+	echo "Packages: "${packages_labels}
 	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
 
 	if [ $should_install_packages = 'y' ]
 	then
-		packages=(
-			build-essential
-			cmake
-			ctags
-			curl
-			git
-			fzf
-			neovim
-			nodejs
-			ripgrep
-			tmux
-			vim
-			zsh
-		)
 		for package in "${packages[@]}"
 		do
 			echo "Installing $package..."
