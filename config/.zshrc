@@ -16,6 +16,8 @@ export XDG_CACHE_HOME=$HOME/.cache
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # Reroute config paths
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 export HISTFILE=$XDG_DATA_HOME/zsh/history
