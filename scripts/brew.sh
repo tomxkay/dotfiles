@@ -104,8 +104,7 @@ install_packages() {
 	done
 
 	echo "GUI apps: "${packages_labels}
-	read -p "Do you want to install essential workflow packages? (y/n) "
-	should_install_gui_apps
+	read -p "Do you want to install essential workflow packages? (y/n) " should_install_gui_apps
 
 	if [ $should_install_gui_apps = 'y' ]
 	then
