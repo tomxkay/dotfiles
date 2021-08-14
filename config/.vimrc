@@ -29,6 +29,7 @@ Plug 'beanworks/vim-phpfmt'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-php-cs-fixer'
 Plug '2072/PHP-Indenting-for-VIm'
+Plug 'Chiel92/vim-autoformat'
 
 " Util
 Plug 'fcpg/vim-osc52'
@@ -77,6 +78,10 @@ augroup Vimrc
 	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 augroup END
 
+augroup SaveTrigger
+	" au BufWrite * :Autoformat
+augroup END
+
 augroup PluginsAutocmd
 	autocmd!
 	autocmd CursorHold * silent call CocActionAsync('highlight') " Highlight on cursor hold
@@ -90,9 +95,9 @@ augroup PersistView
 augroup END
 
 augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained * set relativenumber
-  autocmd BufLeave,FocusLost   * set norelativenumber
+	autocmd!
+	autocmd BufEnter,FocusGained * set relativenumber
+	autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,7 +118,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 
-set textwidth=100
+set textwidth=80
 set colorcolumn=80
 set showbreak=↪\
 set list
@@ -262,6 +267,9 @@ let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by defaul
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0
 
+" vim-autoformat
+let g:formatterpath = ['/usr/local/bin/black']
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,6 +280,8 @@ map <space> <Leader>
 map <Leader>I :%s/\s\+$//e<CR>
 " Map temp default -- runs ts-node on current file
 " map ,l :!clear && ts-node %<CR>
+" map ,r :!clear && python %<CR>
+map ,r :!tmux send-keys -t 2 'clear' C-m 'python3 %' C-m<CR>
 
 map <Leader>w :w<CR>
 
@@ -447,17 +457,19 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 
+" vim-autoformat
+noremap <F4> :Autoformat<CR>
 
 " Tmuxline
 let g:tmuxline_preset = {
 			\'a'    : '#S',
-      \'b'    : '',
-      \'c'    : ['CPU: #{cpu_fg_color} #{cpu_percentage} #[fg=colour250]', '#{sysstat_mem}', '#{sysstat_swap}'],
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W #F',
-      \'x'    : '#{prefix_highlight} #[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = "off" ] && echo "OFF")#[default] #[fg=$color_dark,bg=$color_secondary]#{?window_zoomed_flag,[Z],}#[default] %a %h %d %R #{battery_status_fg} #{battery_icon} #{battery_percentage}',
-      \'y'    : '',
-      \'z'    : '#(whoami)@#H #{online_status}'
+			\'b'    : '',
+			\'c'    : ['CPU: #{cpu_fg_color} #{cpu_percentage} #[fg=colour250]', '#{sysstat_mem}', '#{sysstat_swap}'],
+			\'win'  : '#I #W',
+			\'cwin' : '#I #W #F',
+			\'x'    : '#{prefix_highlight} #[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = "off" ] && echo "OFF")#[default] #[fg=$color_dark,bg=$color_secondary]#{?window_zoomed_flag,[Z],}#[default] %a %h %d %R #{battery_status_fg} #{battery_icon} #{battery_percentage}',
+			\'y'    : '',
+			\'z'    : '#(whoami)@#H #{online_status}'
 			\}
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_theme = 'airline_visual'
