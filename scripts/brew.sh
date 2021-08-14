@@ -73,6 +73,20 @@ install_packages() {
 	done
 
 	echo "Command line apps: "${packages_labels}
+	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
+
+	if [ $should_install_packages = 'y' ]
+	then
+		# Install specified packages, skipping installed packages
+		for app in "${cmlApps[@]}"; do
+			appName=$( echo "$app" | awk '{print $1}' )
+			if brew list "$appName" > /dev/null 2>&1; then
+				echo "$appName already installed... skipping."
+			else
+				brew install "$app"
+			fi
+		done
+	fi
 
 	packages_length=${#guiApps[@]}
 	current_pos=1
@@ -90,21 +104,12 @@ install_packages() {
 	done
 
 	echo "GUI apps: "${packages_labels}
+	read -p "Do you want to install essential workflow packages? (y/n) "
+	should_install_gui_apps
 
-	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
-
-	if [ $should_install_packages = 'y' ]
+	if [ $should_install_gui_apps = 'y' ]
 	then
 		# Install specified packages, skipping installed packages
-		for app in "${cmlApps[@]}"; do
-			appName=$( echo "$app" | awk '{print $1}' )
-			if brew list "$appName" > /dev/null 2>&1; then
-				echo "$appName already installed... skipping."
-			else
-				brew install "$app"
-			fi
-		done
-
 		for app in "${guiApps[@]}"; do
 			appName=$( echo "$app" | awk '{print $1}' )
 			if brew cask list "$appName" > /dev/null 2>&1; then
