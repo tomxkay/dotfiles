@@ -36,6 +36,7 @@ install_packages() {
 		ncdu #disk util
 		neovim
 		nmap #network scanner
+		node
 		nvm
 		peco #interactive filtering
 		python
@@ -183,7 +184,6 @@ if is_app_installed tmux; then
 	install_tmux_plugin_manager
 fi
 
-
 # After the install, setup fzf
 echo -e "\\n\\nRunning fzf install script..."
 echo "================================"
@@ -195,3 +195,10 @@ echo "================================"
 pip3 install pynvim
 
 echo "brew.sh script finished."
+
+# Additional tools/config
+# App store: better snap tools
+# Mac mission control:
+# - right top corner: mission control
+# - right bottom corner: desktop
+# - left bottom corner: put display to sleep
