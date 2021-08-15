@@ -16,7 +16,6 @@ echo "================================"
 # Install the command line developer toolsc
 xcode-select --install
 
-
 install_packages() {
 	# Specify brew packages to be installed
 	cmlApps=(
@@ -201,8 +200,12 @@ pip3 install pynvim
 echo "brew.sh script finished."
 
 # Additional tools/config
+
 # App store: better snap tools
+# Dropbox
+
 # Mac mission control:
 # - right top corner: mission control
 # - right bottom corner: desktop
 # - left bottom corner: put display to sleep
+
