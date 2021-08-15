@@ -114,7 +114,7 @@ install_packages() {
 			if brew cask list "$appName" > /dev/null 2>&1; then
 				echo "$appName already installed... skipping."
 			else
-				brew cask install "$app"
+				brew install --cask "$app"
 			fi
 		done
 	fi
