@@ -209,3 +209,5 @@ echo "brew.sh script finished."
 # - right bottom corner: desktop
 # - left bottom corner: put display to sleep
 
+# Set terminal font to pragmata pro
+# Install tmux plugin manager
