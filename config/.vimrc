@@ -108,7 +108,13 @@ syntax enable
 colorscheme gruvbox
 
 set hidden
-set clipboard=unnamed
+
+if has('nvim')
+	set clipboard+=unnamedplus
+else
+	set clipboard=unnamed
+endif
+
 set backspace=indent,eol,start
 
 " User Interface
