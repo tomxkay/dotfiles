@@ -25,11 +25,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Syntax
 Plug 'sheerun/vim-polyglot'
-Plug 'beanworks/vim-phpfmt'
-Plug 'StanAngeloff/php.vim'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug '2072/PHP-Indenting-for-VIm'
 Plug 'Chiel92/vim-autoformat'
+Plug 'ianks/vim-tsx'
+Plug 'leafgarland/typescript-vim'
 
 " Util
 Plug 'fcpg/vim-osc52'
@@ -94,10 +92,16 @@ augroup PersistView
 	autocmd BufWinEnter * silent! loadview
 augroup END
 
-augroup numbertoggle
+augroup Numbertoggle
 	autocmd!
 	autocmd BufEnter,FocusGained * set relativenumber
 	autocmd BufLeave,FocusLost   * set norelativenumber
+augroup END
+
+augroup IdentifyTypeScriptFiles
+	autocmd!
+	autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+	autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,6 +237,7 @@ let g:Schlepp#reindent = 1
 
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets']
 
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
@@ -259,19 +264,6 @@ let g:gutentags_generate_on_empty_buffer = 0
 
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
-
-" PHPfmt
-" let g:phpfmt_autosave = 0
-
-" Vim-php-cs-fixer
-let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
-let g:php_cs_fixer_config = "default"                  " options: --config
-let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
-
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0
 
 " vim-autoformat
 let g:formatterpath = ['/usr/local/bin/black']
