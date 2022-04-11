@@ -14,6 +14,8 @@ set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
+
 " Vim Plugins
 filetype off
 call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
@@ -57,9 +59,13 @@ Plug 'edkolev/tmuxline.vim'
 call plug#end()
 filetype plugin indent on
 
+" }}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
+
 " Vim auto commands
 augroup Reload
 	autocmd!
@@ -104,9 +110,22 @@ augroup IdentifyTypeScriptFiles
 	autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
 
+augroup VimFold
+	autocmd!
+	autocmd FileType javascript setlocal foldmethod=expr
+	autocmd FileType javascript setlocal foldexpr=JSFolds()
+	autocmd FileType typescript setlocal foldmethod=expr
+	autocmd FileType typescript setlocal foldexpr=JSFolds()
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" }}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
+
 " Vim options and variable assignments
 syntax enable
 colorscheme gruvbox
@@ -191,7 +210,7 @@ set notimeout ttimeout ttimeoutlen=10 " quickly timeout on keycodes, but never o
 set cmdheight=2 " avoid press <Enter> to continue"
 
 " Fold
-set foldmethod=manual
+set foldmethod=indent
 set foldnestmax=10
 "
 " Searching
@@ -268,9 +287,13 @@ let g:user_emmet_install_global = 0
 " vim-autoformat
 let g:formatterpath = ['/usr/local/bin/black']
 
+" }}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
+
 " Vim mappings
 map , <Leader>
 map <space> <Leader>
@@ -493,9 +516,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:tmuxline_theme = 'airline_visual'
 let g:tmuxline_powerline_separators = 1
 
+" }}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{
+
 " Functions
 function! RenameFile()
 	let old_name = expand('%')
@@ -530,3 +557,17 @@ function! NerdTreeToggleFind()
 	endif
 endfunction
 
+function! JSFolds()
+  let thisline = getline(v:lnum)
+  if thisline =~? '\v^\s*$'
+    return '-1'
+  endif
+
+  if thisline =~ '^import.*$'
+    return 1
+  else
+    return indent(v:lnum) / &shiftwidth
+  endif
+endfunction
+
+" }}}
