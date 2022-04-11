@@ -30,11 +30,11 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 
 " Util
-Plug 'fcpg/vim-osc52'
+Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'zirrostig/vim-schlepp'
 Plug 'mattn/emmet-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-surround'
@@ -275,6 +275,10 @@ let g:formatterpath = ['/usr/local/bin/black']
 map , <Leader>
 map <space> <Leader>
 
+" OSCYank
+vnoremap <leader>c :OSCYank<CR>
+nmap <leader>o <Plug>OSCYank
+
 map <Leader>I :%s/\s\+$//e<CR>
 " Map temp default -- runs ts-node on current file
 " map ,l :!clear && ts-node %<CR>
@@ -315,6 +319,19 @@ nmap sH <C-w>H
 nmap sK <C-w>K
 nmap sJ <C-w>J
 nmap sL <C-w>L
+
+
+" Opens all buffers as vertical splits
+nmap <leader>vba :vert ba<CR>
+
+" Opens all buffers as tabs
+nmap <leader>tba :tab ba<CR>
+
+" Closes all buffers but current buffer
+nmap <leader>bo :%bd\|e#\|bd#\|'"<CR>
+
+" Delete current buffer
+nmap <leader>bd :bd<CR>
 
 nnoremap <Leader>ov :exe ':silent !code %' <CR>:redraw!<CR>
 
@@ -469,7 +486,10 @@ let g:tmuxline_preset = {
 			\'y'    : '',
 			\'z'    : '#(whoami)@#H #{online_status}'
 			\}
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:tmuxline_theme = 'airline_visual'
 let g:tmuxline_powerline_separators = 1
 
