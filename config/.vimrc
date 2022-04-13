@@ -119,6 +119,7 @@ augroup VimFold
 	autocmd FileType typescript setlocal foldmethod=expr
 	autocmd FileType typescript setlocal foldexpr=JSFolds()
 	autocmd FileType vim setlocal foldmethod=marker
+	autocmd BufRead * normal zR
 augroup END
 
 " }}}
