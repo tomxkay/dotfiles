@@ -22,7 +22,7 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb' " Gbrowse
+Plug 'tpope/vim-rhubarb' " Enable Gbrowse from fugitive.vim to open GitHub URLs
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Language Syntax
@@ -30,6 +30,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Chiel92/vim-autoformat'
 Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 " Util
 Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
@@ -46,13 +48,11 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'eshion/vim-sync'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags'
 
 " Syntax Theme Colors
 Plug 'morhetz/gruvbox'
@@ -114,12 +114,12 @@ augroup END
 
 augroup VimFold
 	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType javascript setlocal foldmethod=expr
 	autocmd FileType javascript setlocal foldexpr=JSFolds()
 	autocmd FileType typescript setlocal foldmethod=expr
 	autocmd FileType typescript setlocal foldexpr=JSFolds()
-	autocmd FileType vim setlocal foldmethod=marker
-	autocmd BufRead * normal zR
+	autocmd BufWinEnter * silent! :%foldopen!
 augroup END
 
 " }}}
@@ -215,6 +215,7 @@ set cmdheight=2 " avoid press <Enter> to continue"
 " Fold
 set foldmethod=indent
 set foldnestmax=10
+set foldlevelstart=20
 "
 " Searching
 set gdefault     " Default /g at end of search
@@ -259,7 +260,7 @@ let g:Schlepp#reindent = 1
 
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets']
+let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets']
 
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
@@ -270,25 +271,8 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeAutoDeleteBuffer=1
 
-" Tags
-" Determine new project
-let g:gutentags_add_default_project_roots = 0
-let g:gutentags_project_root = ['package.json', '.git']
-
-" Determine ctag cache dir
-let g:gutentags_cache_dir = expand('$XDG_CACHE_HOME/vim/ctags')
-
-" Generate ctags in most cases
-let g:gutentags_generata_on_new = 1
-let g:gutentags_generate_on_missing = 1
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 0
-
 " Enable Emmet only for html/css
 let g:user_emmet_install_global = 0
-
-" vim-autoformat
-let g:formatterpath = ['/usr/local/bin/black']
 
 " }}}
 
@@ -375,9 +359,6 @@ nnoremap Y y$
 nnoremap * *<C-o>
 
 nnoremap D dd
-
-" nnoremap { {zz
-" nnoremap } }zz
 
 " Moving up and down work as you would expect
 nnoremap <silent> j gj
