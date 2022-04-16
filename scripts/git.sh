@@ -15,6 +15,9 @@ git config --global user.email "${email:-$defaultEmail}"
 git config --global github.user "${github:-$defaultGithub}"
 
 git config --global core.editor /usr/bin/vim
+# git config pull.rebase false
+git config pull.rebase true # rebase
+# git config pull.ff only true
 
 git config --global status.submoduleSummary true
 git config --global diff.submodule log
