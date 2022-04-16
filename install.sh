@@ -1,7 +1,4 @@
 #!/bin/bash
-command_exists() {
-	type "$1" > /dev/null 2>&1
-}
 
 unameOutput="$(uname -s)"
 case "${unameOutput}" in
