@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Mac Specific install
+echo "Installing Mac specific software..."
+
 is_app_installed() {
 	command -v "$1" &>/dev/null
 }

@@ -4,14 +4,20 @@
 echo "Installing Linux specific software..."
 
 is_app_installed() {
-	type "$1" &>/dev/null
+	command -v "$1" &>/dev/null
+}
+
+log_table() {
+	items=("$@")
+	for item in "${items[@]}"; do
+		printf "%-8s\n" "${item}"
+	done | column
 }
 
 update_apt() {
 	read -p "Do you want to update apt? (y/n) " should_update_apt
 
-	if [ $should_update_apt = 'y' ]
-	then
+	if [ $should_update_apt = 'y' ]; then
 		echo "Updating and upgrading apt..."
 		sudo apt update && sudo apt upgrade
 	fi
@@ -38,26 +44,12 @@ install_packages() {
 		zsh
 	)
 
-	packages_length=${#packages[@]}
-	current_pos=1
-	packages_labels=""
+	echo "Packages: "
+	log_table "${packages[@]}"
 
-	for package in "${packages[@]}"
-	do
-		if [[ "$current_pos" -eq "$packages_length" ]]; then
-			packages_labels+="${package}"
-		else
-			packages_labels+="${package}, "
-		fi
-
-		current_pos=$((current_pos + 1))
-	done
-
-	echo "Packages: "${packages_labels}
 	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
 
-	if [ $should_install_packages = 'y' ]
-	then
+	if [ $should_install_packages = 'y' ]; then
 		for package in "${packages[@]}"
 		do
 			echo "Installing $package..."
@@ -69,8 +61,7 @@ install_packages() {
 remove_apt_vestigial_dependencies() {
 	read -p "Do you want to remove apt vestigial dependencies? (y/n) " should_remove_apt_vestigial_dependencies
 
-	if [ $should_remove_apt_vestigial_dependencies = 'y' ]
-	then
+	if [ $should_remove_apt_vestigial_dependencies = 'y' ]; then
 		# Remove vestigial dependencies
 		echo "Removing vestigial dependencies..."
 		sudo apt autoremove
@@ -80,8 +71,7 @@ remove_apt_vestigial_dependencies() {
 install_oh_my_zsh() {
 	read -p "Do you want to install oh-my-zsh? (y/n) " should_install_oh_my_zsh
 
-	if [ $should_install_oh_my_zsh = 'y' ]
-	then
+	if [ $should_install_oh_my_zsh = 'y' ]; then
 		echo "Installing oh-my-zsh..."
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	fi
@@ -90,8 +80,7 @@ install_oh_my_zsh() {
 make_zsh_default_shell() {
 	read -p "Do you want to make zsh the default shell? (y/n) " should_make_zsh_default_shell
 
-	if [ $should_make_zsh_default_shell = 'y' ]
-	then
+	if [ $should_make_zsh_default_shell = 'y' ]; then
 		chsh -s $(which zsh)
 	fi
 }
@@ -99,8 +88,7 @@ make_zsh_default_shell() {
 install_vimplug_vim() {
 	read -p "Do you want to install vimplug for vim? (y/n) " should_install_vimplug_vim
 
-	if [ $should_install_vimplug_vim = 'y' ]
-	then
+	if [ $should_install_vimplug_vim = 'y' ]; then
 		echo "Installing vimplug (vim)..."
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
@@ -109,8 +97,7 @@ install_vimplug_vim() {
 install_vimplug_neovim() {
 	read -p "Do you want to install vimplug for neovim? (y/n) " should_install_vimplug_neovim
 
-	if [ $should_install_vimplug_neovim = 'y' ]
-	then
+	if [ $should_install_vimplug_neovim = 'y' ]; then
 		echo "Installing vimplug (neovim)..."
 		curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
@@ -119,8 +106,7 @@ install_vimplug_neovim() {
 install_tmux_plugin_manager() {
 	read -p "Do you want to install tmux_plugin_manager? (y/n) " should_install_tmux_plugin_manager
 
-	if [ $should_install_tmux_plugin_manager = 'y' ]
-	then
+	if [ $should_install_tmux_plugin_manager = 'y' ]; then
 		echo "Installing tmux plugin manager"
 		git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 	fi
