@@ -86,6 +86,7 @@ install_packages() {
 		visual-studio-code
 		google-chrome
 		dropbox
+		iterm2
 	)
 
 	echo "Command line apps: "
