@@ -14,7 +14,21 @@ log_table() {
 	done | column
 }
 
+print_spacing() {
+	echo -e "\\n"
+}
+
+print_header() {
+	GREEN='\033[0;32m'
+	NC='\033[0m' # No Color
+
+	print_spacing
+	echo -e "${GREEN}:: $1 ::${NC}"
+}
+
 update_apt() {
+	print_header "Preparing package manager"
+
 	read -p "Do you want to update apt? (y/n) " should_update_apt
 
 	if [ $should_update_apt = 'y' ]; then
@@ -24,6 +38,8 @@ update_apt() {
 }
 
 install_packages() {
+	print_header "Preparing packages"
+
 	packages=(
 		bpython
 		bpytop
@@ -47,7 +63,7 @@ install_packages() {
 	echo "Packages: "
 	log_table "${packages[@]}"
 
-	read -p "Do you want to install essential workflow packages? (y/n) " should_install_packages
+	read -p "Do you want to install essential workflow packages listed above? (y/n) " should_install_packages
 
 	if [ $should_install_packages = 'y' ]; then
 		for package in "${packages[@]}"
@@ -59,6 +75,8 @@ install_packages() {
 }
 
 remove_apt_vestigial_dependencies() {
+	print_header "Clean bloat packages"
+
 	read -p "Do you want to remove apt vestigial dependencies? (y/n) " should_remove_apt_vestigial_dependencies
 
 	if [ $should_remove_apt_vestigial_dependencies = 'y' ]; then
@@ -69,6 +87,8 @@ remove_apt_vestigial_dependencies() {
 }
 
 install_oh_my_zsh() {
+	print_header "Oh-My-Zsh"
+
 	read -p "Do you want to install oh-my-zsh? (y/n) " should_install_oh_my_zsh
 
 	if [ $should_install_oh_my_zsh = 'y' ]; then
@@ -78,6 +98,8 @@ install_oh_my_zsh() {
 }
 
 make_zsh_default_shell() {
+	print_header "Default zsh"
+
 	read -p "Do you want to make zsh the default shell? (y/n) " should_make_zsh_default_shell
 
 	if [ $should_make_zsh_default_shell = 'y' ]; then
@@ -86,6 +108,8 @@ make_zsh_default_shell() {
 }
 
 install_vimplug_vim() {
+	print_header "Vim plugin manager"
+
 	read -p "Do you want to install vimplug for vim? (y/n) " should_install_vimplug_vim
 
 	if [ $should_install_vimplug_vim = 'y' ]; then
@@ -95,6 +119,8 @@ install_vimplug_vim() {
 }
 
 install_vimplug_neovim() {
+	print_header "Neovim plugin manager"
+
 	read -p "Do you want to install vimplug for neovim? (y/n) " should_install_vimplug_neovim
 
 	if [ $should_install_vimplug_neovim = 'y' ]; then
@@ -104,6 +130,8 @@ install_vimplug_neovim() {
 }
 
 install_tmux_plugin_manager() {
+	print_header "Tmux plugin manager"
+
 	read -p "Do you want to install tmux_plugin_manager? (y/n) " should_install_tmux_plugin_manager
 
 	if [ $should_install_tmux_plugin_manager = 'y' ]; then
@@ -112,6 +140,7 @@ install_tmux_plugin_manager() {
 	fi
 }
 
+# Script logic starts here
 update_apt
 install_packages
 remove_apt_vestigial_dependencies
@@ -133,5 +162,7 @@ if is_app_installed tmux; then
 	install_tmux_plugin_manager
 fi
 
-echo -e "Linux install script complete.\n"
+print_spacing
+echo "Linux install script complete."
+print_spacing
 

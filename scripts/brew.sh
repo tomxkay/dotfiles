@@ -14,27 +14,44 @@ log_table() {
 	done | column
 }
 
-echo "Checking if xcode is installed..."
-if ! is_app_installed xcode-select; then
-	echo "xcode-select is not installed, installing xcode-select..."
-	# Install the command line developer toolsc
-	xcode-select --install
-else
-	echo "xcode-select is installed!"
-fi
+print_spacing() {
+	echo -e "\\n"
+}
 
-echo "Checking if homebrew is installed..."
-if ! is_app_installed brew; then
-	echo "Homebrew not installed. Installing homebrew..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-	echo "Homebrew is installed!"
-fi
+print_header() {
+	GREEN='\033[0;32m'
+	NC='\033[0m' # No Color
 
-echo -e "\\n\\nInstalling homebrew packages..."
-echo "================================"
+	print_spacing
+	echo -e "${GREEN}:: $1 ::${NC}"
+}
+
+install_xcode() {
+	print_header "Checking xcode"
+
+	if ! is_app_installed xcode-select; then
+		echo "xcode-select is not installed, installing xcode-select..."
+		# Install the command line developer toolsc
+		xcode-select --install
+	else
+		echo "xcode-select is installed!"
+	fi
+}
+
+install_homebrew() {
+	print_header "Checking homebrew"
+
+	if ! is_app_installed brew; then
+		echo "Homebrew not installed. Installing homebrew..."
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	else
+		echo "Homebrew is installed!"
+	fi
+}
 
 install_packages() {
+	print_header "Preparing homebrew packages"
+
 	# Specify brew packages to be installed
 	cmlApps=(
 		archey #screenfetch
@@ -88,6 +105,8 @@ install_packages() {
 		done
 	fi
 
+	print_header "Preparing GUI apps"
+
 	echo "GUI apps: "
 	log_table "${guiApps[@]}"
 
@@ -107,6 +126,8 @@ install_packages() {
 }
 
 install_oh_my_zsh() {
+	print_header "Oh-My-Zsh"
+
 	read -p "Do you want to install oh-my-zsh? (y/n) " should_install_oh_my_zsh
 
 	if [ $should_install_oh_my_zsh = 'y' ]; then
@@ -116,14 +137,19 @@ install_oh_my_zsh() {
 }
 
 make_zsh_default_shell() {
+	print_header "Default zsh"
+
 	read -p "Do you want to make zsh the default shell? (y/n) " should_make_zsh_default_shell
 
 	if [ $should_make_zsh_default_shell = 'y' ]; then
+		echo "Setting zsh as default shell..."
 		chsh -s $(which zsh)
 	fi
 }
 
 install_vimplug_vim() {
+	print_header "Vim plugin manager"
+
 	read -p "Do you want to install vimplug for vim? (y/n) " should_install_vimplug_vim
 
 	if [ $should_install_vimplug_vim = 'y' ]; then
@@ -133,6 +159,8 @@ install_vimplug_vim() {
 }
 
 install_vimplug_neovim() {
+	print_header "Neovim plugin manager"
+
 	read -p "Do you want to install vimplug for neovim? (y/n) " should_install_vimplug_neovim
 
 	if [ $should_install_vimplug_neovim = 'y' ]; then
@@ -142,14 +170,49 @@ install_vimplug_neovim() {
 }
 
 install_tmux_plugin_manager() {
+	print_header "Tmux plugin manager"
+
 	read -p "Do you want to install tmux_plugin_manager? (y/n) " should_install_tmux_plugin_manager
 
 	if [ $should_install_tmux_plugin_manager = 'y' ]; then
-		echo "Installing tmux plugin manager"
+		echo "Installing tmux plugin manager..."
 		git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 	fi
 }
 
+install_fzf_script() {
+	print_header "Fuzzy finder"
+
+	read -p "Do you want to run fzf install script? (y/n) " should_run_fzf_install_script
+
+	if [ $should_run_fzf_install_script = 'y' ]; then
+		if [ -f /usr/local/opt/fzf/install ]; then
+			if ! is_app_installed fzf; then
+				# After the install, setup fzf
+				echo "Running fzf install script..."
+				/usr/local/opt/fzf/install --all
+			fi
+		else
+			echo "Fzf install script not found. Did not install fzf."
+		fi
+	fi
+}
+
+install_pynvim() {
+	print_header "Pynvim"
+
+	read -p "Do you want to install pynvim? (y/n) " should_install_pynvim
+
+	if [ $should_install_pynvim = 'y' ]; then
+		# After the install, install neovim python libraries
+		echo "Running Neovim Python install..."
+		pip3 install pynvim
+	fi
+}
+
+# Script logic starts here
+install_xcode
+install_homebrew
 install_packages
 
 if is_app_installed zsh; then
@@ -169,31 +232,12 @@ if is_app_installed tmux; then
 	install_tmux_plugin_manager
 fi
 
-read -p "Do you want to run fzf install script? (y/n) " should_run_fzf_install_script
+install_fzf_script
+install_pynvim
 
-if [ $should_run_fzf_install_script = 'y' ]; then
-	if [ -f /usr/local/opt/fzf/install ]; then
-		if ! is_app_installed fzf; then
-			# After the install, setup fzf
-			echo -e "\\n\\nRunning fzf install script..."
-			echo "================================"
-			/usr/local/opt/fzf/install --all
-		fi
-	else
-		echo "fzf install script not found. Did not install fzf."
-	fi
-fi
-
-read -p "Do you want to install pynvim? (y/n) " should_install_pynvim
-
-if [ $should_install_pynvim = 'y' ]; then
-	# After the install, install neovim python libraries
-	echo -e "\\n\\nRunning Neovim Python install..."
-	echo "================================"
-	pip3 install pynvim
-fi
-
+print_spacing
 echo "brew.sh script finished."
+print_spacing
 
 # Additional tools/config
 
@@ -205,5 +249,5 @@ echo "brew.sh script finished."
 # - right bottom corner: desktop
 # - left bottom corner: put display to sleep
 
-# Set terminal font to pragmata pro
+# Set terminal font to Pragmata Pro Mono Liga
 # Install tmux plugin manager
