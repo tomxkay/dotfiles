@@ -324,11 +324,21 @@ nmap sj <C-w>j
 nmap sl <C-w>l
 nmap so <C-w>o
 
+nmap <C-h> <C-w>h
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+nmap <C-l> <C-w>l
+
 " Swap window
 nmap sH <C-w>H
 nmap sK <C-w>K
 nmap sJ <C-w>J
 nmap sL <C-w>L
+
+nmap <C-w><C-H> <C-w>H
+nmap <C-w><C-K> <C-w>K
+nmap <C-w><C-J> <C-w>J
+nmap <C-w><C-L> <C-w>L
 
 
 " Opens all buffers as vertical splits
@@ -386,8 +396,8 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<CR>"
 map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<CR>"
 
 " Clear search hightliting with C-L
-noremap <silent> <C-l> :nohlsearch <bar> redraw!<CR>
-inoremap <silent> <C-l> <C-o>:nohlsearch <bar> redraw!<CR>
+noremap <silent> cl :nohlsearch <bar> redraw!<CR>
+inoremap <silent> cl <C-o>:nohlsearch <bar> redraw!<CR>
 
 " Execute the current line/selection as a shell command
 " :.!<command>
