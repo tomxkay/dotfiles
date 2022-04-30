@@ -92,6 +92,7 @@ augroup PluginsAutocmd
 	autocmd!
 	autocmd CursorHold * silent call CocActionAsync('highlight') " Highlight on cursor hold
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	autocmd BufEnter NERD_tree_* | execute 'normal R'
 augroup END
 
 augroup PersistView
@@ -396,8 +397,8 @@ map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<CR>"
 map <silent><Leader><S-p> :set paste<CR>o<esc>"*]p:set nopaste<CR>"
 
 " Clear search hightliting with C-L
-noremap <silent> cl :nohlsearch <bar> redraw!<CR>
-inoremap <silent> cl <C-o>:nohlsearch <bar> redraw!<CR>
+noremap <silent> <leader>cl :nohlsearch <bar> redraw!<CR>
+inoremap <silent> <leader>cl <C-o>:nohlsearch <bar> redraw!<CR>
 
 " Execute the current line/selection as a shell command
 " :.!<command>
@@ -505,8 +506,8 @@ let g:tmuxline_preset = {
 			\}
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:tmuxline_theme = 'airline_visual'
 let g:tmuxline_powerline_separators = 1
 

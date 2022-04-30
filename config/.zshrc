@@ -14,7 +14,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -67,6 +67,9 @@ fi
 alias la="ls -a"
 alias ll="ls -l"
 alias dot="cd ~/Documents/dotfiles"
+
+# automate
+eval "$(rbenv init -)"
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
