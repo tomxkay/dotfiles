@@ -32,6 +32,8 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 
 " Util
 Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
