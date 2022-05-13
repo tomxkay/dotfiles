@@ -51,6 +51,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'eshion/vim-sync'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mlaursen/vim-react-snippets'
+Plug 'vim-test/vim-test'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
