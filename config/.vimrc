@@ -48,10 +48,13 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
 Plug 'eshion/vim-sync'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'vim-test/vim-test'
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+Plug 'benmills/vimux'
 
 " Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -214,7 +217,8 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set notimeout ttimeout ttimeoutlen=10 " quickly timeout on keycodes, but never on mappings
-set cmdheight=2 " avoid press <Enter> to continue"
+" set cmdheight=2 " avoid press <Enter> to continue
+set cmdheight=1
 
 " Fold
 set foldmethod=indent
@@ -262,12 +266,26 @@ let g:DVB_TrimWS = 1
 
 let g:Schlepp#reindent = 1
 
+" vim-test
+let test#strategy = 'vimux'
+let test#ruby#rspec#options = '--format documentation'
+
 " Coc
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets']
+let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets', 'coc-solargraph']
 
-let g:python3_host_prog = '/usr/bin/python3'
-let g:python_host_prog = '/usr/bin/python'
+if has("unix")
+	let s:uname = system("uname")
+	if s:uname == "Darwin\n"
+		let g:python3_host_prog = '/opt/homebrew/bin/python3'
+	else
+		let g:python3_host_prog = '/usr/bin/python3'
+		let g:python_host_prog = '/usr/bin/python'
+	endif
+else
+	let g:python3_host_prog = '/usr/bin/python3'
+	let g:python_host_prog = '/usr/bin/python'
+endif
 
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeWinPos="right"
