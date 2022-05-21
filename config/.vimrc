@@ -454,6 +454,13 @@ vmap Ô <Plug>SchleppDup j
 nmap  <Plug>SchleppDup k
 nmap Ô <Plug>SchleppDup j
 
+" vim-test
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
 " Fzf
 " File Finder
 let g:fzf_preview_window = ''
