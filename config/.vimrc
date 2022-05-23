@@ -323,7 +323,7 @@ map <Leader>z <C-w>\| <C-w>_
 map <Leader>Z <C-w>=
 
 " Edit vimrc
-map <Leader>ev :e! ~/Documents/dotfiles/config/.vimrc<CR>
+map <Leader>ev :e! ~/.config/vim/vimrc<CR>
 
 " Rename file
 map <Leader>n :call RenameFile()<cr>
