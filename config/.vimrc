@@ -77,11 +77,10 @@ filetype plugin indent on
 " Vim auto commands
 augroup Reload
 	autocmd!
-	autocmd bufwritepost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+	autocmd bufwritepost $MYVIMRC source % | echom "Reloaded runtime config" . $MYVIMRC | redraw
 	autocmd bufwritepost ~/Documents/dotfiles/config/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/config/.vimrc" | redraw
+	autocmd bufwritepost ~/.config/vim/vimrc source % | echom "Reloaded ~/.config/vim/vimrc" | redraw
 augroup END
-
-nmap <C-g>  :echo "Echoing testing 123"<CR>
 
 augroup Vimrc
 	autocmd!
@@ -322,8 +321,10 @@ map <Leader>w :w<CR>
 map <Leader>z <C-w>\| <C-w>_
 map <Leader>Z <C-w>=
 
-" Edit vimrc
-map <Leader>ev :e! ~/.config/vim/vimrc<CR>
+" Edit rc
+map <Leader>ev <C-w>v<C-w>l:e! ~/.config/vim/vimrc<CR>
+map <Leader>et <C-w>v<C-w>l:e! ~/.config/tmux/tmux.conf<CR>
+map <Leader>ez <C-w>v<C-w>l:e! ~/.config/zsh/.zshrc<CR>
 
 " Rename file
 map <Leader>n :call RenameFile()<cr>
