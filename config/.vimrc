@@ -406,6 +406,10 @@ nnoremap <silent> <DOWN> :resize -5<CR>
 inoremap kj <ESC>
 inoremap jj <ESC>
 
+" Keep search matches centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Make vaa select the entire file...
 xmap aa VGo1G
 
