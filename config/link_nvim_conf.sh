@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p ~/.config/nvim/plugin
 mkdir -p ~/.config/nvim/after/plugin
-mkdir -p ~/.config/nvim/lua
+mkdir -p ~/.config/nvim/lua/plugins
 
 SOURCE=~/Documents/dotfiles/config
 DEST=~/.config/nvim/
