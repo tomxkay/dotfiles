@@ -69,8 +69,9 @@ vmap('Q', '!!$SHELL<CR>')
 -- Close all but current buffer
 nmap('<Leader>bo', [[:%bd | e# | bd# | '"<CR>]])
 
--- TODO: refactor to lua
-vim.cmd [[
-  " Edit in VSCode
-  nnoremap <Leader>ov :exe ':silent !code %' <CR>:redraw!<CR>
-]]
+-- Edit in VSCode
+nmap('<Leader>ov', ':!code %<CR> | :redraw!<CR>')
+
+-- Edit vim config
+nmap('<leader>ev', ':vsplit $MYVIMRC<CR>')
+nmap('<leader>sv', ':source $MYVIMRC<CR>')

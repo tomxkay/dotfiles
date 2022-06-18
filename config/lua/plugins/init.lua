@@ -31,58 +31,70 @@ packer.init {
 }
 
 return packer.startup(function(use)
+	-- Packer
 	use "wbthomason/packer.nvim"
-	use "nvim-lua/popup.nvim"
 
+	-- Theme
+	use 'morhetz/gruvbox'
+  use {
+    'nvim-lualine/lualine.nvim',
+		requires = {
+			'kyazdani42/nvim-web-devicons',
+			opt = true
+		}
+  }
+	use 'mhinz/vim-startify'
+  use { 'Mofiqul/dracula.nvim' }
+
+	-- Language Syntax
+	use { 'tpope/vim-rails', ft = 'rb' }
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+	-- Test
+	use 'benmills/vimux'
+	use { 'rcarriga/vim-ultest', run = ':UpdateRemotePlugins' }
+	use 'vim-test/vim-test'
+
+	-- Git
 	use 'airblade/vim-gitgutter'
+	use 'junegunn/gv.vim'
+	use { 'lewis6991/gitsigns.nvim', tag = 'release' }
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
 
-	-- Language Syntax
-	use 'sheerun/vim-polyglot'
-	use 'Chiel92/vim-autoformat'
-	use 'ianks/vim-tsx'
-	use 'jparise/vim-graphql'
-	use { 'leafgarland/typescript-vim', ft = 'ts' }
-	use { 'styled-components/vim-styled-components', branch = 'main' }
-	use { 'vim-ruby/vim-ruby', ft = 'rb' }
-	use { 'tpope/vim-rails', ft = 'rb' }
-
-	-- Util
-	use { 'ojroques/vim-oscyank', branch = 'main' }
-	use 'jiangmiao/auto-pairs'
-	use 'zirrostig/vim-schlepp'
-	use 'mattn/emmet-vim'
-	use 'BurntSushi/ripgrep'
+	-- Search
 	use {
 		'nvim-telescope/telescope.nvim',
-		requires = { {'nvim-lua/plenary.nvim'} }
+		requires = { 'nvim-lua/plenary.nvim' }
+	}
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons',
+		},
+		tag = 'nightly',
 	}
 
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-	use { "williamboman/nvim-lsp-installer" }
-	use { "neovim/nvim-lspconfig" }
-
+	-- Completion
+	use 'williamboman/nvim-lsp-installer'
+	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 
-	use {
-		'lewis6991/gitsigns.nvim',
-		tag = 'release',
-	}
-
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icon
-		},
-		tag = 'nightly',
-	}
-
-	use { 'scrooloose/nerdtree', cmd = { 'NERDTreeToggle', 'NERDTreeFind' } }
+	-- IDE/Util
+	use 'BurntSushi/ripgrep'
+	use 'Chiel92/vim-autoformat'
+	use 'eshion/vim-sync'
+	use 'junegunn/vim-easy-align'
+	use { 'ojroques/vim-oscyank', branch = 'main' }
+	use 'nvim-lua/popup.nvim'
+	use 'majutsushi/tagbar'
+	use 'mattn/emmet-vim'
+	use 'mlaursen/vim-react-snippets'
+	use 'skywind3000/asyncrun.vim'
 	use 'terryma/vim-expand-region'
 	use 'tpope/vim-surround'
 	use 'tpope/vim-commentary'
@@ -90,21 +102,9 @@ return packer.startup(function(use)
 	use 'tpope/vim-eunuch'
 	use 'tpope/vim-unimpaired'
 	use 'tpope/vim-dispatch'
-	use 'eshion/vim-sync'
-	use 'skywind3000/asyncrun.vim'
-	use 'mlaursen/vim-react-snippets'
-	use 'vim-test/vim-test'
-	use { 'rcarriga/vim-ultest', run = ':UpdateRemotePlugins' }
-	use 'benmills/vimux'
-
-	-- Search
-	use { 'junegunn/fzf', run = { 'cd ~/.fzf', './install --no-bash' } }
-	use 'junegunn/fzf.vim'
-
-	-- Syntax Theme Colors
-	use 'morhetz/gruvbox'
-	use 'vim-airline/vim-airline'
-	use 'edkolev/tmuxline.vim'
+	use 'windwp/nvim-autopairs'
+	use 'Yggdroot/indentLine'
+	use 'zirrostig/vim-schlepp'
 
 	-- automatically set up config after cloning packer.nvim
 	-- put this at the end after all plugins
@@ -113,10 +113,13 @@ return packer.startup(function(use)
 	end
 
 	-- Plugins settings
-	require('plugins/treesitter')
-	require('plugins/lsp')
-	require('plugins/completion')
-	require('plugins/nvim_tree')
-	require('plugins/mappings')
+	local require_dir = require('utils').require_dir
+
+	-- load all additional configs dynamically
+	-- to save from adding in manually
+	local config_dirs = { 'plugins' }
+	for _, dir in pairs(config_dirs) do
+		require_dir(dir)
+	end
 end)
 
