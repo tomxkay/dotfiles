@@ -52,7 +52,6 @@ return packer.startup(function(use)
 
 	-- Test
 	use 'benmills/vimux'
-	use { 'rcarriga/vim-ultest', run = ':UpdateRemotePlugins' }
 	use 'vim-test/vim-test'
 
 	-- Git
