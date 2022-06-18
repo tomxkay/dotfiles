@@ -48,4 +48,11 @@ vim.cmd [[
 
  " vim-autoformat
  noremap <F4> :Autoformat<CR>
+
+ " vim-easy-align
+ xmap ga <Plug>(EasyAlign)
+ nmap ga <Plug>(EasyAlign)
+
+ nmap <Leader>il :IndentLinesToggle<CR>
+ nmap <Leader>tb :TagbarToggle<CR>
 ]]
