@@ -2,10 +2,6 @@ vim.cmd [[
 syntax enable
 colorscheme gruvbox
 
-let base16colorspace=256
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 " Persist undo over buffer switches and exits
 :silent call system('mkdir -p ' . $XDG_DATA_HOME . '/nvim/undo')
 set undodir=$XDG_DATA_HOME/nvim/undo
@@ -29,33 +25,35 @@ set directory=$XDG_DATA_HOME/nvim/swap
 
 vim.opt.clipboard:append 'unnamedplus'
 vim.opt.shortmess:append 'c'
+
+-- Tmux color settings
 vim.g.t_co = 256
+vim.g.t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"
+vim.g.t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"
+vim.g.base16colorspace = 256
 
 local settings = {
-	-- Basic
-  hidden         = true,
-  backspace      = { 'indent', 'eol', 'start' },
-
   -- UI
-	termguicolors  = true,
-  background     = 'dark',
-  textwidth      = 80,
-  colorcolumn    = '80',
-  showbreak      = '↪',
-  list           = true,
-  listchars      = { tab = '»»', trail = '·', nbsp = '~', eol = '↲', precedes = '←', extends = '→' },
-  virtualedit    = 'block',
-  belloff        = 'all',
-  visualbell     = true, -- blink cursor on error, instead of beeping
-  wildmenu       = true, -- visual autocomplete for command menu
-  showcmd        = true,
-  number         = true,
-  relativenumber = true,
+	termguicolors    = true,
+  background       = 'dark',
+  textwidth        = 80,
+  colorcolumn      = '80',
+  showbreak        = '↪',
+  list             = true,
+  listchars        = { tab = '»»', trail = '·', nbsp = '~', eol = '↲', precedes = '←', extends = '→' },
+  virtualedit      = 'block',
+  belloff          = 'all',
+  visualbell       = true, -- blink cursor on error, instead of beeping
+  wildmenu         = true, -- visual autocomplete for command menu
+  showcmd          = true,
+  number           = true,
+  relativenumber   = true,
 
   cursorline     = true, -- highlight the current line
   modeline       = true,
   ruler          = true,
   laststatus     = 2, -- always display the status line
+  cmdheight      = 1,
 
   -- Indent
   expandtab      = false,
@@ -68,13 +66,12 @@ local settings = {
   startofline    = false,
   smartindent    = true,
 
-  -- New split right/bottom
+  -- Intuitive split
   splitright     = true,
   splitbelow     = true,
 
-  -- Always use vertical diffs
-
-  -- Scroll
+  -- Scroll/Mouse
+  mouse          = 'a', -- enable use of mouse for all modes
   scrolloff      = 8,
   sidescrolloff  = 15,
   sidescroll     = 1,
@@ -90,7 +87,6 @@ local settings = {
   smartcase      = true,
   hlsearch       = true,
   incsearch      = true,
-  lazyredraw     = false,
   showmatch      = true, -- show matching braces
 
   -- Encoding
@@ -105,15 +101,16 @@ local settings = {
   autowrite      = true, -- automatically :write before running commands
   autoread       = true, -- reload files changes outside vim
 
-  mouse          = 'a', -- enable use of mouse for all modes
   confirm        = true, -- ask to save file rather than failing command
+  backspace      = { 'indent', 'eol', 'start' },
 
+  hidden         = true,
+  lazyredraw     = false,
   updatetime     = 300,
   signcolumn     = 'yes',
   timeout        = false,
   ttimeout       = true,
   ttimeoutlen    = 10, -- quickly timeout on keycodes, but never on mappings
-  cmdheight      = 1,
 }
 
 for k, v in pairs(settings) do

@@ -8,6 +8,9 @@ local vmap = require('utils').vmap
 imap('jk', '<Esc>')
 imap('kj', '<Esc>')
 
+-- Copy to clipboard on mouse highlight release
+vmap('<LeftRelease>', '"*ygv')
+
 -- Save
 nmap('<Leader>w', ':w<CR>')
 
