@@ -1,9 +1,10 @@
+local map = require('utils').map
 local nmap = require('utils').nmap
 local xmap = require('utils').xmap
 local vmap = require('utils').vmap
 
 -- Commentary
-nmap('<Leader>/', ':Commentary<CR>')
+map('<Leader>/', ':Commentary<CR>')
 
 -- Nvim tree
 nmap('<Leader>;', ':NvimTreeToggle<CR>')
