@@ -1,7 +1,12 @@
 local cmap = require('utils').cmap
+local imap = require('utils').imap
 local nmap = require('utils').nmap
 local xmap = require('utils').xmap
 local vmap = require('utils').vmap
+
+-- Normal mode
+imap('jk', '<Esc>')
+imap('kj', '<Esc>')
 
 -- Save
 nmap('<Leader>w', ':w<CR>')
@@ -43,6 +48,11 @@ nmap('sj', '<C-w>j')
 nmap('sl', '<C-w>l')
 nmap('so', '<C-w>o')
 
+nmap('<C-h>', '<C-w>h')
+nmap('<C-k>', '<C-w>k')
+nmap('<C-j>', '<C-w>j')
+nmap('<C-l>', '<C-w>l')
+
 -- Make BS/DEL work as expected in visual mode
 xmap('<BS>', 'x')
 
@@ -62,6 +72,10 @@ nmap('<LEADER>D', [["_ddd]])
 nmap('<Leader>x', ':x<CR>')
 nmap('<Leader>X', ':q!<CR>')
 
+-- Normalize search position
+nmap('n', 'nztzv')
+nmap('N', 'Nztzv')
+
 -- Run shell from selected line
 nmap('Q', '!!$SHELL<CR>')
 vmap('Q', '!!$SHELL<CR>')
@@ -72,6 +86,8 @@ nmap('<Leader>bo', [[:%bd | e# | bd# | '"<CR>]])
 -- Edit in VSCode
 nmap('<Leader>ov', ':!code %<CR> | :redraw!<CR>')
 
--- Edit vim config
+-- Edit config
 nmap('<leader>ev', ':vsplit $MYVIMRC<CR>')
 nmap('<leader>sv', ':source $MYVIMRC<CR>')
+nmap('<leader>et', ':vsplit ~/.config/tmux/tmux.conf<CR>')
+nmap('<leader>ez', ':vsplit ~/.config/zsh/.zshrc<CR>')

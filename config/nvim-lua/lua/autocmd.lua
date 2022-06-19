@@ -20,6 +20,11 @@ vim.cmd [[
     "autocmd BufWrite * :Autoformat
   augroup END
 
+	augroup YankTrigger
+		autocmd!
+		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+	augroup END
+
   augroup PersistView
     autocmd!
     " autocmd BufWinLeave * silent! mkview
@@ -28,8 +33,9 @@ vim.cmd [[
 
   augroup Numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained * set relativenumber
-    autocmd BufLeave,FocusLost   * set norelativenumber
+		let blacklist = ['NvimTree']
+    autocmd BufEnter,FocusGained * if index(blacklist, &ft) < 0 | set relativenumber | endif
+    autocmd BufLeave,FocusLost   * if index(blacklist, &ft) < 0 | set norelativenumber | endif
   augroup END
 
   augroup VimFold
