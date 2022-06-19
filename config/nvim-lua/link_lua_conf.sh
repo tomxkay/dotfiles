@@ -3,6 +3,7 @@ mkdir -p ~/.config/nvim/plugin
 mkdir -p ~/.config/nvim/after/plugin
 mkdir -p ~/.config/nvim/lua/plugins
 
+# get script absolute path regardless of calling from location
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 SOURCE=$SCRIPTPATH
