@@ -32,6 +32,7 @@ vim.opt.shortmess:append 'c'
 vim.g.t_co = 256
 
 local settings = {
+	-- Basic
   hidden         = true,
   backspace      = { 'indent', 'eol', 'start' },
 

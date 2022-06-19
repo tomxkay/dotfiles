@@ -1,58 +1,52 @@
-vim.cmd [[
- "OSCYank
- vnoremap <leader>c :OSCYank<CR>
- nmap <leader>o <Plug>OSCYank
+local nmap = require('utils').nmap
+local xmap = require('utils').xmap
+local vmap = require('utils').vmap
 
- noremap <leader>/ :Commentary<CR>
+-- Commentary
+nmap('<Leader>/', ':Commentary<CR>')
 
- nnoremap <Leader>; :NvimTreeToggle<CR>
- nnoremap <Leader>r :NvimTreeRefresh<CR>
- nnoremap <Leader>v :NvimTreeFindFile<CR>
+-- Nvim tree
+nmap('<Leader>;', ':NvimTreeToggle<CR>')
+nmap('<Leader>r', ':NvimTreeRefresh<CR>')
+nmap('<Leader>v', ':NvimTreeFindFile<CR>')
 
- " Make arrow keys move visual blocks around
- nmap ˚ V<Plug>SchleppUp
- nmap ∆ V<Plug>SchleppDown
- nmap ¬ V<Plug>SchleppRight
- nmap ˙ V<Plug>SchleppLeft
+-- Schlepp
+vmap('<up>', '<Plug>SchleppUp')
+vmap('<down>', '<Plug>SchleppDown')
+vmap('<right>', '<Plug>SchleppRight')
+vmap('<left>', '<Plug>SchleppLeft')
 
- vmap ˚ <Plug>SchleppUp
- vmap ∆ <Plug>SchleppDown
- vmap ¬ <Plug>SchleppRight
- vmap ˙ <Plug>SchleppLeft
+nmap('<M-k>', 'V<Plug>SchleppUp')
+nmap('<M-j>', 'V<Plug>SchleppDown')
+nmap('<M-h>', 'V<Plug>SchleppLeft')
+nmap('<M-l>', 'V<Plug>SchleppRight')
 
- vmap <up>    <Plug>SchleppUp
- vmap <down>  <Plug>SchleppDown
- vmap <right> <Plug>SchleppRight
- vmap <left>  <Plug>SchleppLeft
+vmap('<C-k>', '<Plug>SchleppUp')
+vmap('<C-j>', '<Plug>SchleppDown')
+vmap('<C-h>', '<Plug>SchleppLeft')
+vmap('<C-l>', '<Plug>SchleppRight')
 
- vmap <C-D> <Plug>SchleppDup
- vmap  <Plug>SchleppDup k
- vmap Ô <Plug>SchleppDup j
- nmap  <Plug>SchleppDup k
- nmap Ô <Plug>SchleppDup j
+-- Vim-test
+nmap('<Leader>tn', ':TestNearest<CR>')
+nmap('<Leader>tf', ':TestFile<CR>')
+nmap('<Leader>ta', ':TestSuite<CR>')
+nmap('<Leader>tl', ':TestLast<CR>')
+nmap('<Leader>tv', ':TestVisit<CR>')
 
- "" vim-test
- nmap <silent> <leader>tn :TestNearest<CR>
- nmap <silent> <leader>tf :TestFile<CR>
- nmap <silent> <leader>ta :TestSuite<CR>
- nmap <silent> <leader>tl :TestLast<CR>
- nmap <silent> <leader>tv :TestVisit<CR>
+-- Telescope
+nmap(';', ':Telescope buffers<CR>')
+nmap('<Leader>ff', ':Telescope find_files<CR>')
+nmap('<Leader>fg', ':Telescope live_grep<CR>')
+nmap('<Leader>fb', ':Telescope buffers<CR>')
+nmap('<Leader>fh', ':Telescope help_tags<CR>')
+nmap('<Leader>fl', ':Telescope current_buffer_fuzzy_find<CR>')
 
- " Telescope
- nnoremap <Leader>ff :Telescope find_files<CR>
- nnoremap <Leader>fg :Telescope live_grep<CR>
- nnoremap <Leader>fb :Telescope buffers<CR>
- nnoremap ; :Telescope buffers<CR>
- nnoremap <Leader>fh :Telescope find_files<CR>
- nnoremap <Leader>fl :Telescope current_buffer_fuzzy_find<CR>
+-- Vim-autoformat
+nmap('<F4>', ':Autoformat<CR>')
 
- " vim-autoformat
- noremap <F4> :Autoformat<CR>
+-- Vim-easy-align
+nmap('ga', '<Plug>(EasyAlign)')
+xmap('ga', '<Plug>(EasyAlign)')
 
- " vim-easy-align
- xmap ga <Plug>(EasyAlign)
- nmap ga <Plug>(EasyAlign)
-
- nmap <Leader>il :IndentLinesToggle<CR>
- nmap <Leader>tb :TagbarToggle<CR>
-]]
+nmap('<Leader>il', ':IndentLinesToggle<CR>')
+nmap('<Leader>tb', ':TagbarToggle<CR>')

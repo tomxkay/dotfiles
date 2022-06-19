@@ -18,6 +18,10 @@ function M.cmap(keybind, action, opts)
   M.keymap('c', keybind, action, opts)
 end
 
+function M.imap(keybind, action, opts)
+  M.keymap('i', keybind, action, opts)
+end
+
 function M.nmap(keybind, action, opts)
   M.keymap('n', keybind, action, opts)
 end
