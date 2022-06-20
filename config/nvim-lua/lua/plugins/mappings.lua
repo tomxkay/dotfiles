@@ -36,11 +36,20 @@ nmap('<Leader>tv', ':TestVisit<CR>')
 
 -- Telescope
 nmap(';', ':Telescope buffers<CR>')
+nmap('<Leader>fb', ':Telescope buffers<CR>')
+nmap('<Leader>fc', ':Telescope commands<CR>')
 nmap('<Leader>ff', ':Telescope find_files<CR>')
 nmap('<Leader>fg', ':Telescope live_grep<CR>')
-nmap('<Leader>fb', ':Telescope buffers<CR>')
 nmap('<Leader>fh', ':Telescope help_tags<CR>')
 nmap('<Leader>fl', ':Telescope current_buffer_fuzzy_find<CR>')
+nmap('<Leader>fm', ':Telescope marks<CR>')
+nmap('<Leader>fo', ':Telescope oldfiles<CR>')
+nmap('<Leader>fr', ':Telescope registers<CR>')
+nmap('<Leader>gc', ':Telescope git_commits<CR>')
+nmap('<Leader>gC', ':Telescope git_bcommits<CR>')
+nmap('<Leader>gb', ':Telescope git_branches<CR>')
+nmap('<Leader>gs', ':Telescope git_status<CR>')
+nmap('<Leader>gS', ':Telescope git_stash<CR>')
 
 -- Vim-autoformat
 nmap('<F4>', ':Autoformat<CR>')
