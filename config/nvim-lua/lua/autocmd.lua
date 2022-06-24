@@ -1,9 +1,4 @@
 vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-
   augroup Reload
     autocmd!
     autocmd BufWritePost,FileWritePost *.lua source % | redraw
