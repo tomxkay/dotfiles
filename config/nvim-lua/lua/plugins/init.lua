@@ -35,6 +35,7 @@ return packer.startup(function(use)
 	use "wbthomason/packer.nvim"
 
 	-- Theme
+  use 'Mofiqul/dracula.nvim'
 	use 'morhetz/gruvbox'
   use {
     'nvim-lualine/lualine.nvim',
@@ -43,30 +44,27 @@ return packer.startup(function(use)
 			opt = true
 		}
   }
-	use 'mhinz/vim-startify'
-  use { 'Mofiqul/dracula.nvim' }
 
 	-- Language Syntax
-	use { 'tpope/vim-rails', ft = 'rb' }
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use { 'tpope/vim-rails', ft = 'rb' } -- vim plugin for editing rails
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- syntax highlighting
 
 	-- Test
-	use 'benmills/vimux'
-	use 'vim-test/vim-test'
+	use 'benmills/vimux'    -- send input to tmux
+	use 'vim-test/vim-test' -- vim test runner
 
 	-- Git
-	use 'airblade/vim-gitgutter'
-	use 'junegunn/gv.vim'
-	use { 'lewis6991/gitsigns.nvim', tag = 'release' }
-	use 'tpope/vim-fugitive'
-	use 'tpope/vim-rhubarb'
+	use 'junegunn/gv.vim'    -- git commit browser
+	use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git wrapper
+	use 'tpope/vim-fugitive' -- git wrapper
+	use 'tpope/vim-rhubarb'  -- enable :GBrowse
 
 	-- Search
-	use {
+	use { -- fuzzy finder
 		'nvim-telescope/telescope.nvim',
 		requires = { 'nvim-lua/plenary.nvim' }
 	}
-	use {
+	use { -- file explorer
 		'kyazdani42/nvim-tree.lua',
 		requires = {
 			'kyazdani42/nvim-web-devicons',
@@ -83,27 +81,29 @@ return packer.startup(function(use)
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 
-	-- IDE/Util
-	use 'BurntSushi/ripgrep'
-	use 'Chiel92/vim-autoformat'
-	use 'eshion/vim-sync'
-	use 'junegunn/vim-easy-align'
-	use { 'ojroques/vim-oscyank', branch = 'main' }
-	use 'nvim-lua/popup.nvim'
-	use 'majutsushi/tagbar'
-	use 'mattn/emmet-vim'
-	use 'mlaursen/vim-react-snippets'
-	use 'skywind3000/asyncrun.vim'
-	use 'terryma/vim-expand-region'
-	use 'tpope/vim-surround'
-	use 'tpope/vim-commentary'
-	use 'tpope/vim-endwise'
-	use 'tpope/vim-eunuch'
-	use 'tpope/vim-unimpaired'
-	use 'tpope/vim-dispatch'
-	use 'windwp/nvim-autopairs'
-	use 'Yggdroot/indentLine'
-	use 'zirrostig/vim-schlepp'
+	use 'mattn/emmet-vim'             -- expand abbreviations
+	use 'mlaursen/vim-react-snippets' -- collection of JS and TS snippets for React
+
+	-- Util
+	use 'BurntSushi/ripgrep'       -- text searcher
+	use 'Chiel92/vim-autoformat'   -- code formatter
+	use 'eshion/vim-sync'          -- automatic sync local and remote file in vim
+	use 'junegunn/vim-easy-align'  -- align text
+	use { 'ojroques/vim-oscyank', branch = 'main' } -- copy text to system clipboard
+	use 'nvim-lua/popup.nvim'      -- implementation of Popup API from vim in neovim
+	use 'majutsushi/tagbar'        -- tag browser
+	use 'mhinz/vim-startify'          -- vim start screen
+	use 'skywind3000/asyncrun.vim'    -- run shell cmd in bg
+	use 'terryma/vim-expand-region'   -- text selector
+	use 'tpope/vim-surround'    -- manipulate surrounding text
+	use 'tpope/vim-commentary'  -- comment stuff out
+	use 'tpope/vim-endwise'     -- automatic end code structure
+	use 'tpope/vim-eunuch'      -- vim UNIX shell cmd sugar
+	use 'tpope/vim-unimpaired'  -- handy bracket mappings
+	use 'tpope/vim-dispatch'    -- async build and test dispatcher
+	use 'windwp/nvim-autopairs' -- autopairs for nvim
+	use 'Yggdroot/indentLine'   -- display indentation levels
+	use 'zirrostig/vim-schlepp' -- move text selections around
 
 	-- automatically set up config after cloning packer.nvim
 	-- put this at the end after all plugins
