@@ -69,15 +69,13 @@ cmap('w!!', '%!sudo tee > /dev/null %')
 nmap('<Leader>d', [["_d]])
 vmap('<Leader>d', [["_d]])
 nmap('D', 'dd')
-nmap('<LEADER>D', [["_ddd]])
+nmap('<Leader>D', [["_ddd]])
 
--- Quickly close windows
-nmap('<Leader>x', ':x<CR>')
-nmap('<Leader>X', ':q!<CR>')
+nmap('<Leader><C-l>', ':noh<CR>')
 
 -- Normalize search position
-nmap('n', 'nztzv')
-nmap('N', 'Nztzv')
+nmap('n', 'nzzzv')
+nmap('N', 'Nzzzv')
 
 -- Run shell from selected line
 nmap('Q', '!!$SHELL<CR>')

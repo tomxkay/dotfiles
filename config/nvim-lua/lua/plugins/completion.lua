@@ -14,6 +14,9 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
     ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
 
+    ['<C-k>'] = cmp.mapping.select_prev_item(select_opts),
+    ['<C-j>'] = cmp.mapping.select_next_item(select_opts),
+
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
 

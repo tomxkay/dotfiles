@@ -71,6 +71,10 @@ return packer.startup(function(use)
 		},
 		tag = 'nightly',
 	}
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	}
 
 	-- Completion
 	use 'williamboman/nvim-lsp-installer'
