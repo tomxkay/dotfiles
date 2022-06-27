@@ -91,7 +91,6 @@ return packer.startup(function(use)
 	-- Util
 	use 'BurntSushi/ripgrep'       -- text searcher
 	use 'Chiel92/vim-autoformat'   -- code formatter
-	use 'eshion/vim-sync'          -- automatic sync local and remote file in vim
 	use 'junegunn/vim-easy-align'  -- align text
 	use { 'ojroques/vim-oscyank', branch = 'main' } -- copy text to system clipboard
 	use 'nvim-lua/popup.nvim'      -- implementation of Popup API from vim in neovim
