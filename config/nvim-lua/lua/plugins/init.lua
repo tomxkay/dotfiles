@@ -71,9 +71,16 @@ return packer.startup(function(use)
 		},
 		tag = 'nightly',
 	}
-	use {
+	use { -- diagnostic
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
+	}
+	use { -- session management
+		'rmagatti/auto-session',
+	}
+	use { -- session fzzy finder
+		'rmagatti/session-lens',
+		requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
 	}
 
 	-- Completion
