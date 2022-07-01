@@ -47,7 +47,7 @@ local settings = {
   wildmenu         = true, -- visual autocomplete for command menu
   showcmd          = true,
   number           = true,
-  relativenumber   = true,
+  -- relativenumber   = true,
 
   cursorline     = true, -- highlight the current line
   modeline       = true,
