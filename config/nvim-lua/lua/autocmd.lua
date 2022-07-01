@@ -25,14 +25,14 @@ vim.cmd [[
   augroup PersistView
     autocmd!
     " autocmd BufWinLeave * silent! mkview
-    autocmd BufWinEnter * silent! loadview
+    " autocmd BufWinEnter * silent! loadview
   augroup END
 
   augroup Numbertoggle
     autocmd!
-		let blacklist = ['NvimTree']
-    autocmd BufEnter,FocusGained * if index(blacklist, &ft) < 0 | set relativenumber | endif
-    autocmd BufLeave,FocusLost   * if index(blacklist, &ft) < 0 | set norelativenumber | endif
+		" let blacklist = ['NvimTree']
+    " autocmd BufEnter,FocusGained * if index(blacklist, &ft) < 0 | set relativenumber | endif
+    " autocmd BufLeave,FocusLost   * if index(blacklist, &ft) < 0 | set norelativenumber | endif
   augroup END
 
   augroup VimFold
