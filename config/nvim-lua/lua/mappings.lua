@@ -8,6 +8,9 @@ local vmap = require('utils').vmap
 imap('jk', '<Esc>')
 imap('kj', '<Esc>')
 
+-- Toggle text wrap
+nmap('<Leader><Leader>w', ':set wrap!<CR>')
+
 -- Copy to clipboard on mouse highlight release
 vmap('<LeftRelease>', '"*ygv')
 
