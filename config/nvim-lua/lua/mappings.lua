@@ -81,8 +81,12 @@ nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
 
 -- Run shell from selected line
-nmap('Q', '!!$SHELL<CR>')
-vmap('Q', '!!$SHELL<CR>')
+nmap('Q', '!!$SHELL<CR>') -- yield output of current line of $SHELL command
+nmap('<space>', ':.!') -- yield output of current line through specified $SHELL command
+vmap('<space>', ':!') -- yield output of selected lines through specified $SHELL command
+
+-- SQL
+nmap('<F5>', ':! mysql -u $SQL_USER -p $SQL_PASSWORD $SQL_DB -t 2>/dev/null<CR>')
 
 -- Close all but current buffer
 nmap('<Leader>bo', [[:%bd | e# | bd# | '"<CR>]])
