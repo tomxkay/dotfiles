@@ -54,7 +54,6 @@ install_packages() {
 
 	# Specify brew packages to be installed
 	cmlApps=(
-		archey #screenfetch
 		cask #macOS GUI app installer
 		cmake
 		deno
@@ -73,6 +72,7 @@ install_packages() {
 		python
 		reattach-to-user-namespace
 		ripgrep
+		rbenv
 		tig #git
 		tmux
 		vim
