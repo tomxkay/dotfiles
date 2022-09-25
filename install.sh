@@ -41,9 +41,10 @@ then
 	fi
 
 	# macOS  specific install
-	if [ "$machine" == "Darwin" ]; then
+	if [ "$machine" == "Mac" ]; then
 		echo -e "\n\nRunning install script on macOS"
 		source scripts/brew.sh
+		source scripts/macos.sh
 	fi
 fi
 
