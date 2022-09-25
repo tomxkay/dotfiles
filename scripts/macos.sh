@@ -3,8 +3,8 @@
 read -p "Do you want to normalize macos defaults? (y/n) " should_normalize_defaults
 
 if [ $should_normalize_defaults != 'y' ]; then
-	echo "macos.sh script skipped."
-	exit 130
+	echo "macos.sh script skipped. No defaults configured."
+	return
 fi
 
 # Close any open System Preferences panes, to prevent them from overriding
