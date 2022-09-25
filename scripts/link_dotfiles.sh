@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# One liner to give you the full dir of the script despite calling location
+# One liner to give you the full dir of the initial executing script despite
+# this script calling location
 function getExecScriptPwd {
 	# Get full dir of script, resolving symlink
 	SOURCE="${BASH_SOURCE[0]}"
@@ -66,7 +67,6 @@ DOTFILESDIR=$(getExecScriptPwd)/config
 DOTFILES=(
 	".zshenv"
 	".zshrc"
-	"init.vim"
 	".vimrc"
 	".tmux.conf"
 	".gitconfig"
@@ -79,7 +79,6 @@ initDestDir
 # For each specified dotfile, create symbolic link
 # -s Create a symbolic link
 # -f If the target file already exists, then unlink it so that the link may occur
-
 for dotfile in "${DOTFILES[@]}";do
 	DEST=$(getSymLinkDest $dotfile)
 	ln -sfv "${DOTFILESDIR}/${dotfile}" "${DEST}"

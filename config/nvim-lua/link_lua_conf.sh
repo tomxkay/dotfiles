@@ -4,7 +4,8 @@ mkdir -p ~/.config/nvim/after/plugin
 mkdir -p ~/.config/nvim/lua/plugins
 
 # get script absolute path regardless of calling from location
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+REALPATH=$(realpath ${BASH_SOURCE[0]})
+SCRIPTPATH=$(dirname "$REALPATH")
 
 SOURCE=$SCRIPTPATH
 NVIM_LUA_CONFIG_DIR=$SOURCE
