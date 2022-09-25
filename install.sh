@@ -15,6 +15,7 @@ if [ $should_link_dotfiles = 'y' ]
 then
 	echo "Linking dotfiles..."
 	source scripts/link_dotfiles.sh
+	source config/nvim-lua/link_lua_conf.sh
 fi
 
 read -p "Do you want to symlink executables? (y/n) " should_link_executables
