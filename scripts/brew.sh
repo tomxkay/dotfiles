@@ -62,6 +62,7 @@ install_packages() {
 		git
 		htop #resource monitor
 		irssi #irc
+		lazygit
 		links #terminal browser
 		mas
 		ncdu #disk util
