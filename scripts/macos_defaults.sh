@@ -7,6 +7,17 @@ if [ $should_normalize_defaults != 'y' ]; then
 	return
 fi
 
+DEFAULTS_DIR_NAME="macos_defaults"
+DEFAULTS_DIR="$HOME/$DEFAULTS_DIR_NAME"
+mkdir -p $DEFAULTS_DIR
+
+CURRENT_TIME=$(date "+%Y.%m.%d-%H.%M.%S")
+DEFAULTS_BACKUP="$DEFAULTS_DIR/defaults_$CURRENT_TIME.txt"
+defaults read > $DEFAULTS_BACKUP
+
+echo "Current defaults saved to $DEFAULTS_BACKUP for reference."
+echo "Normalizing defaults..."
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
