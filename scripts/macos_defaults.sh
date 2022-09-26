@@ -1,9 +1,9 @@
 #!/bin/bash
 
-read -p "Do you want to normalize macos defaults? (y/n) " should_normalize_defaults
+read -p "Do you want to normalize MacOS defaults? (y/n) " should_normalize_defaults
 
 if [ $should_normalize_defaults != 'y' ]; then
-	echo "macos.sh script skipped. No defaults configured."
+	echo "Defaults script skipped. No defaults configured."
 	return
 fi
 
@@ -14,7 +14,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until this script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ###############################################################################
