@@ -290,12 +290,12 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Kill affected applications                                                  #
 ###############################################################################
 
-# for app in "Activity Monitor" \
-# 	"Dock" \
-# 	"Finder" \
-# 	"Messages" \
-# 	"Photos"; do
-# 	killall "${app}" &> /dev/null
-# done
+for app in "Activity Monitor" \
+	"Dock" \
+	"Finder" \
+	"Messages" \
+	"Photos"; do
+	killall "${app}" &> /dev/null
+done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
