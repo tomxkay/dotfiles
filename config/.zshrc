@@ -31,6 +31,9 @@ export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 
+export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
+export PUSHOVER_USER_KEY=`cat ~/keys/pushover_user_key`
+
 ## FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout default'
 
@@ -66,7 +69,11 @@ fi
 # Custom Aliases
 alias la="ls -a"
 alias ll="ls -l"
-alias dot="cd ~/Documents/dotfiles"
+alias tls="tmux ls"
+alias dot="cd ~/dotfiles"
+alias hw="cd ~/Code/Workspace/Headway"
+alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
+alias ttm="cd ~/Code/Workspace/Headway/tasktag-mobile"
 
 # automate
 eval "$(rbenv init -)"
