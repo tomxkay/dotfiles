@@ -61,6 +61,7 @@ install_packages() {
 		gcc #need to compile cask
 		git
 		htop #resource monitor
+		imagemagick
 		irssi #irc
 		lazygit
 		links #terminal browser
@@ -70,6 +71,7 @@ install_packages() {
 		nmap #network scanner
 		nvm
 		peco #interactive filtering
+		postgresql
 		python
 		reattach-to-user-namespace
 		ripgrep
@@ -77,6 +79,7 @@ install_packages() {
 		tig #git
 		tmux
 		vim
+		vips
 		weechat
 		wget
 		zsh
