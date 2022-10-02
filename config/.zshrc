@@ -76,7 +76,9 @@ alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
 alias ttm="cd ~/Code/Workspace/Headway/tasktag-mobile"
 
 # automate
-eval "$(rbenv init -)"
+if type rbenv > /dev/null 2>&1; then
+	eval "$(rbenv init -)"
+fi
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
