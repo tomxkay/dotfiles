@@ -35,15 +35,10 @@ return packer.startup(function(use)
 	use "wbthomason/packer.nvim"
 
 	-- Theme
+	use 'kyazdani42/nvim-web-devicons'
   use 'Mofiqul/dracula.nvim'
 	use 'morhetz/gruvbox'
-  use {
-    'nvim-lualine/lualine.nvim',
-		requires = {
-			'kyazdani42/nvim-web-devicons',
-			opt = true
-		}
-  }
+  use 'nvim-lualine/lualine.nvim'
 
 	-- Language Syntax
 	use { 'tpope/vim-rails', ft = 'rb' } -- vim plugin for editing rails
@@ -70,19 +65,9 @@ return packer.startup(function(use)
 		'nvim-telescope/telescope.nvim',
 		requires = { 'nvim-lua/plenary.nvim' }
 	}
-	use { -- file explorer
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-			'kyazdani42/nvim-web-devicons',
-		},
-	}
-	use { -- diagnostic
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-	}
-	use { -- session management
-		'rmagatti/auto-session',
-	}
+	use 'kyazdani42/nvim-tree.lua' -- file explorer
+ 	use "folke/trouble.nvim"       -- diagnostic
+	use 'rmagatti/auto-session'    -- session management
 	use { -- session fzzy finder
 		'rmagatti/session-lens',
 		requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
