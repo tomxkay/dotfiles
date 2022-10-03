@@ -11,6 +11,12 @@ nmap('<Leader>;', ':NvimTreeToggle<CR>')
 nmap('<Leader>r', ':NvimTreeRefresh<CR>')
 nmap('<Leader>v', ':NvimTreeFindFile<CR>')
 
+-- Vim Windowswap
+vim.cmd [[
+	let g:windowswap_map_keys = 0 "prevent default bindings
+	nnoremap <silent> <leader>W :call WindowSwap#EasyWindowSwap()<CR>
+]]
+
 -- Schlepp
 vmap('<up>', '<Plug>SchleppUp')
 vmap('<down>', '<Plug>SchleppDown')

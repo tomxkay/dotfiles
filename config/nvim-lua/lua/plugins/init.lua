@@ -101,6 +101,7 @@ return packer.startup(function(use)
 	use 'tpope/vim-eunuch'      -- vim UNIX shell cmd sugar
 	use 'tpope/vim-unimpaired'  -- handy bracket mappings
 	use 'tpope/vim-dispatch'    -- async build and test dispatcher
+	use 'wesQ3/vim-windowswap'  -- easy window swapping
 	use 'windwp/nvim-autopairs' -- autopairs for nvim
 	use 'Yggdroot/indentLine'   -- display indentation levels
 	use 'zirrostig/vim-schlepp' -- move text selections around
