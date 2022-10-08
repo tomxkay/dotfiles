@@ -17,15 +17,16 @@ vmap('<LeftRelease>', '"*ygv')
 -- Save
 nmap('<Leader>w', ':w<CR>')
 
--- Min - Max Pane
+-- Window/Pane management
+-- Min - Max
 nmap('<Leader>z', '<C-w>| <C-w>_')
 nmap('<Leader>Z', '<C-w>=')
 
--- Pane management
+-- Split current pane vertical/horizontal
 nmap('ss', ':split<Return>')
 nmap('sv', ':vsplit<Return>')
-nmap('sx', ':q<CR>')
 
+-- Move pane
 nmap('sH', '<C-w>H')
 nmap('sK', '<C-w>K')
 nmap('sJ', '<C-w>J')
@@ -36,28 +37,37 @@ nmap('<C-w><C-K>', '<C-w>K')
 nmap('<C-w><C-J>', '<C-w>J')
 nmap('<C-w><C-L>', '<C-w>L')
 
-nmap('<Leader>bva', ':vert ba<CR>')
-nmap('<Leader>bta', ':tab ba<CR>')
-
-nmap('<Leader>bd', ':bd<CR>')
-
--- Resize panes
-nmap('<RIGHT>', ':vertical resize +5<CR>')
-nmap('<LEFT>', ':vertical resize -5<CR>')
-nmap('<UP>', ':resize +5<CR>')
-nmap('<DOWN>', ':resize -5<CR>')
-
 -- Pane traversal
 nmap('sh', '<C-w>h')
 nmap('sk', '<C-w>k')
 nmap('sj', '<C-w>j')
 nmap('sl', '<C-w>l')
-nmap('so', '<C-w>o')
 
 nmap('<C-h>', '<C-w>h')
 nmap('<C-k>', '<C-w>k')
 nmap('<C-j>', '<C-w>j')
 nmap('<C-l>', '<C-w>l')
+
+-- Close current pane
+nmap('sx', ':q<CR>')
+-- Close all panes in window but current
+nmap('so', '<C-w>o')
+-- Close all buffers but current
+nmap('<Leader>bo', [[:%bd | e# | bd# | '"<CR>]])
+-- Close all tabs but current
+nmap('<Leader>to', ':tabonly<CR>')
+-- Buffer vertical all
+nmap('<Leader>bva', ':vert ba<CR>')
+-- Buffer tab all
+nmap('<Leader>bta', ':tab ba<CR>')
+-- Delete buffer
+nmap('<Leader>bd', ':bd<CR>')
+
+-- Resize window
+nmap('<RIGHT>', ':vertical resize +5<CR>')
+nmap('<LEFT>', ':vertical resize -5<CR>')
+nmap('<UP>', ':resize +5<CR>')
+nmap('<DOWN>', ':resize -5<CR>')
 
 -- Make BS/DEL work as expected in visual mode
 xmap('<BS>', 'x')
@@ -88,11 +98,8 @@ vmap('<space>', ':!') -- yield output of selected lines through specified $SHELL
 -- SQL
 nmap('<F5>', ':! mysql -u $SQL_USER -p $SQL_PASSWORD $SQL_DB -t 2>/dev/null<CR>')
 
--- Close all but current buffer
-nmap('<Leader>bo', [[:%bd | e# | bd# | '"<CR>]])
-
 -- Edit in VSCode
-nmap('<Leader>ov', ':!code %<CR> | :redraw!<CR>')
+nmap('<Leader><Leader>ec', ':!code %<CR> | :redraw!<CR>')
 
 -- Edit config
 nmap('<leader>ev', ':vsplit $MYVIMRC<CR>')
