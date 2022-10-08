@@ -74,6 +74,7 @@ alias dot="cd ~/dotfiles"
 alias hw="cd ~/Code/Workspace/Headway"
 alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
 alias ttm="cd ~/Code/Workspace/Headway/tasktag-mobile"
+alias qr='qrencode -m 2 -t utf8 <<< "$1"'
 
 # automate
 if type rbenv > /dev/null 2>&1; then
