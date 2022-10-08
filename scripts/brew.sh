@@ -73,6 +73,7 @@ install_packages() {
 		peco #interactive filtering
 		postgresql
 		python
+		qrencode
 		reattach-to-user-namespace
 		ripgrep
 		rbenv
