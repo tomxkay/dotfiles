@@ -1,5 +1,3 @@
-require('session-lens').setup {
-    path_display={'shorten'},
-}
+require('session-lens').setup { }
 
 require("telescope").load_extension("session-lens")
