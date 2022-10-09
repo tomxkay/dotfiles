@@ -76,6 +76,7 @@ alias dot="cd ~/dotfiles"
 alias hw="cd ~/Code/Workspace/Headway"
 alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
 alias ttm="cd ~/Code/Workspace/Headway/tasktag-mobile"
+alias gs="gss" # git status instead of ghost script
 
 # automate
 if type rbenv > /dev/null 2>&1; then
