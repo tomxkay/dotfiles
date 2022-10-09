@@ -95,6 +95,8 @@ nmap('Q', '!!$SHELL<CR>') -- yield output of current line of $SHELL command
 nmap('<space>', ':.!') -- yield output of current line through specified $SHELL command
 vmap('<space>', ':!') -- yield output of selected lines through specified $SHELL command
 
+nmap('<leader>QR', ':.!qrencode -m 2 -t utf8<CR>') -- qrcode from current line
+
 -- SQL
 nmap('<F5>', ':! mysql -u $SQL_USER -p $SQL_PASSWORD $SQL_DB -t 2>/dev/null<CR>')
 

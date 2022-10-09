@@ -18,20 +18,10 @@ vim.cmd [[
 ]]
 
 -- Schlepp
-vmap('<up>', '<Plug>SchleppUp')
-vmap('<down>', '<Plug>SchleppDown')
+vmap('<up>',    '<Plug>SchleppUp')
+vmap('<down>',  '<Plug>SchleppDown')
+vmap('<left>',  '<Plug>SchleppLeft')
 vmap('<right>', '<Plug>SchleppRight')
-vmap('<left>', '<Plug>SchleppLeft')
-
-nmap('<M-k>', 'V<Plug>SchleppUp')
-nmap('<M-j>', 'V<Plug>SchleppDown')
-nmap('<M-h>', 'V<Plug>SchleppLeft')
-nmap('<M-l>', 'V<Plug>SchleppRight')
-
-vmap('<C-k>', '<Plug>SchleppUp')
-vmap('<C-j>', '<Plug>SchleppDown')
-vmap('<C-h>', '<Plug>SchleppLeft')
-vmap('<C-l>', '<Plug>SchleppRight')
 
 -- Vim-test
 nmap('<Leader>tn', ':TestNearest<CR>')
@@ -66,6 +56,11 @@ nmap('<Leader>gC', ':Telescope git_bcommits<CR>')
 nmap('<Leader>gb', ':Telescope git_branches<CR>')
 nmap('<Leader>gs', ':Telescope git_status<CR>')
 nmap('<Leader>gS', ':Telescope git_stash<CR>')
+
+-- Startify
+nmap('<Leader><Leader>S', ':SSave<CR>')
+nmap('<Leader><Leader>L', ':SLoad<CR>')
+nmap('<Leader><Leader>D', ':SDelete<CR>')
 
 -- Vim-autoformat
 nmap('<F4>', ':Autoformat<CR>')
