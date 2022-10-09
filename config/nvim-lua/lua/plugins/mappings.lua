@@ -6,6 +6,9 @@ local vmap = require('utils').vmap
 -- Commentary
 map('<Leader>/', ':Commentary<CR>')
 
+-- GV: commit browser
+nmap('<Leader>gL', ':GV<CR>')
+
 -- Nvim tree
 nmap('<Leader>;', ':NvimTreeToggle<CR>')
 nmap('<Leader>r', ':NvimTreeRefresh<CR>')
