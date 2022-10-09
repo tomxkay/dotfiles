@@ -1,14 +1,19 @@
 require('vgit').setup({
   keymaps = {
-    ['n <C-k>'] = 'hunk_up',
-    ['n <C-j>'] = 'hunk_down',
+    ['n [g'] = 'hunk_up',
+    ['n ]g'] = 'hunk_down',
+
     ['n <leader>gs'] = 'buffer_hunk_stage',
+    ['n <leader>gS'] = 'buffer_stage',
+
+    ['n <leader>gU'] = 'buffer_unstage',
     ['n <leader>gr'] = 'buffer_hunk_reset',
     ['n <leader>gp'] = 'buffer_hunk_preview',
     ['n <leader>gb'] = 'buffer_blame_preview',
     ['n <leader>gf'] = 'buffer_diff_preview',
     ['n <leader>gh'] = 'buffer_history_preview',
     ['n <leader>gu'] = 'buffer_reset',
+    ['n <leader>gR'] = 'buffer_reset',
     ['n <leader>gg'] = 'buffer_gutter_blame_preview',
     ['n <leader>glu'] = 'project_hunks_preview',
     ['n <leader>gls'] = 'project_hunks_staged_preview',
