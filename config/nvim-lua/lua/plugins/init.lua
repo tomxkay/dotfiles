@@ -50,7 +50,6 @@ return packer.startup(function(use)
 
 	-- Git
 	use 'junegunn/gv.vim'    -- git commit browser
-	use { 'lewis6991/gitsigns.nvim', tag = 'release' } -- git wrapper
 	use {
 		'tanvirtin/vgit.nvim',
 		requires = {
