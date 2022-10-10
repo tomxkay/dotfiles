@@ -43,6 +43,7 @@ return packer.startup(function(use)
 	-- Language Syntax
 	use { 'tpope/vim-rails', ft = 'rb' } -- vim plugin for editing rails
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- syntax highlighting
+	use { 'jparise/vim-graphql' }
 
 	-- Test
 	use 'benmills/vimux'    -- send input to tmux
