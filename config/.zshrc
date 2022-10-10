@@ -31,8 +31,13 @@ export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 
-export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
-export PUSHOVER_USER_KEY=`cat ~/keys/pushover_user_key`
+if [ -f "~/keys/pushover_api_key" ]; then
+	export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
+fi
+
+if [ -f "~/keys/pushover_user_key" ]; then
+	export PUSHOVER_USER_KEY=`cat ~/keys/pushover_user_key`
+fi
 
 ## FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout default'
