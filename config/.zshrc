@@ -86,3 +86,12 @@ fi
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# run asdf script
+if [[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]]; then
+	. /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
+
+if [[ -f /opt/homebrew/opt/asdf/asdf.sh ]]; then
+	. /opt/homebrew/opt/asdf/asdf.sh
+fi
