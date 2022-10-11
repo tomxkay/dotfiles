@@ -84,6 +84,10 @@ alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
 alias ttm="cd ~/Code/Workspace/Headway/tasktag-mobile"
 alias gs="gss" # git status instead of ghost script
 
+# Dev scripts
+alias gqldump="bin/rails graphql:schema:dump"
+alias dump="gqldump"
+
 # automate
 if type rbenv > /dev/null 2>&1; then
 	eval "$(rbenv init -)"
