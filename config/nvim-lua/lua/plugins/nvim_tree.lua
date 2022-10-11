@@ -27,7 +27,7 @@ require("nvim-tree").setup {
 		relativenumber = false,
 		signcolumn = "yes",
 		mappings = {
-			custom_only = false,
+			custom_only = true,
 			list = {
 				{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 				{ key = "<C-e>",                          action = "edit_in_place" },
@@ -61,7 +61,7 @@ require("nvim-tree").setup {
 				{ key = "[c",                             action = "prev_git_item" },
 				{ key = "]c",                             action = "next_git_item" },
 				{ key = "-",                              action = "dir_up" },
-				{ key = "s",                              action = "system_open" },
+				{ key = "<Leader><Leader><Leader>s",      action = "system_open" },
 				{ key = "f",                              action = "live_filter" },
 				{ key = "F",                              action = "clear_live_filter" },
 				{ key = "q",                              action = "close" },
@@ -69,7 +69,7 @@ require("nvim-tree").setup {
 				{ key = "E",                              action = "expand_all" },
 				{ key = "S",                              action = "search_node" },
 				{ key = ".",                              action = "run_file_command" },
-				{ key = "K",                      action = "toggle_file_info" },
+				{ key = "K",                              action = "toggle_file_info" },
 				{ key = "g?",                             action = "toggle_help" },
 			},
 		},
