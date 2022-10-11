@@ -67,6 +67,8 @@ nmap('<Leader><Leader>D', ':SDelete<CR>')
 
 -- Vim-autoformat
 nmap('<F4>', ':Autoformat<CR>')
+nmap('<Leader><Leader>f', ':Autoformat<CR>')
+nmap('<Leader><Leader>F', ':AutoformatLine<CR>')
 
 -- Vim-easy-align
 nmap('ga', '<Plug>(EasyAlign)')
