@@ -92,8 +92,8 @@ nmap('N', 'Nzzzv')
 
 -- Run shell from selected line
 nmap('Q', '!!$SHELL<CR>') -- yield output of current line of $SHELL command
-nmap('<space>', ':.!') -- yield output of current line through specified $SHELL command
-vmap('<space>', ':!') -- yield output of selected lines through specified $SHELL command
+nmap('<Leader><space>', ':.!') -- yield output of current line through specified $SHELL command
+vmap('<Leader><space>', ':!') -- yield output of selected lines through specified $SHELL command
 
 nmap('<leader>QR', ':.!qrencode -m 2 -t utf8<CR>') -- qrcode from current line
 
