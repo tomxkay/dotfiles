@@ -57,7 +57,7 @@ local settings = {
   cmdheight      = 1,
 
   -- Indent
-  expandtab      = false,
+  expandtab      = true,
   smarttab       = true,
   tabstop        = 2,
   softtabstop    = 2,
