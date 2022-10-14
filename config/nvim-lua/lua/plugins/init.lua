@@ -89,6 +89,8 @@ return packer.startup(function(use)
 	-- Util
 	use 'BurntSushi/ripgrep'       -- text searcher
 	use 'Chiel92/vim-autoformat'   -- code formatter
+  use 'jose-elias-alvarez/null-ls.nvim' -- lsp actions i.e formatter
+  use 'MunifTanjim/prettier.nvim'       -- prettier plugin
 	use 'junegunn/vim-easy-align'  -- align text
 	use { 'ojroques/vim-oscyank', branch = 'main' } -- copy text to system clipboard
 	use 'nvim-lua/popup.nvim'      -- implementation of Popup API from vim in neovim
