@@ -57,6 +57,7 @@ install_packages() {
 		cask #macOS GUI app installer
 		cmake
 		deno
+    fsouza/prettierd/prettierd
 		fzf
 		gcc #need to compile cask
 		git
@@ -65,6 +66,7 @@ install_packages() {
 		irssi #irc
 		lazygit
 		links #terminal browser
+    lua-language-server
 		mas
 		ncdu #disk util
 		neovim
@@ -79,6 +81,7 @@ install_packages() {
 		rbenv
 		tig #git
 		tmux
+    typescript
 		vim
 		vips
 		weechat
