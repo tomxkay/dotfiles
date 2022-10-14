@@ -72,7 +72,7 @@ LspConfig.sumneko_lua.setup({
 })
 
 -- default server configs
-local servers = { 'solargraph' }
+local servers = { 'solargraph', 'tsserver' }
 
 for _, lsp in pairs(servers) do
   LspConfig[lsp].setup {}
