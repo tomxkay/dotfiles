@@ -14,7 +14,7 @@ require('vgit').setup({
     ['n <leader>gh'] = 'buffer_history_preview',
     ['n <leader>gu'] = 'buffer_reset',
     ['n <leader>gR'] = 'buffer_reset',
-    ['n <leader>gg'] = 'buffer_gutter_blame_preview',
+    ['n <leader>gB'] = 'buffer_gutter_blame_preview',
     ['n <leader>glu'] = 'project_hunks_preview',
     ['n <leader>gls'] = 'project_hunks_staged_preview',
     ['n <leader>gd'] = 'project_diff_preview',

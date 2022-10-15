@@ -20,6 +20,11 @@ vim.cmd [[
 	nnoremap <silent> <leader>W :call WindowSwap#EasyWindowSwap()<CR>
 ]]
 
+-- Git
+nmap('<Leader>gg', ':G blame<CR>')
+nmap('<Leader>gv', ':GV<CR>')
+nmap('<Leader>lg', ':LazyGit<CR>')
+
 -- Schlepp
 vmap('<up>',    '<Plug>SchleppUp')
 vmap('<down>',  '<Plug>SchleppDown')
