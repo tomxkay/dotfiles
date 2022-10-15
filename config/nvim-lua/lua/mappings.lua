@@ -20,7 +20,7 @@ nmap('<Leader>w', ':w<CR>')
 -- Window/Pane management
 -- Min - Max
 nmap('<Leader>z', '<C-w>| <C-w>_')
-nmap('<Leader>Z', '<C-w>=')
+nmap('<Leader><Leader>z', '<C-w>=')
 
 -- Split current pane vertical/horizontal
 nmap('ss', ':split<Return>')
@@ -79,10 +79,20 @@ nmap('<Leader>I', [[:%s/\s\+$//e<CR>]])
 cmap('w!!', '%!sudo tee > /dev/null %')
 
 -- Blackhole delete
-nmap('<Leader>d', [["_d]])
-vmap('<Leader>d', [["_d]])
-nmap('D', 'dd')
-nmap('<Leader>D', [["_ddd]])
+nmap('d', [["_d]])
+vmap('d', [["_d]])
+nmap('D', [["_dd]])
+vmap('D', [["_dd]])
+nmap('c', [["_c]])
+vmap('c', [["_c]])
+nmap('x', [["_x]])
+vmap('x', [["_x]])
+
+-- Clipboard delete
+nmap('<Leader>d', [[d]])
+vmap('<Leader>d', [[d]])
+nmap('<Leader>D', [[dd]])
+vmap('<Leader>D', [[dd]])
 
 nmap('<Leader><C-l>', ':noh<CR>')
 
