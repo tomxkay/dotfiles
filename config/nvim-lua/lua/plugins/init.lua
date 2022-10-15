@@ -60,6 +60,7 @@ return packer.startup(function(use)
 	}
 	use 'tpope/vim-fugitive' -- git wrapper
 	use 'tpope/vim-rhubarb'  -- enable :GBrowse
+	use 'kdheepak/lazygit.nvim'  -- lazygit plugin
 
 	-- Search
 	use { -- fuzzy finder
