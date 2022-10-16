@@ -15,12 +15,12 @@ vim.cmd [[
     "autocmd BufWrite * :Autoformat
   augroup END
 
-	augroup YankTrigger
-		autocmd!
-		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
-		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg "' | endif
-		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '*' | execute 'OSCYankReg "' | endif
-	augroup END
+  augroup YankTrigger
+    autocmd!
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg "' | endif
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '*' | execute 'OSCYankReg "' | endif
+  augroup END
 
   augroup PersistView
     autocmd!
@@ -30,7 +30,7 @@ vim.cmd [[
 
   augroup Numbertoggle
     autocmd!
-		" let blacklist = ['NvimTree']
+    " let blacklist = ['NvimTree']
     " autocmd BufEnter,FocusGained * if index(blacklist, &ft) < 0 | set relativenumber | endif
     " autocmd BufLeave,FocusLost   * if index(blacklist, &ft) < 0 | set norelativenumber | endif
   augroup END

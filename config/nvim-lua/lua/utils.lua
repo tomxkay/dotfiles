@@ -45,15 +45,15 @@ end
 
 -- require all lua files in specified dir except init.lua
 function M.require_dir(path)
-	for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config')..'/lua/'..path, [[v:val =~ '\.lua$']])) do
-		if file ~= 'init.lua' then
-			local status_ok, _ = pcall(require, path..'.'..file:gsub('%.lua$', ''))
+  for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config')..'/lua/'..path, [[v:val =~ '\.lua$']])) do
+    if file ~= 'init.lua' then
+      local status_ok, _ = pcall(require, path..'.'..file:gsub('%.lua$', ''))
 
-			if not status_ok then
-				vim.notify('Failed loading ' .. file, vim.log.levels.ERROR)
-			end
-		end
-	end
+      if not status_ok then
+        vim.notify('Failed loading ' .. file, vim.log.levels.ERROR)
+      end
+    end
+  end
 end
 
 return M

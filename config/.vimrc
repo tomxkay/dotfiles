@@ -76,56 +76,56 @@ filetype plugin indent on
 
 " Vim auto commands
 augroup Reload
-	autocmd!
-	autocmd bufwritepost $MYVIMRC source % | echom "Reloaded runtime config" . $MYVIMRC | redraw
-	autocmd bufwritepost ~/Documents/dotfiles/config/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/config/.vimrc" | redraw
-	autocmd bufwritepost ~/.config/vim/vimrc source % | echom "Reloaded ~/.config/vim/vimrc" | redraw
+  autocmd!
+  autocmd bufwritepost $MYVIMRC source % | echom "Reloaded runtime config" . $MYVIMRC | redraw
+  autocmd bufwritepost ~/Documents/dotfiles/config/.vimrc source % | echom "Reloaded ~/Documents/dotfiles/config/.vimrc" | redraw
+  autocmd bufwritepost ~/.config/vim/vimrc source % | echom "Reloaded ~/.config/vim/vimrc" | redraw
 augroup END
 
 augroup Vimrc
-	autocmd!
-	autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
-	autocmd FileType html,css EmmetInstall
-	autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e " Remove trailing whitespace on save
+  autocmd FileType html,css EmmetInstall
+  autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 augroup END
 
 augroup SaveTrigger
-	" au BufWrite * :Autoformat
+  " au BufWrite * :Autoformat
 augroup END
 
 augroup PluginsAutocmd
-	autocmd!
-	autocmd CursorHold * silent call CocActionAsync('highlight') " Highlight on cursor hold
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	autocmd BufEnter NERD_tree_* | execute 'normal R'
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight') " Highlight on cursor hold
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  autocmd BufEnter NERD_tree_* | execute 'normal R'
 augroup END
 
 augroup PersistView
-	autocmd!
-	" autocmd BufWinLeave * silent! mkview
-	autocmd BufWinEnter * silent! loadview
+  autocmd!
+  " autocmd BufWinLeave * silent! mkview
+  autocmd BufWinEnter * silent! loadview
 augroup END
 
 augroup Numbertoggle
-	autocmd!
-	autocmd BufEnter,FocusGained * set relativenumber
-	autocmd BufLeave,FocusLost   * set norelativenumber
+  autocmd!
+  autocmd BufEnter,FocusGained * set relativenumber
+  autocmd BufLeave,FocusLost   * set norelativenumber
 augroup END
 
 augroup IdentifyTypeScriptFiles
-	autocmd!
-	autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
-	autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+  autocmd!
+  autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+  autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 augroup END
 
 augroup VimFold
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType javascript setlocal foldmethod=expr
-	autocmd FileType javascript setlocal foldexpr=JSFolds()
-	autocmd FileType typescript setlocal foldmethod=expr
-	autocmd FileType typescript setlocal foldexpr=JSFolds()
-	autocmd BufWinEnter * silent! :%foldopen!
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType javascript setlocal foldmethod=expr
+  autocmd FileType javascript setlocal foldexpr=JSFolds()
+  autocmd FileType typescript setlocal foldmethod=expr
+  autocmd FileType typescript setlocal foldexpr=JSFolds()
+  autocmd BufWinEnter * silent! :%foldopen!
 augroup END
 
 " }}}
@@ -142,9 +142,9 @@ colorscheme gruvbox
 set hidden
 
 if has('nvim')
-	set clipboard+=unnamedplus
+  set clipboard+=unnamedplus
 else
-	set clipboard=unnamed
+  set clipboard=unnamed
 endif
 
 set backspace=indent,eol,start
@@ -192,8 +192,8 @@ set splitright
 set splitbelow
 " Always use vertical diffs
 if &diff
-	set diffopt-=internal
-	set diffopt+=vertical
+  set diffopt-=internal
+  set diffopt+=vertical
 endif
 
 " Scroll
@@ -274,16 +274,16 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-snippets', 'coc-solargraph']
 
 if has("unix")
-	let s:uname = system("uname")
-	if s:uname == "Darwin\n"
-		let g:python3_host_prog = '/opt/homebrew/bin/python3'
-	else
-		let g:python3_host_prog = '/usr/bin/python3'
-		let g:python_host_prog = '/usr/bin/python'
-	endif
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    let g:python3_host_prog = '/opt/homebrew/bin/python3'
+  else
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python_host_prog = '/usr/bin/python'
+  endif
 else
-	let g:python3_host_prog = '/usr/bin/python3'
-	let g:python_host_prog = '/usr/bin/python'
+  let g:python3_host_prog = '/usr/bin/python3'
+  let g:python_host_prog = '/usr/bin/python'
 endif
 
 let g:NERDTreeQuitOnOpen=1
@@ -494,10 +494,10 @@ nmap <Leader>E :CocCommand eslint.executeAutofix<CR>
 
 " Use <C-l> to trigger snippet expansion
 inoremap <silent><expr> <C-l>
-			\ pumvisible() ? coc#_select_confirm() :
-			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 " Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -528,15 +528,15 @@ noremap <F4> :Autoformat<CR>
 
 " Tmuxline
 let g:tmuxline_preset = {
-			\'a'    : '#S',
-			\'b'    : '',
-			\'c'    : ['CPU: #{cpu_fg_color} #{cpu_percentage} #[fg=colour250]', '#{sysstat_mem}', '#{sysstat_swap}'],
-			\'win'  : '#I #W',
-			\'cwin' : '#I #W #F',
-			\'x'    : '#{prefix_highlight} #[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = "off" ] && echo "OFF")#[default] #[fg=$color_dark,bg=$color_secondary]#{?window_zoomed_flag,[Z],}#[default] %a %h %d %R #{battery_status_fg} #{battery_icon} #{battery_percentage}',
-			\'y'    : '',
-			\'z'    : '#(whoami)@#H #{online_status}'
-			\}
+      \'a'    : '#S',
+      \'b'    : '',
+      \'c'    : ['CPU: #{cpu_fg_color} #{cpu_percentage} #[fg=colour250]', '#{sysstat_mem}', '#{sysstat_swap}'],
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W #F',
+      \'x'    : '#{prefix_highlight} #[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = "off" ] && echo "OFF")#[default] #[fg=$color_dark,bg=$color_secondary]#{?window_zoomed_flag,[Z],}#[default] %a %h %d %R #{battery_status_fg} #{battery_icon} #{battery_percentage}',
+      \'y'    : '',
+      \'z'    : '#(whoami)@#H #{online_status}'
+      \}
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#tabline#enabled = 0
@@ -553,36 +553,36 @@ let g:tmuxline_powerline_separators = 1
 
 " Functions
 function! RenameFile()
-	let old_name = expand('%')
-	let new_name = input('New file name: ', expand('%'), 'file')
-	if new_name != '' && new_name != old_name
-		exec ':saveas ' . new_name
-		exec ':silent !rm ' . old_name
-		redraw!
-	endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
 function! NerdTreeToggleFind()
-	if exists("g:NERDTree") &&g:NERDTree.IsOpen()
-		NERDTreeClose
-	elseif filereadable(expand('%'))
-		NERDTreeFind
-	else
-		NERDTreeToggle
-	endif
+  if exists("g:NERDTree") &&g:NERDTree.IsOpen()
+    NERDTreeClose
+  elseif filereadable(expand('%'))
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
 endfunction
 
 function! JSFolds()

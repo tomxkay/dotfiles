@@ -86,7 +86,7 @@ require('vgit').setup({
           author = 'You'
         end
         local time = os.difftime(os.time(), blame.author_time)
-          / (60 * 60 * 24 * 30 * 12)
+        / (60 * 60 * 24 * 30 * 12)
         local time_divisions = {
           { 1, 'years' },
           { 12, 'months' },

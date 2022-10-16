@@ -34,7 +34,7 @@ vim.g.base16colorspace = 256
 
 local settings = {
   -- UI
-	termguicolors    = true,
+  termguicolors    = true,
   background       = 'dark',
   textwidth        = 80,
   colorcolumn      = '80',
@@ -47,7 +47,7 @@ local settings = {
   wildmenu         = true, -- visual autocomplete for command menu
   showcmd          = true,
   number           = true,
-	wrap             = false,
+  wrap             = false,
   -- relativenumber   = true,
 
   cursorline     = true, -- highlight the current line

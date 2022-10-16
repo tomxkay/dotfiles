@@ -2,7 +2,7 @@
 # dependencies: youtube-dl, ffmpeg, aria2c
 
 if [ ! -d ~/Downloads/Videos ]; then
-    mkdir -p ~/Downloads/Videos
+  mkdir -p ~/Downloads/Videos
 fi
 
 cd ~/Downloads/Videos || return

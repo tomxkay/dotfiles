@@ -32,22 +32,22 @@ export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 
 if [ -f "~/keys/pushover_api_key" ]; then
-	export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
+  export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
 fi
 
 if [ -f "~/keys/pushover_user_key" ]; then
-	export PUSHOVER_USER_KEY=`cat ~/keys/pushover_user_key`
+  export PUSHOVER_USER_KEY=`cat ~/keys/pushover_user_key`
 fi
 
 ## FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout default'
 
 if type ag &> /dev/null; then
-	export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+  export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
 fi
 
 if type rg &> /dev/null; then
-	export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}"'
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}"'
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -62,13 +62,13 @@ autoload -Uz compinit && compinit -i
 
 # Tmux auto attach
 # if [ -z "$TMUX"  ]; then
-# 	tmux attach -t default || tmux new -s default
+#   tmux attach -t default || tmux new -s default
 # fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type nvim > /dev/null 2>&1; then
-	alias vim='nvim'
+  alias vim='nvim'
 fi
 
 # Custom Aliases
@@ -90,7 +90,7 @@ alias dump="gqldump"
 
 # automate
 if type rbenv > /dev/null 2>&1; then
-	eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
 fi
 
 # heroku autocomplete setup
@@ -98,9 +98,9 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/thms/Library/Caches/heroku/autocomplete/zsh_setu
 
 # run asdf script
 if [[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]]; then
-	. /opt/homebrew/opt/asdf/libexec/asdf.sh
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
 fi
 
 if [[ -f /opt/homebrew/opt/asdf/asdf.sh ]]; then
-	. /opt/homebrew/opt/asdf/asdf.sh
+  . /opt/homebrew/opt/asdf/asdf.sh
 fi
