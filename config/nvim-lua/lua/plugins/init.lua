@@ -41,8 +41,8 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
 
   -- Language Syntax
-  use { 'tpope/vim-rails', ft = 'rb' } -- vim plugin for editing rails
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- syntax highlighting
+  use { 'tpope/vim-rails', ft = 'rb' } -- vim plugin for editing rails
   use { 'jparise/vim-graphql' }
 
   -- Test
