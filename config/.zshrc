@@ -68,11 +68,13 @@ autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type nvim > /dev/null 2>&1; then
+  alias vi='nvim'
   alias vim='nvim'
 fi
 
 # Custom Aliases
 alias la="ls -a"
+alias lg='lazygit'
 alias ll="ls -l"
 alias tls="tmux ls"
 alias qr='qrencode -m 2 -t utf8 <<< "$1"'
