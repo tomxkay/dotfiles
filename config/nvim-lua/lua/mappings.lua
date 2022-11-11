@@ -79,14 +79,8 @@ nmap('<Leader>I', [[:%s/\s\+$//e<CR>]])
 cmap('w!!', '%!sudo tee > /dev/null %')
 
 -- Blackhole delete
-nmap('d', [["_d]])
-vmap('d', [["_d]])
 nmap('D', [["_dd]])
 vmap('D', [["_dd]])
-nmap('c', [["_c]])
-vmap('c', [["_c]])
-nmap('x', [["_x]])
-vmap('x', [["_x]])
 
 -- Clipboard delete
 nmap('<Leader>d', [[d]])
