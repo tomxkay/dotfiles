@@ -89,6 +89,7 @@ return packer.startup(function(use)
 
   -- Util
   use 'BurntSushi/ripgrep'       -- text searcher
+  use 'chentoast/marks.nvim'     -- extending vim marks
   use 'Chiel92/vim-autoformat'   -- code formatter
   use 'jose-elias-alvarez/null-ls.nvim' -- lsp actions i.e formatter
   use 'MunifTanjim/prettier.nvim'       -- prettier plugin
