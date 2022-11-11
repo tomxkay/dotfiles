@@ -8,6 +8,9 @@ local vmap = require('utils').vmap
 imap('jk', '<Esc>')
 imap('kj', '<Esc>')
 
+-- Delete all marks
+nmap('<Leader><Leader><Leader>DM', ':delm! | delm A-Z0-9\"<><CR> | :echo "Cleared all marks!"<CR>')
+
 -- Toggle text wrap
 nmap('<Leader><Leader>w', ':set wrap!<CR>')
 
