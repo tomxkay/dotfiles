@@ -2,6 +2,7 @@
 mkdir -p ~/.config/nvim/plugin
 mkdir -p ~/.config/nvim/after/plugin
 mkdir -p ~/.config/nvim/lua/plugins
+mkdir -p ~/.config/nvim/lua/snippets
 
 # get script absolute path regardless of calling from location
 REALPATH=$(realpath ${BASH_SOURCE[0]})

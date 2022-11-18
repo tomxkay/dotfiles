@@ -37,7 +37,7 @@ return packer.startup(function(use)
   -- Theme
   use 'kyazdani42/nvim-web-devicons'
   use 'Mofiqul/dracula.nvim'
-  use 'morhetz/gruvbox'
+  use 'ellisonleao/gruvbox.nvim'
   use 'nvim-lualine/lualine.nvim'
 
   -- Language Syntax
@@ -50,6 +50,7 @@ return packer.startup(function(use)
   use 'vim-test/vim-test' -- vim test runner
 
   -- Git
+  use 'github/copilot.vim'
   use 'junegunn/gv.vim'    -- git commit browser
   use {
     'tanvirtin/vgit.nvim',
@@ -67,8 +68,9 @@ return packer.startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
   }
+  use 'nvim-telescope/telescope-file-browser.nvim'
   use 'kyazdani42/nvim-tree.lua' -- file explorer
-  use "folke/trouble.nvim"       -- diagnostic
+  use 'folke/trouble.nvim'       -- diagnostic
   use 'rmagatti/auto-session'    -- session management
   use { -- session fzzy finder
     'rmagatti/session-lens',
@@ -86,6 +88,13 @@ return packer.startup(function(use)
 
   use 'mattn/emmet-vim'             -- expand abbreviations
   use 'mlaursen/vim-react-snippets' -- collection of JS and TS snippets for React
+  use {
+    'L3MON4D3/LuaSnip',             -- snippets engine
+    requires = {
+      'rafamadriz/friendly-snippets',
+      'saadparwaiz1/cmp_luasnip',
+    }
+  }
 
   -- Util
   use 'BurntSushi/ripgrep'       -- text searcher
@@ -108,6 +117,7 @@ return packer.startup(function(use)
   use 'tpope/vim-dispatch'    -- async build and test dispatcher
   use 'wesQ3/vim-windowswap'  -- easy window swapping
   use 'windwp/nvim-autopairs' -- autopairs for nvim
+  use 'windwp/nvim-ts-autotag' -- autoclose and autorename html tag
   use 'Yggdroot/indentLine'   -- display indentation levels
   use 'zirrostig/vim-schlepp' -- move text selections around
 
@@ -127,4 +137,3 @@ return packer.startup(function(use)
     require_dir(dir)
   end
 end)
-

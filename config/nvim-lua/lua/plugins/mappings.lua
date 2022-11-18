@@ -3,6 +3,14 @@ local nmap = require('utils').nmap
 local xmap = require('utils').xmap
 local vmap = require('utils').vmap
 
+-- Copilot
+vim.cmd [[
+  inoremap <silent><script><expr> <Leader><Tab> copilot#Accept("\<CR>")
+
+  let g:copilot_no_tab_map = v:true
+  let g:copilot_assume_mapped = v:true
+]]
+
 -- Commentary
 map('<Leader>/', ':Commentary<CR>')
 
@@ -44,6 +52,7 @@ nmap('<Leader>xq', ':Trouble quickfix<CR>')
 nmap('<Leader>xl', ':Trouble loclist<CR>')
 
 -- Telescope
+nmap('<Space>;', ':Telescope file_browser<CR>')
 nmap(';', ':Telescope git_status<CR>')
 nmap('<Leader>F', ':Telescope find_files<CR>')
 nmap('<Leader>fb', ':Telescope buffers<CR>')

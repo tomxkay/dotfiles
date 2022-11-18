@@ -3,6 +3,11 @@ local cmp = require 'cmp'
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
@@ -13,9 +18,6 @@ cmp.setup({
 
     ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
     ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-
-    ['<C-k>'] = cmp.mapping.select_prev_item(select_opts),
-    ['<C-j>'] = cmp.mapping.select_next_item(select_opts),
 
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -46,9 +48,10 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
   }, {
-      { name = 'buffer' },
-    }),
+    { name = 'buffer' },
+  }),
   formatting = {
     fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
@@ -75,6 +78,6 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-      { name = 'cmdline' }
-    })
+    { name = 'cmdline' }
+  })
 })
