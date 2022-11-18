@@ -21,6 +21,11 @@ set backupdir=$XDG_DATA_HOME/nvim/backup
 " Swap
 :silent call system('mkdir -p ' . $XDG_DATA_HOME . '/nvim/swap')
 set directory=$XDG_DATA_HOME/nvim/swap
+
+
+if has('nvim') && executable('nvr')
+  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+endif
 ]]
 
 vim.opt.clipboard:append 'unnamedplus'

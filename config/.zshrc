@@ -15,6 +15,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+export PATH=/opt/homebrew/opt/node@16/bin:$PATH
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -28,6 +29,7 @@ export NODE_REPL_HISTORy=$XDG_DATA_HOME/node_repl_history
 export NVM_DIR=$XDG_DATA_HOME/nvm
 # export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
+export EDITOR="nvim"
 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 

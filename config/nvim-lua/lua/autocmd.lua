@@ -1,4 +1,9 @@
 vim.cmd [[
+  augroup DeleteGitBufferOnExit
+    autocmd!
+    autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+  augroup END
+
   augroup Reload
     autocmd!
     autocmd BufWritePost,FileWritePost *.lua source % | redraw

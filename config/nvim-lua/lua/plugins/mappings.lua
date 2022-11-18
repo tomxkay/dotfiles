@@ -30,6 +30,7 @@ nmap('<Leader>gg', ':G blame<CR>')
 nmap('<Leader>gv', ':GV<CR>')
 nmap('<Leader>gl', ':GV<CR>')
 nmap('<Leader>lg', ':LazyGit<CR>')
+nmap('<C-g>', ':LazyGit<CR>')
 
 -- Schlepp
 vmap('<up>',    '<Plug>SchleppUp')

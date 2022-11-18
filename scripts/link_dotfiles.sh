@@ -65,6 +65,7 @@ function getSymLinkDest {
 DOTFILESDIR=$(getExecScriptPwd)/config
 
 DOTFILES=(
+	".bashrc"
 	".zshenv"
 	".zshrc"
 	".vimrc"
