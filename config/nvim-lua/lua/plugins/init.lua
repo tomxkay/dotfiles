@@ -54,7 +54,6 @@ return packer.startup(function(use)
   use 'junegunn/gv.vim'    -- git commit browser
   use {
     'tanvirtin/vgit.nvim',
-    commit = 'ee9081c304b44509b2f4267f1f7addc303f9fb9b',
     requires = {
       'nvim-lua/plenary.nvim'
     }
