@@ -24,7 +24,7 @@ set directory=$XDG_DATA_HOME/nvim/swap
 
 
 if has('nvim') && executable('nvr')
-  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  let $GIT_EDITOR = "nvr -cc tabnew --remote-wait +'set bufhidden=wipe'"
 endif
 ]]
 
