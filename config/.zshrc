@@ -27,9 +27,12 @@ export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 export MYSQL_HISTFILE=$XDG_DATA_HOME/mysql_history
 export NODE_REPL_HISTORy=$XDG_DATA_HOME/node_repl_history
 export NVM_DIR=$XDG_DATA_HOME/nvm
-# export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim" | source $MYVIMRC'
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 export EDITOR="nvim"
+
+# Android studio
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/platform-tools:$PATH
 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 
