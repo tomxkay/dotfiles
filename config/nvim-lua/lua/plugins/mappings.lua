@@ -53,11 +53,22 @@ nmap('<Leader>xq', ':Trouble quickfix<CR>')
 nmap('<Leader>xl', ':Trouble loclist<CR>')
 
 -- Telescope
+nmap('<Leader>T', ':Telescope<CR>')
 nmap('<Space>;', ':Telescope file_browser<CR>')
-nmap(';', ':Telescope git_status<CR>')
 
 local builtin = require('telescope.builtin')
+vim.keymap.set('n', ';', function() builtin.git_files({
+    prompt_title = 'Git "modified" files',
+    git_command = {
+      'git',
+      'ls-files',
+      '--modified',
+      '--exclude-standard',
+    }
+  })
+end, {})
 vim.keymap.set('n', '<leader>F', function() builtin.find_files({
+    prompt_title = 'Find "all" files',
     find_command = {
       'rg',
       '--files',
@@ -67,6 +78,7 @@ vim.keymap.set('n', '<leader>F', function() builtin.find_files({
   })
 end, {})
 vim.keymap.set('n', '<leader>ff', function() builtin.find_files({
+    prompt_title = 'Find "filtered" files',
     find_command = {
       'rg',
       '--files',
