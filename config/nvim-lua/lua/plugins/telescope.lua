@@ -14,6 +14,13 @@ local options = {
 
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+
+        ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      },
+      n = {
+        ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
       }
     },
     vimgrep_arguments = {
@@ -25,6 +32,19 @@ local options = {
       "--line-number",
       "--column",
       "--smart-case",
+      "--hidden",
+      "--no-ignore-vcs",
+      "--glob",
+      "!**/.git/*",
+      '--glob',
+      '!**/assets/*',
+      "--glob",
+      "!**/node_modules/*",
+      '--glob',
+      '!**/.expo/*',
+      '--glob',
+      '!**/*.lock',
+      "--trim",
     },
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -43,7 +63,17 @@ local options = {
     },
     path_display = { "truncate" },
   },
-
+  pickers = {
+    find_command = {
+      "rg",
+      "--files",
+      "--hidden",
+      "--glob",
+      "!**/.git/*",
+      '--glob',
+      '!**/node_modules/*',
+    },
+  },
   extensions = {
     file_browser = {
       -- disables netrw and use telescope-file-browser in its place

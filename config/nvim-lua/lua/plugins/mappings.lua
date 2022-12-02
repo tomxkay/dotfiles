@@ -55,12 +55,38 @@ nmap('<Leader>xl', ':Trouble loclist<CR>')
 -- Telescope
 nmap('<Space>;', ':Telescope file_browser<CR>')
 nmap(';', ':Telescope git_status<CR>')
-nmap('<Leader>F', ':Telescope find_files<CR>')
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>F', function() builtin.find_files({
+    find_command = {
+      'rg',
+      '--files',
+      '--hidden',
+      '--no-ignore-vcs',
+    }
+  })
+end, {})
+vim.keymap.set('n', '<leader>ff', function() builtin.find_files({
+    find_command = {
+      'rg',
+      '--files',
+      '--hidden',
+      '--no-ignore-vcs',
+      '--glob',
+      '!**/.git/*',
+      '--glob',
+      '!**/node_modules/*',
+      '--glob',
+      '!**/assets/*',
+      '--glob',
+      '!**/.expo/*',
+    }
+  })
+end, {})
+
 nmap('<Leader>fb', ':Telescope buffers<CR>')
 nmap('<Leader>fc', ':Telescope commands<CR>')
 nmap('<Leader>fd', ':Telescope diagnostics<CR>')
-nmap('<Leader>ff', ':Telescope find_files<CR>')
-nmap('<Leader>fF', ':Telescope find_files hidden=true no_ignore=true<CR>')
 nmap('<Leader>fD', ':Telescope find_files cwd=~/dotfiles<CR>')
 nmap('<Leader>fg', ':Telescope live_grep<CR>')
 nmap('<Leader>fh', ':Telescope help_tags<CR>')
@@ -71,11 +97,11 @@ nmap('<Leader>fo', ':Telescope oldfiles<CR>')
 nmap('<Leader>fq', ':Telescope quickfix<CR>')
 nmap('<Leader>fr', ':Telescope registers<CR>')
 nmap('<Leader>fs', ':Telescope session-lens search_session<CR>')
-nmap('<Leader><Leader>fc', ':Telescope git_commits<CR>')
-nmap('<Leader><Leader>fC', ':Telescope git_bcommits<CR>')
-nmap('<Leader><Leader>fb', ':Telescope git_branches<CR>')
-nmap('<Leader><Leader>fm', ':Telescope git_status<CR>')
-nmap('<Leader><Leader>fs', ':Telescope git_stash<CR>')
+nmap('<space>gl', ':Telescope git_commits<CR>')
+nmap('<space>gh', ':Telescope git_bcommits<CR>')
+nmap('<space>gb', ':Telescope git_branches<CR>')
+nmap('<space>gd', ':Telescope git_status<CR>')
+nmap('<space>gs', ':Telescope git_stash<CR>')
 
 -- Startify
 nmap('<Leader><Leader>S', ':SSave<CR>')
