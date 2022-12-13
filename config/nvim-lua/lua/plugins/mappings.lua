@@ -77,7 +77,7 @@ vim.keymap.set('n', '<leader>F', function() builtin.find_files({
     }
   })
 end, {})
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({
+vim.keymap.set('n', 'f', function() builtin.find_files({
     prompt_title = 'Find "filtered" files',
     find_command = {
       'rg',
@@ -96,6 +96,7 @@ vim.keymap.set('n', '<leader>ff', function() builtin.find_files({
   })
 end, {})
 
+nmap('<Leader>ff', ':Telescope find_files<CR>')
 nmap('<Leader>fb', ':Telescope buffers<CR>')
 nmap('<Leader>fc', ':Telescope commands<CR>')
 nmap('<Leader>fd', ':Telescope diagnostics<CR>')
