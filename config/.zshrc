@@ -85,6 +85,7 @@ alias tls="tmux ls"
 alias qr='qrencode -m 2 -t utf8 <<< "$1"'
 alias tqr='qrencode -m 2 -t utf8'
 alias dot="cd ~/dotfiles"
+alias xdg="cd ~/.config"
 alias ws="cd ~/Code/Workspace"
 alias hw="cd ~/Code/Workspace/Headway"
 alias ttw="cd ~/Code/Workspace/Headway/tasktag-web"
