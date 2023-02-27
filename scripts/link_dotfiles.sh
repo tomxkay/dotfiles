@@ -41,12 +41,6 @@ function getSymLinkDest {
 		".zshrc")
 			echo "$XDG_CONFIG_HOME/zsh/.zshrc"
 			;;
-		"init.vim")
-			echo "$XDG_CONFIG_HOME/nvim/init.vim"
-			;;
-		".vimrc")
-			echo "$XDG_CONFIG_HOME/vim/vimrc"
-			;;
 		".tmux.conf")
 			echo "$XDG_CONFIG_HOME/tmux/tmux.conf"
 			;;
@@ -68,10 +62,11 @@ DOTFILES=(
 	".bashrc"
 	".zshenv"
 	".zshrc"
-	".vimrc"
 	".tmux.conf"
 	".gitconfig"
 	".ctags"
+	".yabairc"
+	".skhdrc"
 )
 
 # Initialize symlink destination directories
