@@ -48,12 +48,24 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 # Disable specific apps
-yabai -m rule --add app="^System Settings$" manage=off # Ventura
-yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Karabiner-Elements$" manage=off
-yabai -m rule --add app="^QuickTime Player$" manage=off
-yabai -m rule --add app="^iTerm2$" manage=off
-yabai -m rule --add app="^Simulator$" manage=off
+APPS_DISABLED=(
+"System Settings" # Ventura
+"System Preferences"
+"Calculator"
+"Karabiner-Elements"
+"QuickTime Player"
+"iTerm2"
+"Terminal"
+"Simulator"
+"Finder"
+"Slack"
+"Discord"
+"Software Update"
+"About This Mac"
+)
+
+for app in "${APPS_DISABLED[@]}"; do
+    yabai -m rule --add app="^$app\$" manage=off
+done
 
 echo "yabai configuration loaded.."
