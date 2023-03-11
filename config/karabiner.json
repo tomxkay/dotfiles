@@ -125,33 +125,7 @@
                         ]
                     },
                     {
-                        "description": "Left Control 'Hyper Key' on press and hold",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "ESC 'Meh Key' on press and hold",
+                        "description": "ESC 'Hyper Key' on press and hold, ESC on single press",
                         "manipulators": [
                             {
                                 "from": {
@@ -171,36 +145,10 @@
                                         ]
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Control to Caps Lock on single press, 'Hyper Key' on press and hold. (rev 2)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
-                                    }
-                                ],
                                 "to_if_alone": [
                                     {
                                         "hold_down_milliseconds": 500,
-                                        "key_code": "caps_lock"
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
