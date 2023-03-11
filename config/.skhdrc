@@ -77,15 +77,17 @@
 # ############################################################### #
 
 # Opening applications
-ctrl + shift + alt - t : open -a iTerm.app
-ctrl + shift + alt - s : open -a Simulator.app
+ctrl + shift + alt + cmd - t : open -a iTerm.app
+ctrl + shift + alt + cmd  - s : open -a Simulator.app
+ctrl + shift + alt + cmd  - c : open -a "Google Chrome.app"
 
-# Floating mode - Snap to layout
+# Floating mode - Snap to layout <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 ctrl + shift + alt - h : yabai -m window --grid 1:3:0:0:2:1 # left 2/3
 ctrl + shift + alt - l : yabai -m window --grid 1:3:1:0:2:1 # right 2/3
 ctrl + shift + alt - j : yabai -m window --grid 8:6:1:1:4:6 # center
 ctrl + shift + alt - k : yabai -m window --grid 1:1:1:1:1:1 # fullscreen
 ctrl + shift + alt - w : yabai -m window --grid 8:8:2:1:4:7 # center workspace
+ctrl + shift + alt - c : yabai -m window --grid 8:6:1:2:4:6 # center productivity
 
 # Floating mode - Move floating window
 ctrl + shift + alt - left : yabai -m window --move rel:-20:0
@@ -118,12 +120,12 @@ ctrl + shift + alt - e : yabai -m window --toggle split
 ctrl + shift + alt - p : yabai -m window --toggle float; yabai -m window --toggle topmost; yabai -m window --toggle sticky; yabai -m window --toggle shadow
 
 # Misc - Start/stop/restart yabai
-ctrl + shift + alt + cmd - q : brew services stop yabai
-ctrl + shift + alt + cmd - s: brew services start yabai
+# ctrl + shift + alt + cmd - q : brew services stop yabai
+# ctrl + shift + alt + cmd - s: brew services start yabai
 ctrl + shift + alt + cmd - r : brew services restart yabai
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-# shift + cmd - n : yabai -m space --create && \
+# ctrl + shift + alt + cmd - n : yabai -m space --create && \
 #                   index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
 #                   yabai -m window --space "${index}" && \
 #                   yabai -m space --focus "${index."
