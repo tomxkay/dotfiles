@@ -28,6 +28,7 @@ function initDestDir {
 	mkdir -p "$XDG_CONFIG_HOME/tmux"
 	mkdir -p "$XDG_CONFIG_HOME/ctags"
 	mkdir -p "$XDG_CONFIG_HOME/git"
+	mkdir -p "$XDG_CONFIG_HOME/karabiner"
 }
 
 # Get dotfile destination
@@ -46,6 +47,9 @@ function getSymLinkDest {
 			;;
 		".ctags")
 			echo "$XDG_CONFIG_HOME/ctags/.ctags"
+			;;
+		"karabiner.json")
+			echo "$XDG_CONFIG_HOME/karabiner/karabiner.json"
 			;;
 		".gitconfig")
 			echo "$XDG_CONFIG_HOME/git/config"
@@ -67,6 +71,7 @@ DOTFILES=(
 	".ctags"
 	".yabairc"
 	".skhdrc"
+	"karabiner.json"
 )
 
 # Initialize symlink destination directories
