@@ -125,11 +125,11 @@
                         ]
                     },
                     {
-                        "description": "Right Option 'Hyper Key' on press and hold",
+                        "description": "Left Control 'Hyper Key' on press and hold",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_option",
+                                    "key_code": "left_control",
                                     "modifiers": {
                                         "optional": [
                                             "any"
