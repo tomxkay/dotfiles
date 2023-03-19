@@ -92,8 +92,8 @@ ctrl + shift + alt - c : yabai -m window --grid 8:6:1:2:4:6 # center productivit
 # Floating mode - Move floating window
 ctrl + shift + alt - left : yabai -m window --move rel:-20:0
 ctrl + shift + alt - right : yabai -m window --move rel:20:0
-ctrl + shift + alt - up : yabai -m window --move rel:0:20
-ctrl + shift + alt - down : yabai -m window --move rel:0:-20
+ctrl + shift + alt - up : yabai -m window --move rel:0:-20
+ctrl + shift + alt - down : yabai -m window --move rel:0:20
 
 # Tile mode - toggle layout
 ctrl + shift + alt - return : yabai -m window --toggle float; yabai -m window --grid 8:6:1:1:4:6 # toggle floating | center
