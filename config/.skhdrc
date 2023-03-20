@@ -79,7 +79,9 @@
 # Opening applications
 ctrl + shift + alt + cmd - t : open -a iTerm.app
 ctrl + shift + alt + cmd  - s : open -a Simulator.app
-ctrl + shift + alt + cmd  - c : open -a "Google Chrome.app"
+ctrl + shift + alt + cmd  - b : open -a Arc.app
+ctrl + shift + alt + cmd  - c : open -a Calculator.app
+ctrl + shift + alt + cmd  - g : open -a "Google Chrome.app"
 
 # Floating mode - Snap to layout <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 ctrl + shift + alt - h : yabai -m window --grid 1:3:0:0:2:1 # left 2/3
