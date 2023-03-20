@@ -119,7 +119,7 @@ ctrl + shift + alt - o : yabai -m window --focus east
 ctrl + shift + alt - e : yabai -m window --toggle split
 
 # Misc - Custom picture in picture
-ctrl + shift + alt - p : yabai -m window --toggle float; yabai -m window --toggle topmost; yabai -m window --toggle sticky; yabai -m window --toggle shadow
+ctrl + shift + alt - p : yabai -m window --toggle topmost; yabai -m window --toggle sticky; yabai -m window --toggle shadow
 
 # Misc - Start/stop/restart yabai
 # ctrl + shift + alt + cmd - q : brew services stop yabai
