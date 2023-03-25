@@ -147,7 +147,6 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "hold_down_milliseconds": 500,
                                         "key_code": "escape"
                                     }
                                 ],
@@ -179,7 +178,6 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "hold_down_milliseconds": 500,
                                         "key_code": "grave_accent_and_tilde"
                                     }
                                 ],
