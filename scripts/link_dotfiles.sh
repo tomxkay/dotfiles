@@ -29,6 +29,7 @@ function initDestDir {
 	mkdir -p "$XDG_CONFIG_HOME/ctags"
 	mkdir -p "$XDG_CONFIG_HOME/git"
 	mkdir -p "$XDG_CONFIG_HOME/karabiner"
+	mkdir -p "$XDG_CONFIG_HOME/lazygit"
 }
 
 # Get dotfile destination
@@ -54,6 +55,9 @@ function getSymLinkDest {
 		".gitconfig")
 			echo "$XDG_CONFIG_HOME/git/config"
 			;;
+		"config.yml")
+			echo "$XDG_CONFIG_HOME/lazygit/config.yml"
+			;;
 		*)
 			echo "$HOME/$1"
 			;;
@@ -72,6 +76,7 @@ DOTFILES=(
 	".yabairc"
 	".skhdrc"
 	"karabiner.json"
+	"config.yml"
 )
 
 # Initialize symlink destination directories

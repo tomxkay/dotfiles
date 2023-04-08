@@ -1,0 +1,7 @@
+os:
+  editCommand: "nvr -cc vsplit --remote-wait +'set bufhidden=wipe'"
+  openCommand: "nvr -cc vsplit {{filename}} --remote-wait +'set bufhidden=wipe'"
+keybinding:
+  commits:
+    moveDownCommit: "J"
+    moveUpCommit: "K"
