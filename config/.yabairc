@@ -62,6 +62,7 @@ APPS_DISABLED=(
 "Discord"
 "Software Update"
 "About This Mac"
+"Arc"
 )
 
 for app in "${APPS_DISABLED[@]}"; do
