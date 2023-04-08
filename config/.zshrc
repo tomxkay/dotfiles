@@ -29,12 +29,11 @@ export NODE_REPL_HISTORy=$XDG_DATA_HOME/node_repl_history
 export NVM_DIR=$XDG_DATA_HOME/nvm
 export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 export EDITOR="nvim"
+export OPENAI_API_KEY=`cat ~/keys/openai_api_key`
 
 # Android studio
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$ANDROID_HOME/platform-tools:$PATH
-
-export WGETRC=$XDG_CONFIG_HOME/wgetrc
 
 if [ -f "~/keys/pushover_api_key" ]; then
   export PUSHOVER_API_KEY=`cat ~/keys/pushover_api_key`
